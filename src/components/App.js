@@ -1,20 +1,22 @@
-import React, { useState } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
-
-import Login from '../views/Login'
 import MainLayout from 'layouts/MainLayout';
+import React, { useState } from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Login from 'views/account/Login';
+import Dashboard from 'views/Dashboard';
+
+import HomePage from 'views/landing/HomePage';
 
 function App() {
-    const [token, setToken] = useState();
+    const [token, setToken] = useState('test');
 
-    if (!token) {
-        return <Login setToken={setToken} />
-    }
+    const Redirection = token ? <HomePage /> : <Dashboard />
 
     return (
-        <BrowserRouter>
-            <MainLayout />
-        </BrowserRouter>
+        <Routes>
+            <Route path='/' element={token ? <MainLayout /> : <HomePage />}></Route>
+            <Route path='/login' element={<Login />}></Route>
+            <Route path='/dashboard' element={<Dashboard />}></Route>
+        </Routes>
     );
 }
 

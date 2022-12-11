@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-export default function Login({ setToken }) {
+export default function Register({ setToken }) {
     const [username, setUserName] = useState();
     const [password, setPassword] = useState();
     return (
-        <div className="login-wrapper">
-            <h1>Please Log In</h1>
+        <div>
+            <h1>Register</h1>
             <form>
                 <label>
                     <p>Username</p>
@@ -24,6 +24,6 @@ export default function Login({ setToken }) {
     )
 }
 
-Login.propTypes = {
+Register.propTypes = {
     setToken: PropTypes.func.isRequired
 };

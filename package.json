@@ -1,6 +1,6 @@
 {
-  "name": "black-dashboard-react",
-  "version": "1.2.1",
+  "name": "lewcrew",
+  "version": "1.0.0",
   "private": true,
   "homepage": "https://demos.creative-tim.com/black-dashboard-react/#/admin/dashboard",
   "dependencies": {
@@ -14,7 +14,7 @@
     "react-chartjs-2": "3.0.4",
     "react-dom": "18.2.0",
     "react-notification-alert": "0.0.13",
-    "react-router-dom": "5.2.0",
+    "react-router-dom": "6.4.5",
     "react-scripts": "5.0.1",
     "reactstrap": "8.7.1",
     "sass": "1.53.0"

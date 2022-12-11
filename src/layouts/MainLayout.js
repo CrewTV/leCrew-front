@@ -16,7 +16,7 @@
 
 */
 import React from "react";
-import { Route, Switch, Redirect, useLocation } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 // javascript plugin used to create scrollbars on windows
 import PerfectScrollbar from "perfect-scrollbar";
 
@@ -30,6 +30,7 @@ import routes from "routes.js";
 
 import logo from "assets/img/react-logo.png";
 import { BackgroundColorContext } from "contexts/BackgroundColorContext";
+import Login from "views/account/Login";
 
 var ps;
 
@@ -83,7 +84,7 @@ function MainLayout(props) {
       return (
         <Route
           path={prop.path}
-          component={prop.component}
+          element={prop.component}
           key={key}
         />
       );
@@ -118,10 +119,9 @@ function MainLayout(props) {
                 toggleSidebar={toggleSidebar}
                 sidebarOpened={sidebarOpened}
               />
-              <Switch>
+              <Routes>
                 {getRoutes(routes)}
-                <Redirect from="*" to="dashboard" />
-              </Switch>
+              </Routes>
 
             </div>
           </div>
@@ -129,6 +129,7 @@ function MainLayout(props) {
         </React.Fragment>
       )}
     </BackgroundColorContext.Consumer>
+
   );
 }
 
