@@ -98,7 +98,6 @@ function MainLayout(props) {
     }
     return "Brand";
   };
-  console.log('Routes:', routes)
   return (
     <BackgroundColorContext.Consumer>
       {({ color, changeColor }) => (
