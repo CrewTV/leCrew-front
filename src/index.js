@@ -17,7 +17,7 @@
 */
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Navigate, Switch } from "react-router-dom";
 
 import MainLayout from "layouts/MainLayout";
 
@@ -29,6 +29,7 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import ThemeContextWrapper from "./components/ThemeWrapper/ThemeWrapper";
 import BackgroundColorWrapper from "./components/BackgroundColorWrapper/BackgroundColorWrapper";
 import Dashboard from "views/Dashboard";
+import Icons from "views/Icons";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -36,9 +37,7 @@ root.render(
   <ThemeContextWrapper>
     <BackgroundColorWrapper>
       <BrowserRouter>
-        <MainLayout>
-          <Route path="/" element={<Dashboard />}></Route>
-        </MainLayout>
+        <MainLayout />
       </BrowserRouter>
     </BackgroundColorWrapper>
   </ThemeContextWrapper>
