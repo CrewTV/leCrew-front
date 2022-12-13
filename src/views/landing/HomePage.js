@@ -8,7 +8,12 @@ export default function HomePage({ setToken }) {
     return (
         <div>
             <h1>Welcome to LeCrew</h1>
-            <Link to="/login">Login</Link>
+            <div>
+                <Link to="/login">Login</Link>
+            </div>
+            <div>
+                <Link to="/register">Register</Link>
+            </div>
         </div>
     )
 }
