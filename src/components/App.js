@@ -9,6 +9,7 @@ import HomePage from 'views/landing/HomePage';
 function App() {
     const [token, setToken] = useState("test");
 
+
     return (
         <MainLayout />
     );

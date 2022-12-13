@@ -84,7 +84,7 @@ function MainLayout(props) {
       return (
         <Route
           path={prop.path}
-          element={prop.component}
+          element={<prop.component />}
           key={key}
         />
       );
