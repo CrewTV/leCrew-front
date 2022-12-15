@@ -128,15 +128,9 @@ function Sidebar(props) {
                     }
                     key={key}
                   >
-                    <NavLink
-                      to={prop.path}
-                      className="nav-link"
-                      activeClassName="active"
-                      onClick={props.toggleSidebar}
-                    >
-                      <i className={prop.icon} />
-                      <p>{prop.name}</p>
-                    </NavLink>
+                    <button className="nav-link" onClick={() =>  props.setContentComponent(<prop.component />)}>
+                      {prop.name}
+                    </button>
                   </li>
                 );
               })}
@@ -159,6 +153,7 @@ Sidebar.propTypes = {
   // insde the links of this component
   rtlActive: PropTypes.bool,
   routes: PropTypes.arrayOf(PropTypes.object),
+  setContentComponent: PropTypes.func,
   logo: PropTypes.shape({
     // innerLink is for links that will direct the user within the app
     // it will be rendered as <Link to="...">...</Link> tag

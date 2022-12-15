@@ -15,7 +15,7 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 // javascript plugin used to create scrollbars on windows
 import PerfectScrollbar from "perfect-scrollbar";
@@ -31,16 +31,18 @@ import routes from "routes.js";
 import logo from "assets/img/react-logo.png";
 import { BackgroundColorContext } from "contexts/BackgroundColorContext";
 import Login from "views/account/Login";
+import Dashboard from "views/Dashboard";
 
 var ps;
 
 function MainLayout(props) {
+  const [contentComponent, setContentComponent] = useState(<Dashboard />)
   const location = useLocation();
   const mainPanelRef = React.useRef(null);
   const [sidebarOpened, setsidebarOpened] = React.useState(
     document.documentElement.className.indexOf("nav-open") !== -1
   );
-  React.useEffect(() => {
+  useEffect(() => {
     if (navigator.platform.indexOf("Win") > -1) {
       document.documentElement.className += " perfect-scrollbar-on";
       document.documentElement.classList.remove("perfect-scrollbar-off");
@@ -61,7 +63,8 @@ function MainLayout(props) {
       }
     };
   });
-  React.useEffect(() => {
+
+  useEffect(() => {
     if (navigator.platform.indexOf("Win") > -1) {
       let tables = document.querySelectorAll(".table-responsive");
       for (let i = 0; i < tables.length; i++) {
@@ -74,23 +77,13 @@ function MainLayout(props) {
       mainPanelRef.current.scrollTop = 0;
     }
   }, [location]);
+
   // this function opens and closes the sidebar on small devices
   const toggleSidebar = () => {
     document.documentElement.classList.toggle("nav-open");
     setsidebarOpened(!sidebarOpened);
   };
-  const getRoutes = (routes) => {
-    return routes.map((prop, key) => {
-      return (
-        <Route
-          path={prop.path}
-          element={<prop.component />}
-          key={key}
-        />
-      );
 
-    });
-  };
   const getBrandText = (path) => {
     for (let i = 0; i < routes.length; i++) {
       if (location.pathname.indexOf(routes[i].path) !== -1) {
@@ -106,6 +99,7 @@ function MainLayout(props) {
           <div className="wrapper">
             <Sidebar
               routes={routes}
+              setContentComponent={setContentComponent}
               logo={{
                 outterLink: "https://www.creative-tim.com/",
                 text: "Creative Tim",
@@ -119,10 +113,7 @@ function MainLayout(props) {
                 toggleSidebar={toggleSidebar}
                 sidebarOpened={sidebarOpened}
               />
-              <Routes>
-                {getRoutes(routes)}
-              </Routes>
-
+              {contentComponent}
             </div>
           </div>
           <FixedPlugin bgColor={color} handleBgClick={changeColor} />
