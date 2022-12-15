@@ -19,7 +19,7 @@ function App() {
     );
   };
 
-  const [isAuthenticated, setIsAuthenticated] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState();
 
   return (
     <div>
@@ -32,7 +32,10 @@ function App() {
           <Route path='/dashboard' element={<MainLayout />} />
 
           <Route path='/home' element={<HomePage />} />
-          <Route path='/login' element={<Login />} />
+          <Route
+            path='/login'
+            element={<Login setToken={setIsAuthenticated} />}
+          />
           <Route path='/register' element={<Register />} />
           <Route
             path='*'

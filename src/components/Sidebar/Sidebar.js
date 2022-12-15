@@ -135,12 +135,6 @@ function Sidebar(props) {
                   </li>
                 );
               })}
-              <li className='active-pro'>
-                <ReactstrapNavLink href='https://www.creative-tim.com/product/black-dashboard-pro-react?ref=bdr-user-archive-sidebar-upgrade-pro'>
-                  <i className='tim-icons icon-spaceship' />
-                  <p>Upgrade to PRO</p>
-                </ReactstrapNavLink>
-              </li>
             </Nav>
           </div>
         </div>
@@ -150,8 +144,6 @@ function Sidebar(props) {
 }
 
 Sidebar.propTypes = {
-  // if true, then instead of the routes[i].name, routes[i].rtlName will be rendered
-  // insde the links of this component
   rtlActive: PropTypes.bool,
   routes: PropTypes.arrayOf(PropTypes.object),
   contentComponent: PropTypes.object,

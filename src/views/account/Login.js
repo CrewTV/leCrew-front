@@ -28,7 +28,7 @@ export default function Login({ setToken }) {
           <button
             type='submit'
             onClick={() => {
-              setToken('token');
+              setToken(true);
               navigateHome();
             }}>
             Login
