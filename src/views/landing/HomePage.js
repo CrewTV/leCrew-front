@@ -1,22 +1,23 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
 export default function HomePage({ setToken }) {
-    const [username, setUserName] = useState();
-    const [password, setPassword] = useState();
-    return (
-        <div>
-            <h1>Welcome to LeCrew</h1>
-            <div>
-                <Link to="/login">Login</Link>
-            </div>
-            <div>
-                <Link to="/register">Register</Link>
-            </div>
-        </div>
-    )
+  const [username, setUserName] = useState();
+  const [password, setPassword] = useState();
+  return (
+    <div>
+      <h1>Welcome to LeCrew</h1>
+      <div>
+        <Link to='/login' setToken={setToken}>
+          Login
+        </Link>
+      </div>
+      <div>
+        <Link to='/register'>Register</Link>
+      </div>
+    </div>
+  );
 }
 
-HomePage.propTypes = {
-};
+HomePage.propTypes = {};
