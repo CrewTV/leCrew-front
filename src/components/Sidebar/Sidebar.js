@@ -34,12 +34,8 @@ import {
 var ps;
 
 function Sidebar(props) {
-  const location = useLocation();
   const sidebarRef = React.useRef(null);
   // verifies if routeName is the one active (in browser input)
-  const activeRoute = (routeName) => {
-    return location.pathname === routeName ? "active" : "";
-  };
   React.useEffect(() => {
     if (navigator.platform.indexOf("Win") > -1) {
       ps = new PerfectScrollbar(sidebarRef.current, {
@@ -120,17 +116,26 @@ function Sidebar(props) {
             ) : null}
             <Nav>
               {routes.map((prop, key) => {
+                console.log('PropComp:', prop.component);
+                console.log('CurrentComp', props.contentComponent)
                 if (prop.redirect) return null;
                 return (
                   <li
                     className={
-                      activeRoute(prop.path) + (prop.pro ? " active-pro" : "")
+                      prop.name === props.contentComponentName ? 'active' : ''
                     }
                     key={key}
                   >
-                    <button className="nav-link" onClick={() =>  props.setContentComponent(<prop.component />)}>
+                    <NavLink className="nav-link">
+                    <i className={prop.icon} />
+                    <p className="nav-link" onClick={() => {
+                      props.setContentComponentName(prop.name)
+                      props.setContentComponent(<prop.component />)
+                      }
+                      }>
                       {prop.name}
-                    </button>
+                    </p>
+                    </NavLink>
                   </li>
                 );
               })}
@@ -153,7 +158,10 @@ Sidebar.propTypes = {
   // insde the links of this component
   rtlActive: PropTypes.bool,
   routes: PropTypes.arrayOf(PropTypes.object),
+  contentComponent: PropTypes.object,
   setContentComponent: PropTypes.func,
+  contentComponentName: PropTypes.string,
+  setContentComponentName: PropTypes.func,
   logo: PropTypes.shape({
     // innerLink is for links that will direct the user within the app
     // it will be rendered as <Link to="...">...</Link> tag

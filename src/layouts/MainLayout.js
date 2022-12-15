@@ -37,6 +37,7 @@ var ps;
 
 function MainLayout(props) {
   const [contentComponent, setContentComponent] = useState(<Dashboard />)
+  const [contentComponentName, setContentComponentName] = useState('Dashboard')
   const location = useLocation();
   const mainPanelRef = React.useRef(null);
   const [sidebarOpened, setsidebarOpened] = React.useState(
@@ -99,7 +100,10 @@ function MainLayout(props) {
           <div className="wrapper">
             <Sidebar
               routes={routes}
+              contentComponent={contentComponent}
               setContentComponent={setContentComponent}
+              contentComponentName={contentComponentName}
+              setContentComponentName={setContentComponentName}
               logo={{
                 outterLink: "https://www.creative-tim.com/",
                 text: "Creative Tim",
