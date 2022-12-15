@@ -112,8 +112,6 @@ function Sidebar(props) {
             ) : null}
             <Nav>
               {routes.map((prop, key) => {
-                console.log('PropComp:', prop.component);
-                console.log('CurrentComp', props.contentComponent);
                 if (prop.redirect) return null;
                 return (
                   <li
@@ -124,7 +122,6 @@ function Sidebar(props) {
                     <NavLink className='nav-link'>
                       <i className={prop.icon} />
                       <p
-                        className='nav-link'
                         onClick={() => {
                           props.setContentComponentName(prop.name);
                           props.setContentComponent(<prop.component />);
