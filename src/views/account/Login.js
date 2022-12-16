@@ -6,33 +6,34 @@ export default function Login({ setToken }) {
   const [username, setUserName] = useState();
   const [password, setPassword] = useState();
   const navigate = useNavigate();
-  const navigateHome = () => {
-    navigate('/dashboard');
-  };
+
   return (
-    <div>
-      <h1>Log In</h1>
+    <div className='d-flex flex-column align-items-center justify-content-center'>
+      <h1>Connexion</h1>
       <form>
-        <label>
-          <p>Username</p>
-          <input type='text' onChange={(e) => setUserName(e.target.value)} />
-        </label>
-        <label>
-          <p>Password</p>
-          <input
-            type='password'
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </label>
-        <div>
-          <button
-            type='submit'
-            onClick={() => {
-              setToken(true);
-              navigateHome();
-            }}>
-            Login
-          </button>
+        <div className='d-flex flex-column align-items-center'>
+          <label>
+            <p>Email</p>
+            <input type='text' onChange={(e) => setUserName(e.target.value)} />
+          </label>
+          <label>
+            <p>Mot de passe</p>
+            <input
+              type='password'
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </label>
+          <div>
+            <button
+              type='button'
+              className='btn btn-info fixed-button'
+              onClick={() => {
+                setToken(true);
+                navigate('/dashboard');
+              }}>
+              Login
+            </button>
+          </div>
         </div>
       </form>
     </div>

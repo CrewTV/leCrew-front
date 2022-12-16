@@ -5,21 +5,21 @@ export default function HomePage({ setToken }) {
   const navigate = useNavigate();
 
   return (
-    <div className='d-flex flex-column align-items-center'>
+    <div className='d-flex flex-column align-items-center justify-content-center'>
       <h1>Bienvenue sur LeCrew</h1>
       <h4>La solution d'investissement groupé</h4>
       <div className='flex-row'>
         <button
           type='button'
-          class='btn btn-info'
+          className='btn btn-info fixed-button'
           onClick={() => navigate('/login')}>
-          Login
+          Connexion
         </button>
         <button
           type='button'
-          class='btn btn-success'
+          className='btn btn-success fixed-button'
           onClick={() => navigate('/register')}>
-          Register
+          Inscription
         </button>
       </div>
     </div>
