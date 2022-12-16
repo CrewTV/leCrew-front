@@ -1,20 +1,26 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function HomePage({ setToken }) {
-  const [username, setUserName] = useState();
-  const [password, setPassword] = useState();
+  const navigate = useNavigate();
+
   return (
-    <div>
-      <h1>Welcome to LeCrew</h1>
-      <div>
-        <Link to='/login' setToken={setToken}>
+    <div className='d-flex flex-column align-items-center'>
+      <h1>Bienvenue sur LeCrew</h1>
+      <h4>La solution d'investissement groupé</h4>
+      <div className='flex-row'>
+        <button
+          type='button'
+          class='btn btn-info'
+          onClick={() => navigate('/login')}>
           Login
-        </Link>
-      </div>
-      <div>
-        <Link to='/register'>Register</Link>
+        </button>
+        <button
+          type='button'
+          class='btn btn-success'
+          onClick={() => navigate('/register')}>
+          Register
+        </button>
       </div>
     </div>
   );

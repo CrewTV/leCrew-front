@@ -22,32 +22,20 @@ function App() {
   const [isAuthenticated, setIsAuthenticated] = useState();
 
   return (
-    <div>
-      <div>
-        <Routes>
-          <Route
-            path='/'
-            element={<AuthWrapper isAuthenticated={isAuthenticated} />}
-          />
-          <Route path='/dashboard' element={<MainLayout />} />
-
-          <Route path='/home' element={<HomePage />} />
-          <Route
-            path='/login'
-            element={<Login setToken={setIsAuthenticated} />}
-          />
-          <Route path='/register' element={<Register />} />
-          <Route
-            path='*'
-            element={
-              <div>
-                <h2>404 Page not found</h2>
-              </div>
-            }
-          />
-        </Routes>
-      </div>
-    </div>
+    <Routes>
+      <Route
+        path='/'
+        element={<AuthWrapper isAuthenticated={isAuthenticated} />}
+      />
+      <Route path='/dashboard' element={<MainLayout />} />
+      <Route path='/home' element={<HomePage />} />
+      <Route path='/login' element={<Login setToken={setIsAuthenticated} />} />
+      <Route path='/register' element={<Register />} />
+      <Route
+        path='*'
+        element={<AuthWrapper isAuthenticated={isAuthenticated} />}
+      />
+    </Routes>
   );
 }
 
