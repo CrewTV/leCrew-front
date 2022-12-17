@@ -9,7 +9,7 @@ export default function Register({ setToken }) {
   const navigate = useNavigate();
 
   return (
-    <div className='d-flex flex-column align-items-center justify-content-center'>
+    <div className='d-flex flex-column align-items-center justify-content-center h-100'>
       <h1>Inscription</h1>
       <form>
         <div className='d-flex flex-column align-items-center'>

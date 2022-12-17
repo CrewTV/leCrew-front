@@ -5,7 +5,7 @@ export default function HomePage({ setToken }) {
   const navigate = useNavigate();
 
   return (
-    <div className='d-flex flex-column align-items-center justify-content-center'>
+    <div className='d-flex flex-column align-items-center justify-content-center h-100'>
       <h1>Bienvenue sur LeCrew</h1>
       <h4>La solution d'investissement groupé</h4>
       <div className='flex-row'>

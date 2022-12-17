@@ -24,15 +24,18 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 import ThemeContextWrapper from './components/ThemeWrapper/ThemeWrapper';
 import BackgroundColorWrapper from './components/BackgroundColorWrapper/BackgroundColorWrapper';
 import App from 'components/App';
+import './assets/css/global.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
-  <ThemeContextWrapper>
+  <React.StrictMode>
     <BackgroundColorWrapper>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <ThemeContextWrapper>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </ThemeContextWrapper>
     </BackgroundColorWrapper>
-  </ThemeContextWrapper>
+  </React.StrictMode>
 );
