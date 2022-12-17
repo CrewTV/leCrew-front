@@ -5,6 +5,7 @@ import { FormGroup, Input, Label } from 'reactstrap';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import YupPassword from 'yup-password';
+
 YupPassword(Yup);
 
 export default function RegisterForm({ setToken }) {
@@ -20,30 +21,31 @@ export default function RegisterForm({ setToken }) {
     },
 
     validationSchema: Yup.object({
-      firstname: Yup.string().required('Information requise'),
-      lastname: Yup.string().required('Information requise'),
-      age: Yup.string().required('Information requise'),
+      firstname: Yup.string().required('Prénom requis'),
+      lastname: Yup.string().required('Nom requis'),
+      age: Yup.string().required('Age requis'),
       email: Yup.string()
         .email('Adresse mail invalide')
-        .required('Adressse mail obligatoire'),
+        .required('Adressse mail requise'),
       password: Yup.string()
-        .min(10, 'Password should have at least 10 characaters')
-        .minLowercase(1, 'Password must contain at least 1 lower case letter')
-        .minUppercase(1, 'Password must contain at least 1 upper case letter')
-        .minSymbols(1, 'Password must contain at least 1 special character')
-        .minNumbers(1, 'password must contain at least 1 number')
-        .required('Password is required'),
+        .min(10, 'Au minimum 10 caractère')
+        .minLowercase(1, 'Au minimum une lettre majuscule')
+        .minUppercase(1, 'Au minimum une lettre miniscule')
+        .minSymbols(1, 'Au minimum un caractère spécial')
+        .minNumbers(1, 'Au minimum un chiffre')
+        .required('Mot de passe requis'),
       passwordConfirm: Yup.string()
-        .min(10, 'Password should have at least 10 characaters')
-        .minLowercase(1, 'Password must contain at least 1 lower case letter')
-        .minUppercase(1, 'Password must contain at least 1 upper case letter')
-        .minSymbols(1, 'Password must contain at least 1 special character')
-        .minNumbers(1, 'password must contain at least 1 number')
-        .required('Password is required'),
+        .min(10, 'Au minimum 10 caractère')
+        .minLowercase(1, 'Au minimum une lettre majuscule')
+        .minUppercase(1, 'Au minimum une lettre miniscule')
+        .minSymbols(1, 'Au minimum un caractère spécial')
+        .minNumbers(1, 'Au minimum un chiffre')
+        .required('Mot de passe requis'),
     }),
 
     onSubmit: (values) => {
       console.log('Values: ', values);
+      console.log('Api call');
     },
   });
 
@@ -67,6 +69,7 @@ export default function RegisterForm({ setToken }) {
             Prénom
           </Label>
           <Input
+            className='fixed_field'
             type='text'
             placeholder='Prénom'
             {...registerFormik.getFieldProps('firstname')}
@@ -95,6 +98,7 @@ export default function RegisterForm({ setToken }) {
             Nom
           </Label>
           <Input
+            className='fixed_field'
             type='text'
             placeholder='Nom'
             {...registerFormik.getFieldProps('lastname')}
@@ -122,6 +126,7 @@ export default function RegisterForm({ setToken }) {
             Email
           </Label>
           <Input
+            className='fixed_field'
             type='text'
             placeholder='Email'
             {...registerFormik.getFieldProps('email')}
@@ -149,6 +154,7 @@ export default function RegisterForm({ setToken }) {
             Age
           </Label>
           <Input
+            className='fixed_field'
             type='number'
             placeholder='Age'
             {...registerFormik.getFieldProps('age')}
@@ -174,6 +180,7 @@ export default function RegisterForm({ setToken }) {
             Mot de passe
           </Label>
           <Input
+            className='fixed_field'
             type='password'
             placeholder='Mot de passe'
             {...registerFormik.getFieldProps('password')}
@@ -203,6 +210,7 @@ export default function RegisterForm({ setToken }) {
             Confirmation de mot de passe
           </Label>
           <Input
+            className='fixed_field'
             type='password'
             placeholder='Confirmation de mot de passe'
             {...registerFormik.getFieldProps('passwordConfirm')}
