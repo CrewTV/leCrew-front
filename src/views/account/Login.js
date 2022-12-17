@@ -13,7 +13,7 @@ export default function Login({}) {
       <LoginForm />
       <div className='d-flex flex-row mt-4'>
         <p className='mr-2'>Pas de compte ?</p>
-        <Link to='/register'>M'inscire</Link>
+        <Link to='/register'>M'inscrire</Link>
       </div>
     </div>
   );

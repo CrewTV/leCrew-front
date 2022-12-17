@@ -28,16 +28,16 @@ export default function RegisterForm({ setToken }) {
         .email('Adresse mail invalide')
         .required('Adressse mail requise'),
       password: Yup.string()
-        .min(10, 'Au minimum 10 caractère')
-        .minLowercase(1, 'Au minimum une lettre majuscule')
-        .minUppercase(1, 'Au minimum une lettre miniscule')
+        .min(10, 'Au minimum 10 caractères')
+        .minLowercase(1, 'Au minimum une lettre minuscule')
+        .minUppercase(1, 'Au minimum une lettre majuscule')
         .minSymbols(1, 'Au minimum un caractère spécial')
         .minNumbers(1, 'Au minimum un chiffre')
         .required('Mot de passe requis'),
       passwordConfirm: Yup.string()
-        .min(10, 'Au minimum 10 caractère')
-        .minLowercase(1, 'Au minimum une lettre majuscule')
-        .minUppercase(1, 'Au minimum une lettre miniscule')
+        .min(10, 'Au minimum 10 caractères')
+        .minLowercase(1, 'Au minimum une lettre minuscule')
+        .minUppercase(1, 'Au minimum une lettre majuscule')
         .minSymbols(1, 'Au minimum un caractère spécial')
         .minNumbers(1, 'Au minimum un chiffre')
         .required('Mot de passe requis'),
