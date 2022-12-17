@@ -1,65 +1,223 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
-import { Input } from 'reactstrap';
+import { FormGroup, Input, Label } from 'reactstrap';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
+import YupPassword from 'yup-password';
+YupPassword(Yup);
 
 export default function RegisterForm({ setToken }) {
   const navigate = useNavigate();
-  const [username, setUserName] = useState();
-  const [password, setPassword] = useState();
+  const registerFormik = useFormik({
+    initialValues: {
+      firstname: '',
+      lastname: '',
+      age: '',
+      email: '',
+      password: '',
+      passwordConfirm: '',
+    },
+
+    validationSchema: Yup.object({
+      firstname: Yup.string().required('Information requise'),
+      lastname: Yup.string().required('Information requise'),
+      age: Yup.string().required('Information requise'),
+      email: Yup.string()
+        .email('Adresse mail invalide')
+        .required('Adressse mail obligatoire'),
+      password: Yup.string()
+        .min(10, 'Password should have at least 10 characaters')
+        .minLowercase(1, 'Password must contain at least 1 lower case letter')
+        .minUppercase(1, 'Password must contain at least 1 upper case letter')
+        .minSymbols(1, 'Password must contain at least 1 special character')
+        .minNumbers(1, 'password must contain at least 1 number')
+        .required('Password is required'),
+      passwordConfirm: Yup.string()
+        .min(10, 'Password should have at least 10 characaters')
+        .minLowercase(1, 'Password must contain at least 1 lower case letter')
+        .minUppercase(1, 'Password must contain at least 1 upper case letter')
+        .minSymbols(1, 'Password must contain at least 1 special character')
+        .minNumbers(1, 'password must contain at least 1 number')
+        .required('Password is required'),
+    }),
+
+    onSubmit: (values) => {
+      console.log('Values: ', values);
+    },
+  });
 
   return (
-    <form>
+    <form onSubmit={registerFormik.handleSubmit}>
       <div className='d-flex flex-column align-items-center'>
-        <label>
-          <p>Prénom</p>
+        <FormGroup
+          className={
+            registerFormik.touched.firstname && registerFormik.errors.firstname
+              ? 'has-error'
+              : null
+          }>
+          <Label
+            for={
+              registerFormik.touched.firstname &&
+              registerFormik.errors.firstname
+                ? 'error'
+                : null
+            }
+            className='control-label'>
+            Prénom
+          </Label>
           <Input
             type='text'
             placeholder='Prénom'
-            onChange={(e) => setUserName(e.target.value)}
+            {...registerFormik.getFieldProps('firstname')}
           />
-        </label>
-        <label>
-          <p>Nom</p>
+          {registerFormik.touched.firstname &&
+          registerFormik.errors.firstname ? (
+            <div className='mt-1 text-danger'>
+              {registerFormik.errors.firstname}
+            </div>
+          ) : null}
+        </FormGroup>
+
+        <FormGroup
+          className={
+            registerFormik.touched.lastname && registerFormik.errors.lastname
+              ? 'has-error'
+              : null
+          }>
+          <Label
+            for={
+              registerFormik.touched.lastname && registerFormik.errors.lastname
+                ? 'error'
+                : null
+            }
+            className='control-label'>
+            Nom
+          </Label>
           <Input
             type='text'
             placeholder='Nom'
-            onChange={(e) => setUserName(e.target.value)}
+            {...registerFormik.getFieldProps('lastname')}
           />
-        </label>
-        <label>
-          <p>Email</p>
+          {registerFormik.touched.lastname && registerFormik.errors.lastname ? (
+            <div className='mt-1 text-danger'>
+              {registerFormik.errors.lastname}
+            </div>
+          ) : null}
+        </FormGroup>
+
+        <FormGroup
+          className={
+            registerFormik.touched.email && registerFormik.errors.email
+              ? 'has-error'
+              : null
+          }>
+          <Label
+            for={
+              registerFormik.touched.email && registerFormik.errors.email
+                ? 'error'
+                : null
+            }
+            className='control-label'>
+            Email
+          </Label>
           <Input
             type='text'
             placeholder='Email'
-            onChange={(e) => setUserName(e.target.value)}
+            {...registerFormik.getFieldProps('email')}
           />
-        </label>
-        <label>
-          <p>Mot de passe</p>
+          {registerFormik.touched.email && registerFormik.errors.email ? (
+            <div className='mt-1 text-danger'>
+              {registerFormik.errors.email}
+            </div>
+          ) : null}
+        </FormGroup>
+
+        <FormGroup
+          className={
+            registerFormik.touched.age && registerFormik.errors.age
+              ? 'has-error'
+              : null
+          }>
+          <Label
+            for={
+              registerFormik.touched.age && registerFormik.errors.age
+                ? 'error'
+                : null
+            }
+            className='control-label'>
+            Age
+          </Label>
+          <Input
+            type='number'
+            placeholder='Age'
+            {...registerFormik.getFieldProps('age')}
+          />
+          {registerFormik.touched.age && registerFormik.errors.age ? (
+            <div className='mt-1 text-danger'>{registerFormik.errors.age}</div>
+          ) : null}
+        </FormGroup>
+
+        <FormGroup
+          className={
+            registerFormik.touched.password && registerFormik.errors.password
+              ? 'has-error'
+              : null
+          }>
+          <Label
+            for={
+              registerFormik.touched.password && registerFormik.errors.password
+                ? 'error'
+                : null
+            }
+            className='control-label'>
+            Mot de passe
+          </Label>
           <Input
             type='password'
             placeholder='Mot de passe'
-            onChange={(e) => setPassword(e.target.value)}
+            {...registerFormik.getFieldProps('password')}
           />
-        </label>
-        <label>
-          <p>Confirmation de mot de passe</p>
+          {registerFormik.touched.password && registerFormik.errors.password ? (
+            <div className='mt-1 text-danger'>
+              {registerFormik.errors.password}
+            </div>
+          ) : null}
+        </FormGroup>
+
+        <FormGroup
+          className={
+            registerFormik.touched.passwordConfirm &&
+            registerFormik.errors.passwordConfirm
+              ? 'has-error'
+              : null
+          }>
+          <Label
+            for={
+              registerFormik.touched.passwordConfirm &&
+              registerFormik.errors.passwordConfirm
+                ? 'error'
+                : null
+            }
+            className='control-label'>
+            Confirmation de mot de passe
+          </Label>
           <Input
             type='password'
-            placeholder='Confirmation'
-            onChange={(e) => setPassword(e.target.value)}
+            placeholder='Confirmation de mot de passe'
+            {...registerFormik.getFieldProps('passwordConfirm')}
           />
-        </label>
-        <div>
-          <button
-            type='button'
-            className='btn btn-info fixed-button'
-            onClick={() => {
-              setToken(true);
-              navigate('/dashboard');
-            }}>
-            Login
+          {registerFormik.touched.passwordConfirm &&
+          registerFormik.errors.passwordConfirm ? (
+            <div className='mt-1 text-danger'>
+              {registerFormik.errors.passwordConfirm}
+            </div>
+          ) : null}
+        </FormGroup>
+
+        <div className='mt-50'>
+          <button type='submit' className='btn btn-info fixed-button'>
+            M'inscire
           </button>
         </div>
       </div>
@@ -67,6 +225,4 @@ export default function RegisterForm({ setToken }) {
   );
 }
 
-RegisterForm.propTypes = {
-  setToken: PropTypes.func.isRequired,
-};
+RegisterForm.propTypes = {};

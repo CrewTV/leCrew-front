@@ -29,13 +29,11 @@ import './assets/css/global.css';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
-  <React.StrictMode>
-    <BackgroundColorWrapper>
-      <ThemeContextWrapper>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-      </ThemeContextWrapper>
-    </BackgroundColorWrapper>
-  </React.StrictMode>
+  <BackgroundColorWrapper>
+    <ThemeContextWrapper>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </ThemeContextWrapper>
+  </BackgroundColorWrapper>
 );
