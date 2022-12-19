@@ -5,10 +5,12 @@ import { FormGroup, Input, Label } from 'reactstrap';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import YupPassword from 'yup-password';
+import { register } from '../../api/users';
+import { setToken } from 'utils/token';
 
 YupPassword(Yup);
 
-export default function RegisterForm({ setToken }) {
+export default function RegisterForm({}) {
   const navigate = useNavigate();
   const registerFormik = useFormik({
     initialValues: {
@@ -43,9 +45,16 @@ export default function RegisterForm({ setToken }) {
         .required('Mot de passe requis'),
     }),
 
-    onSubmit: (values) => {
-      console.log('Values: ', values);
-      console.log('Api call');
+    onSubmit: async (values) => {
+      const token = await register(
+        values.firstname,
+        values.lastname,
+        values.age,
+        values.email,
+        values.password
+      );
+      setToken(token);
+      window.location.reload();
     },
   });
 
