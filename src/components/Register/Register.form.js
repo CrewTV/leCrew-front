@@ -1,6 +1,4 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import { useNavigate } from 'react-router-dom';
+import React from 'react';
 import { FormGroup, Input, Label } from 'reactstrap';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
@@ -11,7 +9,6 @@ import { setToken } from 'utils/token';
 YupPassword(Yup);
 
 export default function RegisterForm({}) {
-  const navigate = useNavigate();
   const registerFormik = useFormik({
     initialValues: {
       firstname: '',
@@ -42,6 +39,10 @@ export default function RegisterForm({}) {
         .minUppercase(1, 'Au minimum une lettre majuscule')
         .minSymbols(1, 'Au minimum un caractère spécial')
         .minNumbers(1, 'Au minimum un chiffre')
+        .oneOf(
+          [Yup.ref('password')],
+          'Les mot des passes doivent correspondrent'
+        )
         .required('Mot de passe requis'),
     }),
 
