@@ -15,30 +15,25 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
-import ReactDOM from "react-dom/client";
-import { BrowserRouter, Route, Routes, Navigate, Switch } from "react-router-dom";
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom';
+import 'assets/scss/black-dashboard-react.scss';
+import 'assets/css/nucleo-icons.css';
+import '@fortawesome/fontawesome-free/css/all.min.css';
+import ThemeContextWrapper from './components/ThemeWrapper/ThemeWrapper';
+import BackgroundColorWrapper from './components/BackgroundColorWrapper/BackgroundColorWrapper';
+import App from 'components/App';
+import './assets/css/global.css';
 
-import MainLayout from "layouts/MainLayout";
-
-import "assets/scss/black-dashboard-react.scss";
-import "assets/demo/demo.css";
-import "assets/css/nucleo-icons.css";
-import "@fortawesome/fontawesome-free/css/all.min.css";
-
-import ThemeContextWrapper from "./components/ThemeWrapper/ThemeWrapper";
-import BackgroundColorWrapper from "./components/BackgroundColorWrapper/BackgroundColorWrapper";
-import Dashboard from "views/Dashboard";
-import Icons from "views/Icons";
-
-const root = ReactDOM.createRoot(document.getElementById("root"));
+const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
-  <ThemeContextWrapper>
-    <BackgroundColorWrapper>
+  <BackgroundColorWrapper>
+    <ThemeContextWrapper>
       <BrowserRouter>
-        <MainLayout />
+        <App />
       </BrowserRouter>
-    </BackgroundColorWrapper>
-  </ThemeContextWrapper>
+    </ThemeContextWrapper>
+  </BackgroundColorWrapper>
 );

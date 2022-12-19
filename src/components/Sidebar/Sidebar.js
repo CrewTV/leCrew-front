@@ -16,48 +16,44 @@
 
 */
 /*eslint-disable*/
-import React from "react";
-import { NavLink, Link, useLocation } from "react-router-dom";
+import React from 'react';
+import { NavLink, Link, useLocation } from 'react-router-dom';
 // nodejs library to set properties for components
-import { PropTypes } from "prop-types";
+import { PropTypes } from 'prop-types';
 
 // javascript plugin used to create scrollbars on windows
-import PerfectScrollbar from "perfect-scrollbar";
+import PerfectScrollbar from 'perfect-scrollbar';
 
 // reactstrap components
-import { Nav, NavLink as ReactstrapNavLink } from "reactstrap";
+import { Nav, NavLink as ReactstrapNavLink } from 'reactstrap';
 import {
   BackgroundColorContext,
-  backgroundColors
-} from "contexts/BackgroundColorContext";
+  backgroundColors,
+} from 'contexts/BackgroundColorContext';
 
 var ps;
 
 function Sidebar(props) {
-  const location = useLocation();
   const sidebarRef = React.useRef(null);
   // verifies if routeName is the one active (in browser input)
-  const activeRoute = (routeName) => {
-    return location.pathname === routeName ? "active" : "";
-  };
   React.useEffect(() => {
-    if (navigator.platform.indexOf("Win") > -1) {
+    if (navigator.platform.indexOf('Win') > -1) {
       ps = new PerfectScrollbar(sidebarRef.current, {
         suppressScrollX: true,
-        suppressScrollY: false
+        suppressScrollY: false,
       });
     }
     // Specify how to clean up after this effect:
     return function cleanup() {
-      if (navigator.platform.indexOf("Win") > -1) {
+      if (navigator.platform.indexOf('Win') > -1) {
         ps.destroy();
       }
     };
   });
   const linkOnClick = () => {
-    document.documentElement.classList.remove("nav-open");
+    document.documentElement.classList.remove('nav-open');
   };
-  const { routes, rtlActive, logo } = props;
+  const { pages, rtlActive, logo } = props;
   let logoImg = null;
   let logoText = null;
   if (logo !== undefined) {
@@ -65,22 +61,20 @@ function Sidebar(props) {
       logoImg = (
         <a
           href={logo.outterLink}
-          className="simple-text logo-mini"
-          target="_blank"
-          onClick={props.toggleSidebar}
-        >
-          <div className="logo-img">
-            <img src={logo.imgSrc} alt="react-logo" />
+          className='simple-text logo-mini'
+          target='_blank'
+          onClick={props.toggleSidebar}>
+          <div className='logo-img'>
+            <img src={logo.imgSrc} alt='react-logo' />
           </div>
         </a>
       );
       logoText = (
         <a
           href={logo.outterLink}
-          className="simple-text logo-normal"
-          target="_blank"
-          onClick={props.toggleSidebar}
-        >
+          className='simple-text logo-normal'
+          target='_blank'
+          onClick={props.toggleSidebar}>
           {logo.text}
         </a>
       );
@@ -88,20 +82,18 @@ function Sidebar(props) {
       logoImg = (
         <Link
           to={logo.innerLink}
-          className="simple-text logo-mini"
-          onClick={props.toggleSidebar}
-        >
-          <div className="logo-img">
-            <img src={logo.imgSrc} alt="react-logo" />
+          className='simple-text logo-mini'
+          onClick={props.toggleSidebar}>
+          <div className='logo-img'>
+            <img src={logo.imgSrc} alt='react-logo' />
           </div>
         </Link>
       );
       logoText = (
         <Link
           to={logo.innerLink}
-          className="simple-text logo-normal"
-          onClick={props.toggleSidebar}
-        >
+          className='simple-text logo-normal'
+          onClick={props.toggleSidebar}>
           {logo.text}
         </Link>
       );
@@ -110,42 +102,36 @@ function Sidebar(props) {
   return (
     <BackgroundColorContext.Consumer>
       {({ color }) => (
-        <div className="sidebar" data={color}>
-          <div className="sidebar-wrapper" ref={sidebarRef}>
+        <div className='sidebar' data={color}>
+          <div className='sidebar-wrapper' ref={sidebarRef}>
             {logoImg !== null || logoText !== null ? (
-              <div className="logo">
+              <div className='logo'>
                 {logoImg}
                 {logoText}
               </div>
             ) : null}
             <Nav>
-              {routes.map((prop, key) => {
+              {pages.map((prop, key) => {
                 if (prop.redirect) return null;
                 return (
                   <li
                     className={
-                      activeRoute(prop.path) + (prop.pro ? " active-pro" : "")
+                      prop.name === props.contentComponentName ? 'active' : ''
                     }
-                    key={key}
-                  >
-                    <NavLink
-                      to={prop.path}
-                      className="nav-link"
-                      activeClassName="active"
-                      onClick={props.toggleSidebar}
-                    >
+                    key={key}>
+                    <NavLink className='nav-link'>
                       <i className={prop.icon} />
-                      <p>{prop.name}</p>
+                      <p
+                        onClick={() => {
+                          props.setContentComponentName(prop.name);
+                          props.setContentComponent(<prop.component />);
+                        }}>
+                        {prop.name}
+                      </p>
                     </NavLink>
                   </li>
                 );
               })}
-              <li className="active-pro">
-                <ReactstrapNavLink href="https://www.creative-tim.com/product/black-dashboard-pro-react?ref=bdr-user-archive-sidebar-upgrade-pro">
-                  <i className="tim-icons icon-spaceship" />
-                  <p>Upgrade to PRO</p>
-                </ReactstrapNavLink>
-              </li>
             </Nav>
           </div>
         </div>
@@ -155,10 +141,12 @@ function Sidebar(props) {
 }
 
 Sidebar.propTypes = {
-  // if true, then instead of the routes[i].name, routes[i].rtlName will be rendered
-  // insde the links of this component
   rtlActive: PropTypes.bool,
-  routes: PropTypes.arrayOf(PropTypes.object),
+  pages: PropTypes.arrayOf(PropTypes.object),
+  contentComponent: PropTypes.object,
+  setContentComponent: PropTypes.func,
+  contentComponentName: PropTypes.string,
+  setContentComponentName: PropTypes.func,
   logo: PropTypes.shape({
     // innerLink is for links that will direct the user within the app
     // it will be rendered as <Link to="...">...</Link> tag
@@ -169,8 +157,8 @@ Sidebar.propTypes = {
     // the text of the logo
     text: PropTypes.node,
     // the image src of the logo
-    imgSrc: PropTypes.string
-  })
+    imgSrc: PropTypes.string,
+  }),
 };
 
 export default Sidebar;
