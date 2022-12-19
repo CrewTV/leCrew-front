@@ -26,7 +26,7 @@ import Footer from 'components/Footer/Footer.js';
 import Sidebar from 'components/Sidebar/Sidebar.js';
 import FixedPlugin from 'components/FixedPlugin/FixedPlugin.js';
 
-import routes from 'routes.js';
+import pages from '../views/pages';
 
 import logo from 'assets/img/react-logo.png';
 import { BackgroundColorContext } from 'contexts/BackgroundColorContext';
@@ -86,9 +86,9 @@ function MainLayout(props) {
   };
 
   const getBrandText = (path) => {
-    for (let i = 0; i < routes.length; i++) {
-      if (location.pathname.indexOf(routes[i].path) !== -1) {
-        return routes[i].name;
+    for (let i = 0; i < pages.length; i++) {
+      if (location.pathname.indexOf(pages[i].path) !== -1) {
+        return pages[i].name;
       }
     }
     return 'Brand';
@@ -99,7 +99,7 @@ function MainLayout(props) {
         <React.Fragment>
           <div className='wrapper'>
             <Sidebar
-              routes={routes}
+              pages={pages}
               contentComponent={contentComponent}
               setContentComponent={setContentComponent}
               contentComponentName={contentComponentName}

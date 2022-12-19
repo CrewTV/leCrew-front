@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import LoginForm from 'components/Login/LoginForm';
+import LoginForm from 'components/Login/Login.form';
 import { Link } from 'react-router-dom';
 
 export default function Login({}) {

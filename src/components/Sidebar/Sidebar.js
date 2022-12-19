@@ -53,7 +53,7 @@ function Sidebar(props) {
   const linkOnClick = () => {
     document.documentElement.classList.remove('nav-open');
   };
-  const { routes, rtlActive, logo } = props;
+  const { pages, rtlActive, logo } = props;
   let logoImg = null;
   let logoText = null;
   if (logo !== undefined) {
@@ -111,7 +111,7 @@ function Sidebar(props) {
               </div>
             ) : null}
             <Nav>
-              {routes.map((prop, key) => {
+              {pages.map((prop, key) => {
                 if (prop.redirect) return null;
                 return (
                   <li
@@ -142,7 +142,7 @@ function Sidebar(props) {
 
 Sidebar.propTypes = {
   rtlActive: PropTypes.bool,
-  routes: PropTypes.arrayOf(PropTypes.object),
+  pages: PropTypes.arrayOf(PropTypes.object),
   contentComponent: PropTypes.object,
   setContentComponent: PropTypes.func,
   contentComponentName: PropTypes.string,
