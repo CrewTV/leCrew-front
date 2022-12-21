@@ -23,39 +23,13 @@ import { Line, Bar } from 'react-chartjs-2';
 import UserContext from '../contexts/UserContext';
 
 // reactstrap components
-import {
-  Button,
-  ButtonGroup,
-  Card,
-  CardHeader,
-  CardBody,
-  CardTitle,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  UncontrolledDropdown,
-  Label,
-  FormGroup,
-  Input,
-  Table,
-  Row,
-  Col,
-  UncontrolledTooltip,
-} from 'reactstrap';
+import { Card, CardHeader, CardBody, CardTitle, Row, Col } from 'reactstrap';
 
 // core components
-import {
-  chartExample1,
-  chartExample2,
-  chartExample3,
-  chartExample4,
-} from 'variables/charts.js';
+import { chartExample1 } from 'variables/charts.js';
 
 function Dashboard(props) {
   const [bigChartData, setbigChartData] = React.useState('data1');
-  const setBgChartData = (name) => {
-    setbigChartData(name);
-  };
 
   const { user } = useContext(UserContext);
 
@@ -73,7 +47,7 @@ function Dashboard(props) {
                   </Col>
                   <Col sm='6'>
                     <div className='float-right'>
-                      <h3>125.41€</h3>
+                      <CardTitle tag='h3'>128.14 €</CardTitle>
                     </div>
                   </Col>
                 </Row>
@@ -95,7 +69,7 @@ function Dashboard(props) {
               <CardHeader>
                 <CardTitle tag='h4'>Mes crews</CardTitle>
               </CardHeader>
-              <CardBody></CardBody>
+              <CardBody>/* Crew index view */</CardBody>
             </Card>
           </Col>
           <Col lg='6' md='12'>
@@ -103,7 +77,7 @@ function Dashboard(props) {
               <CardHeader>
                 <CardTitle tag='h4'>Mes actifs</CardTitle>
               </CardHeader>
-              <CardBody></CardBody>
+              <CardBody>/* Values index view */</CardBody>
             </Card>
           </Col>
         </Row>

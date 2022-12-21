@@ -40,7 +40,7 @@ var pages = [
   },
   {
     name: 'Statistiques',
-    icon: 'tim-icons icon-chart-pie-36',
+    icon: 'tim-icons icon-chart-bar-32',
     component: TableList,
   },
 ];
