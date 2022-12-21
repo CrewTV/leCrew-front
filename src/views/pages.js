@@ -24,34 +24,24 @@ import UserProfile from 'views/UserProfile.js';
 
 var pages = [
   {
-    name: 'Dashboard',
+    name: 'Tableau de bord',
     icon: 'tim-icons icon-chart-pie-36',
     component: Dashboard,
   },
   {
-    name: 'Icons',
-    icon: 'tim-icons icon-atom',
+    name: 'Mes Crews',
+    icon: 'tim-icons icon-wallet-43',
     component: Icons,
   },
   {
-    name: 'Notifications',
-    icon: 'tim-icons icon-bell-55',
+    name: 'Mes actifs',
+    icon: 'tim-icons icon-coins',
     component: Notifications,
   },
   {
-    name: 'User Profile',
-    icon: 'tim-icons icon-single-02',
-    component: UserProfile,
-  },
-  {
-    name: 'Table List',
-    icon: 'tim-icons icon-puzzle-10',
+    name: 'Statistiques',
+    icon: 'tim-icons icon-chart-pie-36',
     component: TableList,
-  },
-  {
-    name: 'Typography',
-    icon: 'tim-icons icon-align-center',
-    component: Typography,
   },
 ];
 export default pages;
