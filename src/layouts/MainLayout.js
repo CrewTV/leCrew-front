@@ -85,14 +85,6 @@ function MainLayout(props) {
     setsidebarOpened(!sidebarOpened);
   };
 
-  const getBrandText = (path) => {
-    for (let i = 0; i < pages.length; i++) {
-      if (location.pathname.indexOf(pages[i].path) !== -1) {
-        return pages[i].name;
-      }
-    }
-    return 'Brand';
-  };
   return (
     <BackgroundColorContext.Consumer>
       {({ color, changeColor }) => (
@@ -108,14 +100,13 @@ function MainLayout(props) {
             />
             <div className='main-panel' ref={mainPanelRef} data={color}>
               <AdminNavbar
-                brandText={getBrandText(location.pathname)}
+                brandText={'LeCrew'}
                 toggleSidebar={toggleSidebar}
                 sidebarOpened={sidebarOpened}
               />
               {contentComponent}
             </div>
           </div>
-          <FixedPlugin bgColor={color} handleBgClick={changeColor} />
         </React.Fragment>
       )}
     </BackgroundColorContext.Consumer>
