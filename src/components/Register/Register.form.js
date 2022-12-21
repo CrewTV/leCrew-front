@@ -39,21 +39,12 @@ export default function RegisterForm({}) {
         .minUppercase(1, 'Au minimum une lettre majuscule')
         .minSymbols(1, 'Au minimum un caractère spécial')
         .minNumbers(1, 'Au minimum un chiffre')
-        .oneOf(
-          [Yup.ref('password')],
-          'Les mot des passes doivent correspondrent'
-        )
+        .oneOf([Yup.ref('password')], 'Les mot des passes doivent correspondre')
         .required('Mot de passe requis'),
     }),
 
     onSubmit: async (values) => {
-      const token = await register(
-        values.firstname,
-        values.lastname,
-        values.age,
-        values.email,
-        values.password
-      );
+      const token = await register(values);
       setToken(token);
       window.location.reload();
     },
