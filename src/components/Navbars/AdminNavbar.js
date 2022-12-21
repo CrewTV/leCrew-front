@@ -15,20 +15,19 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from 'react';
+import React, { useContext } from 'react';
 // nodejs library that concatenates classes
 import classNames from 'classnames';
+import UserContext from 'contexts/UserContext';
 
 // reactstrap components
 import {
-  Button,
   Collapse,
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
   UncontrolledDropdown,
   Input,
-  InputGroup,
   NavbarBrand,
   Navbar,
   NavLink,
@@ -43,6 +42,8 @@ function AdminNavbar(props) {
   const [collapseOpen, setcollapseOpen] = React.useState(false);
   const [modalSearch, setmodalSearch] = React.useState(false);
   const [color, setcolor] = React.useState('navbar-transparent');
+  const { user } = useContext(UserContext);
+
   React.useEffect(() => {
     window.addEventListener('resize', updateColor);
     // Specify how to clean up after this effect:
@@ -103,11 +104,15 @@ function AdminNavbar(props) {
                   color='default'
                   nav
                   onClick={(e) => e.preventDefault()}>
-                  <div className='photo'>
-                    <img alt='...' src={require('assets/img/anime3.png')} />
+                  <div className='d-flex flex-row'>
+                    <p className='mr-2 mt-1'>
+                      {user.firstName} {user.lastName}
+                    </p>
+                    <div className='photo'>
+                      <img alt='...' src={require('assets/img/anime3.png')} />
+                    </div>
                   </div>
-                  <b className='caret d-none d-lg-block d-xl-block' />
-                  <p className='d-lg-none'>Déconnexion</p>
+                  <b className='caret d-none d-lg-block d-xl-block ml-3' />
                 </DropdownToggle>
                 <DropdownMenu className='dropdown-navbar' right tag='ul'>
                   <NavLink tag='li'>
