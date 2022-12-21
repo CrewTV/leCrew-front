@@ -5,6 +5,7 @@ import { FormGroup, Input, Label } from 'reactstrap';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import YupPassword from 'yup-password';
+import login from '../../api/users';
 
 YupPassword(Yup);
 
@@ -24,8 +25,7 @@ export default function LoginForm({ setToken }) {
     }),
 
     onSubmit: (values) => {
-      console.log('Values: ', values);
-      console.log('Api call');
+      login(values);
     },
   });
 

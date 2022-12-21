@@ -1,6 +1,7 @@
 import MainLayout from 'layouts/MainLayout';
 import React, { useState } from 'react';
 import { BrowserRouter, Route, Routes, Navigate, Link } from 'react-router-dom';
+import { getToken } from 'utils/token';
 import Login from 'views/account/Login';
 import Register from 'views/account/Register';
 import Dashboard from 'views/Dashboard';
@@ -8,33 +9,17 @@ import Dashboard from 'views/Dashboard';
 import HomePage from 'views/landing/HomePage';
 
 function App() {
-  const [token, setToken] = useState('tets');
+  const token = getToken();
 
-  // Conditionally redirect based on isAuthenticated boolean
-  const AuthWrapper = ({ isAuthenticated }) => {
-    return isAuthenticated ? (
-      <Navigate to='/dashboard' replace />
-    ) : (
-      <Navigate to='/home' replace />
-    );
-  };
-
-  const [isAuthenticated, setIsAuthenticated] = useState();
-
-  return (
+  return token ? (
     <Routes>
-      <Route
-        path='/'
-        element={<AuthWrapper isAuthenticated={isAuthenticated} />}
-      />
-      <Route path='/dashboard' element={<MainLayout />} />
-      <Route path='/home' element={<HomePage />} />
-      <Route path='/login' element={<Login setToken={setIsAuthenticated} />} />
+      <Route path='*' element={<MainLayout />}></Route>
+    </Routes>
+  ) : (
+    <Routes>
+      <Route path='*' element={<HomePage />} />
+      <Route path='/login' element={<Login />} />
       <Route path='/register' element={<Register />} />
-      <Route
-        path='*'
-        element={<AuthWrapper isAuthenticated={isAuthenticated} />}
-      />
     </Routes>
   );
 }
