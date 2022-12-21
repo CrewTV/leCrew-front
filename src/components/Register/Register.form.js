@@ -5,10 +5,12 @@ import * as Yup from 'yup';
 import YupPassword from 'yup-password';
 import { register } from '../../api/users';
 import { setToken } from 'utils/token';
+import { useNavigate } from 'react-router-dom';
 
 YupPassword(Yup);
 
-export default function RegisterForm({}) {
+export default function RegisterForm(props) {
+  const navigate = useNavigate();
   const registerFormik = useFormik({
     initialValues: {
       firstname: '',
@@ -46,6 +48,7 @@ export default function RegisterForm({}) {
     onSubmit: async (values) => {
       const token = await register(values);
       setToken(token);
+      navigate('/');
       window.location.reload();
     },
   });

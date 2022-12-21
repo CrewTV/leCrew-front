@@ -104,11 +104,6 @@ function MainLayout(props) {
               setContentComponent={setContentComponent}
               contentComponentName={contentComponentName}
               setContentComponentName={setContentComponentName}
-              logo={{
-                outterLink: 'https://www.creative-tim.com/',
-                text: 'Creative Tim',
-                imgSrc: logo,
-              }}
               toggleSidebar={toggleSidebar}
             />
             <div className='main-panel' ref={mainPanelRef} data={color}>

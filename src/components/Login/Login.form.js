@@ -5,7 +5,7 @@ import { FormGroup, Input, Label } from 'reactstrap';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import YupPassword from 'yup-password';
-import login from '../../api/users';
+import { login } from '../../api/users';
 
 YupPassword(Yup);
 

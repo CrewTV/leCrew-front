@@ -15,11 +15,12 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from 'react';
+import React, { useContext } from 'react';
 // nodejs library that concatenates classes
 import classNames from 'classnames';
 // react plugin used to create charts
 import { Line, Bar } from 'react-chartjs-2';
+import UserContext from '../contexts/UserContext';
 
 // reactstrap components
 import {
@@ -55,6 +56,9 @@ function Dashboard(props) {
   const setBgChartData = (name) => {
     setbigChartData(name);
   };
+
+  const { user } = useContext(UserContext);
+
   return (
     <>
       <div className='content'>
