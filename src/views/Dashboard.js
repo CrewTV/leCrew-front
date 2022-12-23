@@ -27,11 +27,19 @@ import { Card, CardHeader, CardBody, CardTitle, Row, Col } from 'reactstrap';
 
 // core components
 import { chartExample1 } from 'variables/charts.js';
+import CrewTable from 'components/crews/CrewTable';
 
 function Dashboard(props) {
   const [bigChartData, setbigChartData] = React.useState('data1');
 
   const { user } = useContext(UserContext);
+  const crews = [
+    {
+      name: 'Crew #1',
+      performance: 3.6,
+    },
+    { name: 'Crew #2', performance: -4.8 },
+  ];
 
   return (
     <>
@@ -69,7 +77,9 @@ function Dashboard(props) {
               <CardHeader>
                 <CardTitle tag='h4'>Mes crews</CardTitle>
               </CardHeader>
-              <CardBody>/* Crew index view */</CardBody>
+              <CardBody>
+                <CrewTable crews={crews} fromDashboard={true} />
+              </CardBody>
             </Card>
           </Col>
           <Col lg='6' md='12'>

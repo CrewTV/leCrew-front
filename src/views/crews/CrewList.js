@@ -1,3 +1,4 @@
+import CrewTable from 'components/crews/CrewTable';
 import React from 'react';
 import {
   Card,
@@ -31,40 +32,7 @@ export default function CrewList({}) {
             </CardHeader>
             <CardBody>
               <div className='px-1 '>
-                <Table>
-                  <thead className='text-primary'>
-                    <tr>
-                      <th>Nom</th>
-                      <th className='text-right'>Performance</th>
-                      <th></th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {crews.map((crew, index) => {
-                      return (
-                        <tr id={index}>
-                          <td>
-                            <h4>{crew.name}</h4>
-                          </td>
-                          <td className='text-right'>
-                            <h4
-                              className={
-                                crew.performance > 0
-                                  ? 'text-success'
-                                  : 'text-danger'
-                              }>
-                              {crew.performance > 0 ? '+' : ''}
-                              {crew.performance} %
-                            </h4>
-                          </td>
-                          <td className='text-right'>
-                            <button className='btn btn-info'>Details</button>
-                          </td>
-                        </tr>
-                      );
-                    })}
-                  </tbody>
-                </Table>
+                <CrewTable crews={crews} fromDashboard={false} />
               </div>
             </CardBody>
           </Card>
