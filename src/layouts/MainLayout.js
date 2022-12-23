@@ -37,7 +37,8 @@ var ps;
 
 function MainLayout(props) {
   const [contentComponent, setContentComponent] = useState(<Dashboard />);
-  const [contentComponentName, setContentComponentName] = useState('Dashboard');
+  const [contentComponentName, setContentComponentName] =
+    useState('Tableau de bord');
   const location = useLocation();
   const mainPanelRef = React.useRef(null);
   const [sidebarOpened, setsidebarOpened] = React.useState(

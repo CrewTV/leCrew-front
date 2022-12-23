@@ -21,6 +21,7 @@ import Notifications from 'views/Notifications.js';
 import TableList from 'views/TableList.js';
 import Typography from 'views/Typography.js';
 import UserProfile from 'views/UserProfile.js';
+import CrewList from './crews/CrewList';
 
 var pages = [
   {
@@ -31,12 +32,12 @@ var pages = [
   {
     name: 'Mes Crews',
     icon: 'tim-icons icon-wallet-43',
-    component: Icons,
+    component: CrewList,
   },
   {
     name: 'Mes actifs',
     icon: 'tim-icons icon-coins',
-    component: Notifications,
+    component: Typography,
   },
   {
     name: 'Statistiques',

@@ -5,3 +5,7 @@ html, body, #root, .App {
 .fixed_field {
   width: 300px;
 }
+
+.crew-list {
+  height: 800px;
+}
