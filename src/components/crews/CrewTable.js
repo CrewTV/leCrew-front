@@ -15,9 +15,14 @@ export default function CrewTable({ crews, fromDashboard }) {
       <tbody>
         {crews.map((crew, index) => {
           return (
-            <tr id={index}>
+            <tr key={index}>
               <td>
-                <h4>{crew.name}</h4>
+                <div className='d-flex flex-row align-items-baseline'>
+                  <div className='photo mr-2'>
+                    <img alt='...' src={crew.image} />
+                  </div>
+                  <h4>{crew.name}</h4>
+                </div>
               </td>
               <td className='text-right'>
                 <h4

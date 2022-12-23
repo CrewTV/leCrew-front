@@ -37,8 +37,13 @@ function Dashboard(props) {
     {
       name: 'Crew #1',
       performance: 3.6,
+      image: require('assets/img/react-logo.png'),
     },
-    { name: 'Crew #2', performance: -4.8 },
+    {
+      name: 'Crew #2',
+      performance: -4.8,
+      image: require('assets/img/angular-logo.png'),
+    },
   ];
 
   return (
