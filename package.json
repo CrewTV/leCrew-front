@@ -2,7 +2,6 @@
   "name": "lewcrew",
   "version": "1.0.0",
   "private": true,
-  "homepage": "https://demos.creative-tim.com/black-dashboard-react/#/admin/dashboard",
   "dependencies": {
     "@fortawesome/fontawesome-free": "6.1.1",
     "bootstrap": "4.5.3",
