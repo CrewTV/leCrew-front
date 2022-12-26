@@ -88,7 +88,7 @@ function AdminNavbar(props) {
                 <span className='navbar-toggler-bar bar3' />
               </NavbarToggler>
             </div>
-            <NavbarBrand href='#pablo' onClick={(e) => e.preventDefault()}>
+            <NavbarBrand onClick={(e) => e.preventDefault()}>
               {props.brandText}
             </NavbarBrand>
           </div>
