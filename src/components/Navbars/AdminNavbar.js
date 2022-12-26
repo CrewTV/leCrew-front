@@ -36,6 +36,7 @@ import {
   Modal,
   NavbarToggler,
   ModalHeader,
+  ModalBody,
 } from 'reactstrap';
 
 function AdminNavbar(props) {
@@ -147,6 +148,7 @@ function AdminNavbar(props) {
             <i className='tim-icons icon-simple-remove' />
           </button>
         </ModalHeader>
+        <ModalBody></ModalBody>
       </Modal>
     </>
   );

@@ -1,5 +1,6 @@
+import CrewCreationForm from 'components/crews/CrewCreation.form';
 import CrewTable from 'components/crews/CrewTable';
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Card,
   CardHeader,
@@ -8,6 +9,9 @@ import {
   Table,
   Col,
   Row,
+  Modal,
+  ModalHeader,
+  ModalBody,
 } from 'reactstrap';
 
 export default function CrewList({}) {
@@ -24,15 +28,48 @@ export default function CrewList({}) {
     },
   ];
 
+  const [createCrewModal, setCreateCrewModal] = useState(false);
+
+  const toggleCreateCrewModal = () => {
+    setCreateCrewModal(!createCrewModal);
+  };
+
+  const crewCreationModal = () => {
+    return (
+      <Modal
+        modalClassName='modal-default'
+        isOpen={createCrewModal}
+        toggle={toggleCreateCrewModal}>
+        <ModalHeader>
+          <h3>Création de Crew</h3>
+          <button
+            aria-label='Close'
+            className='close'
+            onClick={toggleCreateCrewModal}>
+            <i className='tim-icons icon-simple-remove' />
+          </button>
+        </ModalHeader>
+        <ModalBody>
+          <CrewCreationForm />
+        </ModalBody>
+      </Modal>
+    );
+  };
+
   return (
     <div className='content'>
       <Row>
         <Col md='12'>
+          {crewCreationModal()}
           <Card>
             <CardHeader>
               <CardTitle tag='h2'>Mes Crews</CardTitle>
               <div className='float-right'>
-                <button className='btn btn-success'>Créer un Crew</button>
+                <button
+                  className='btn btn-success'
+                  onClick={() => toggleCreateCrewModal()}>
+                  Créer un Crew
+                </button>
               </div>
             </CardHeader>
             <CardBody>
