@@ -1,29 +1,32 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import { FormGroup, Input, Label } from 'reactstrap';
-import { useFormik } from 'formik';
+import { useFormik, Field, ErrorMessage, FieldArray } from 'formik';
 import * as Yup from 'yup';
-import { login } from '../../api/users';
-import { setToken } from 'utils/token';
 
 export default function CrewCreationForm({}) {
   const navigate = useNavigate();
   const crewFormik = useFormik({
     initialValues: {
       name: '',
-      members: [],
+      members: [
+        {
+          email: '',
+        },
+      ],
     },
 
     validationSchema: Yup.object({
       name: Yup.string().required('Nom du Crew Requis'),
-      members: Yup.array(),
+      members: Yup.string(),
     }),
 
     onSubmit: async (values) => {
       console.log(values);
     },
   });
+
+  console.log('Formik:', crewFormik);
 
   return (
     <form onSubmit={crewFormik.handleSubmit}>

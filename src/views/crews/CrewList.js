@@ -38,6 +38,7 @@ export default function CrewList({}) {
     return (
       <Modal
         modalClassName='modal-default'
+        size='lg'
         isOpen={createCrewModal}
         toggle={toggleCreateCrewModal}>
         <ModalHeader>
