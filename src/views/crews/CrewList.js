@@ -6,7 +6,6 @@ import {
   CardHeader,
   CardBody,
   CardTitle,
-  Table,
   Col,
   Row,
   Modal,
@@ -15,7 +14,8 @@ import {
 } from 'reactstrap';
 
 export default function CrewList({}) {
-  const crews = [
+  // Mock data, to be replace by API call
+  const initialCrew = [
     {
       name: 'Crew #1',
       performance: 3.6,
@@ -29,7 +29,7 @@ export default function CrewList({}) {
       image: require('assets/img/angular-logo.png'),
     },
   ];
-
+  const [crews, setCrews] = useState(initialCrew);
   const [createCrewModal, setCreateCrewModal] = useState(false);
 
   const toggleCreateCrewModal = () => {
@@ -53,7 +53,11 @@ export default function CrewList({}) {
           </button>
         </ModalHeader>
         <ModalBody>
-          <CrewCreationForm />
+          <CrewCreationForm
+            crews={crews}
+            setCrews={setCrews}
+            setCreateCrewModal={setCreateCrewModal}
+          />
         </ModalBody>
       </Modal>
     );

@@ -3,8 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import { FormGroup, Input, Label } from 'reactstrap';
 import { Formik, Form, Field, ErrorMessage, FieldArray } from 'formik';
 import * as Yup from 'yup';
+import PropTypes from 'prop-types';
 
-export default function CrewCreationForm({}) {
+export default function CrewCreationForm({
+  crews,
+  setCrews,
+  setCreateCrewModal,
+}) {
   const initialValues = {
     name: '',
     members: [],
@@ -21,7 +26,15 @@ export default function CrewCreationForm({}) {
 
   const crewFormOnSubmit = (values) => {
     // Api Call to create crew
-    console.log(values);
+    const newCrew = {
+      ...values,
+      value: 0,
+      performance: 0,
+      image: require('assets/img/angular-logo.png'),
+    };
+    crews.push(newCrew);
+    setCrews(crews);
+    setCreateCrewModal(false);
   };
 
   return (
@@ -98,4 +111,8 @@ export default function CrewCreationForm({}) {
   );
 }
 
-CrewCreationForm.propTypes = {};
+CrewCreationForm.propTypes = {
+  crews: PropTypes.array.isRequired,
+  setCrews: PropTypes.func.isRequired,
+  setCreateCrewModal: PropTypes.func.isRequired,
+};
