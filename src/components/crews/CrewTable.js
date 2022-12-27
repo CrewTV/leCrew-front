@@ -8,7 +8,8 @@ export default function CrewTable({ crews, fromDashboard }) {
       <thead className='text-primary'>
         <tr>
           <th>Nom</th>
-          <th className='text-right'>Performance</th>
+          <th className={fromDashboard ? 'text-right' : ''}>Valorisation</th>
+          {!fromDashboard && <th className='text-center'>Performance</th>}
           <th></th>
         </tr>
       </thead>
@@ -24,20 +25,25 @@ export default function CrewTable({ crews, fromDashboard }) {
                   <h4>{crew.name}</h4>
                 </div>
               </td>
-              <td className='text-right'>
-                <h4
-                  className={
-                    crew.performance > 0 ? 'text-success' : 'text-danger'
-                  }>
-                  {crew.performance > 0 ? '+' : ''}
-                  {crew.performance} %
-                </h4>
+              <td className={fromDashboard ? 'text-right' : ''}>
+                {crew.value} €
               </td>
-              {!fromDashboard ? (
+              {!fromDashboard && (
+                <td className='text-center'>
+                  <h4
+                    className={
+                      crew.performance > 0 ? 'text-success' : 'text-danger'
+                    }>
+                    {crew.performance > 0 ? '+' : ''}
+                    {crew.performance} %
+                  </h4>
+                </td>
+              )}
+              {!fromDashboard && (
                 <td className='text-right'>
                   <button className='btn btn-info'>Details</button>
                 </td>
-              ) : null}
+              )}
             </tr>
           );
         })}
