@@ -8,6 +8,7 @@ export default function CrewCreationForm({
   crews,
   setCrews,
   setCreateCrewModal,
+  setTriggerNotification,
 }) {
   const initialValues = {
     name: '',
@@ -34,6 +35,7 @@ export default function CrewCreationForm({
     crews.push(newCrew);
     setCrews(crews);
     setCreateCrewModal(false);
+    setTriggerNotification(true);
   };
 
   return (
