@@ -37,7 +37,7 @@ var pages = [
   {
     name: 'Mes actifs',
     icon: 'tim-icons icon-coins',
-    component: Typography,
+    component: Notifications,
   },
   {
     name: 'Statistiques',

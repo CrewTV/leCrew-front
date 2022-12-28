@@ -1,6 +1,7 @@
 import React from 'react';
 import { Table } from 'reactstrap';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 export default function CrewTable({ crews, fromDashboard }) {
   return (
@@ -41,7 +42,11 @@ export default function CrewTable({ crews, fromDashboard }) {
               )}
               {!fromDashboard && (
                 <td className='text-right'>
-                  <button className='btn btn-info'>Details</button>
+                  <button className='btn btn-info'>
+                    <Link to={`/crew/${crew.id}`} className='fixed-link'>
+                      Details
+                    </Link>
+                  </button>
                 </td>
               )}
             </tr>

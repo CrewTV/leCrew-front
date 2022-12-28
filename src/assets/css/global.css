@@ -9,3 +9,10 @@ html, body, #root, .App {
 .crew-list {
   height: 800px;
 }
+
+.fixed-link {
+  color: #FFF;
+}
+.fixed-link:hover {
+   color: #FFF
+}
