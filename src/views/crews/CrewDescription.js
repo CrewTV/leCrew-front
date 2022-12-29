@@ -1,13 +1,10 @@
-import { useSearchParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
-export default function CrewDescription({ id }) {
-  const [searchParams] = useSearchParams();
-  console.log(searchParams);
-
-  const crewId = searchParams.get('id');
+export default function CrewDescription({}) {
+  const { id } = useParams();
   return (
     <div className='content'>
-      <h1>This the crew view for the crew: {crewId}</h1>
+      <h1>This the crew view for the crew: {id}</h1>
     </div>
   );
 }

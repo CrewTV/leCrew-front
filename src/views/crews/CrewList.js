@@ -55,6 +55,7 @@ export default function CrewList({}) {
     setCreateCrewModal(!createCrewModal);
   };
 
+  // Trigger a notification when needed
   useEffect(() => {
     if (triggerNotification) notify('tr', 'success', 'Crew créer avec succès');
     setTriggerNotification(false);
