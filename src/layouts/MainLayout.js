@@ -16,21 +16,15 @@
 
 */
 import React, { useState, useEffect } from 'react';
-import { Route, Routes, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 // javascript plugin used to create scrollbars on windows
 import PerfectScrollbar from 'perfect-scrollbar';
 
 // core components
 import AdminNavbar from 'components/Navbars/AdminNavbar.js';
-import Footer from 'components/Footer/Footer.js';
 import Sidebar from 'components/Sidebar/Sidebar.js';
-import FixedPlugin from 'components/FixedPlugin/FixedPlugin.js';
-
 import pages from '../views/pages';
-
-import logo from 'assets/img/react-logo.png';
 import { BackgroundColorContext } from 'contexts/BackgroundColorContext';
-import Login from 'views/account/Login';
 import Dashboard from 'views/Dashboard';
 
 var ps;

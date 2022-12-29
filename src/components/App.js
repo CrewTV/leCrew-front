@@ -21,6 +21,9 @@ function App() {
     age: 19,
   };
 
+  // Used to display pages with the layout that are not accessible from the sidebar
+  const [descriptionComponent, setDescriptionComponent] = useState(null);
+
   return token ? (
     <UserContext.Provider value={{ user }}>
       <Routes>
