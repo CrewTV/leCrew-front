@@ -16,3 +16,8 @@ html, body, #root, .App {
 .fixed-link:hover {
    color: #FFF
 }
+.crew-icon-image {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+}

@@ -1,5 +1,5 @@
-import CrewCreationForm from 'components/crews/CrewCreation.form';
-import CrewTable from 'components/crews/CrewTable';
+import CrewCreationForm from 'components/Crews/CrewCreation.form';
+import CrewTable from 'components/Crews/CrewTable';
 import NotificationAlert from 'react-notification-alert';
 import React, { useState, useEffect } from 'react';
 import {
@@ -16,7 +16,7 @@ import {
 
 export default function CrewList({}) {
   // Mock data, to be replace by API call
-  const initialCrew = [
+  const initialCrews = [
     {
       id: 1,
       name: 'Crew #1',
@@ -47,7 +47,7 @@ export default function CrewList({}) {
     notificationAlertRef.current.notificationAlert(options);
   };
 
-  const [crews, setCrews] = useState(initialCrew);
+  const [crews, setCrews] = useState(initialCrews);
   const [createCrewModal, setCreateCrewModal] = useState(false);
   const [triggerNotification, setTriggerNotification] = useState(false);
 

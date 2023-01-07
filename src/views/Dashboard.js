@@ -27,7 +27,7 @@ import { Card, CardHeader, CardBody, CardTitle, Row, Col } from 'reactstrap';
 
 // core components
 import { chartExample1 } from 'variables/charts.js';
-import CrewTable from 'components/crews/CrewTable';
+import CrewTable from 'components/Crews/CrewTable';
 
 function Dashboard(props) {
   const [bigChartData, setbigChartData] = React.useState('data1');
