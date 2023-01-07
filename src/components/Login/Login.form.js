@@ -5,11 +5,12 @@ import { FormGroup, Input, Label } from 'reactstrap';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import YupPassword from 'yup-password';
-import login from '../../api/users';
+import { login } from '../../api/users';
+import { setToken } from 'utils/token';
 
 YupPassword(Yup);
 
-export default function LoginForm({ setToken }) {
+export default function LoginForm({}) {
   const navigate = useNavigate();
   const loginFormik = useFormik({
     initialValues: {
@@ -24,8 +25,11 @@ export default function LoginForm({ setToken }) {
       password: Yup.string().required('Mot de passe requis'),
     }),
 
-    onSubmit: (values) => {
-      login(values);
+    onSubmit: async (values) => {
+      const token = await login(values);
+      setToken(token);
+      navigate('/');
+      window.location.reload();
     },
   });
 
