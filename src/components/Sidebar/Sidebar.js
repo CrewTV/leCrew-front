@@ -17,7 +17,7 @@
 */
 /*eslint-disable*/
 import React from 'react';
-import { NavLink, Link, useLocation } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 // nodejs library to set properties for components
 import { PropTypes } from 'prop-types';
 
@@ -50,9 +50,6 @@ function Sidebar(props) {
       }
     };
   });
-  const linkOnClick = () => {
-    document.documentElement.classList.remove('nav-open');
-  };
   const { pages } = props;
 
   return (
@@ -91,24 +88,11 @@ function Sidebar(props) {
 }
 
 Sidebar.propTypes = {
-  rtlActive: PropTypes.bool,
   pages: PropTypes.arrayOf(PropTypes.object),
   contentComponent: PropTypes.object,
   setContentComponent: PropTypes.func,
   contentComponentName: PropTypes.string,
   setContentComponentName: PropTypes.func,
-  logo: PropTypes.shape({
-    // innerLink is for links that will direct the user within the app
-    // it will be rendered as <Link to="...">...</Link> tag
-    innerLink: PropTypes.string,
-    // outterLink is for links that will direct the user outside the app
-    // it will be rendered as simple <a href="...">...</a> tag
-    outterLink: PropTypes.string,
-    // the text of the logo
-    text: PropTypes.node,
-    // the image src of the logo
-    imgSrc: PropTypes.string,
-  }),
 };
 
 export default Sidebar;

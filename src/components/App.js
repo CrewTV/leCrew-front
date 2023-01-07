@@ -1,4 +1,5 @@
 import UserContext from 'contexts/UserContext';
+import DescriptionLayout from 'layouts/DescriptionLayout';
 import MainLayout from 'layouts/MainLayout';
 import React, { useState } from 'react';
 import { BrowserRouter, Route, Routes, Navigate, Link } from 'react-router-dom';
@@ -29,7 +30,10 @@ function App() {
       <Routes>
         <Route path='/' element={<MainLayout />}></Route>
         <Route path='*' element={<div>404 Not found</div>}></Route>
-        <Route path='/crew/:id' element={<CrewDescription />} />
+        <Route
+          path='/crew/:id'
+          element={<DescriptionLayout component={<CrewDescription />} />}
+        />
       </Routes>
     </UserContext.Provider>
   ) : (
