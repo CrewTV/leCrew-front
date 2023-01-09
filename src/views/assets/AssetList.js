@@ -1,6 +1,3 @@
-import CrewCreationForm from 'components/Crews/CrewCreation.form';
-import CrewTable from 'components/Crews/CrewTable';
-import NotificationAlert from 'react-notification-alert';
 import React, { useState, useEffect } from 'react';
 import {
   Card,
@@ -23,7 +20,7 @@ export default function AssetList({}) {
       name: 'Apple',
       quantity: 0.6,
       value: 131.19,
-      image: require('assets/img/react-logo.png'),
+      image: require('assets/img/apple-logo.svg.png'),
       associatedCrew: 'Crew #1', // Use Id instead of name in API call
     },
     {
@@ -31,7 +28,7 @@ export default function AssetList({}) {
       name: 'Orange',
       quantity: 17,
       value: 9.88,
-      image: require('assets/img/react-logo.png'),
+      image: require('assets/img/orange-logo.png'),
       associatedCrew: 'Crew #2', // Use Id instead of name in API call
     },
   ];

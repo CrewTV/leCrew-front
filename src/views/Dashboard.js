@@ -28,7 +28,6 @@ import { Card, CardHeader, CardBody, CardTitle, Row, Col } from 'reactstrap';
 // core components
 import { chartExample1 } from 'variables/charts.js';
 import CrewTable from 'components/Crews/CrewTable';
-import AssetList from './assets/AssetList';
 import AssetTable from 'components/Assets/AssetTable';
 
 function Dashboard(props) {
