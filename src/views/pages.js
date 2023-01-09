@@ -21,6 +21,7 @@ import Notifications from 'views/Notifications.js';
 import TableList from 'views/TableList.js';
 import Typography from 'views/Typography.js';
 import UserProfile from 'views/UserProfile.js';
+import AssetList from './assets/AssetList';
 import CrewList from './crews/CrewList';
 
 var pages = [
@@ -37,7 +38,7 @@ var pages = [
   {
     name: 'Mes actifs',
     icon: 'tim-icons icon-coins',
-    component: Notifications,
+    component: AssetList,
   },
   {
     name: 'Statistiques',
