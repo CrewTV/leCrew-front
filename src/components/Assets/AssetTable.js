@@ -9,7 +9,6 @@ export default function AssetTable({ assets, fromDashboard }) {
       <thead className='text-primary'>
         <tr>
           <th>Nom</th>
-          <th>Crew</th>
           <th className={fromDashboard ? 'text-right' : 'text-center'}>
             Valorisation
           </th>
@@ -29,18 +28,28 @@ export default function AssetTable({ assets, fromDashboard }) {
                   <h4>{asset.name}</h4>
                 </div>
               </td>
-              <td>{asset.associatedCrew}</td>
+
               <td className={fromDashboard ? 'text-right' : 'text-center'}>
-                {asset.value} €
+                <p
+                  className={
+                    asset.performance > 0 ? 'text-success' : 'text-danger'
+                  }>
+                  {asset.value} € / {asset.performance > 0 ? '+' : ''}
+                  {asset.performance} %
+                </p>
               </td>
               {!fromDashboard && (
                 <td className='text-center'>
-                  <h4>{asset.quantity}</h4>
+                  <p>{asset.quantity}</p>
                 </td>
               )}
               {!fromDashboard && (
                 <td className='text-right'>
-                  <button className='btn btn-info'>Details</button>
+                  <button className='btn btn-info'>
+                    <Link to={`/asset/${asset.id}`} className='fixed-link'>
+                      Details
+                    </Link>
+                  </button>
                 </td>
               )}
             </tr>

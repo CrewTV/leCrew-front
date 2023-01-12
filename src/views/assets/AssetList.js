@@ -14,26 +14,28 @@ import AssetTable from 'components/Assets/AssetTable';
 
 export default function AssetList({}) {
   // Mock data, to be replace by API call
-  const initialCrews = [
+  const initialAssets = [
     {
       id: 1,
       name: 'Apple',
       quantity: 0.6,
       value: 131.19,
-      image: require('assets/img/apple-logo.svg.png'),
-      associatedCrew: 'Crew #1', // Use Id instead of name in API call
+      performance: 4.3,
+      image: require('assets/img/apple-logo.png'),
+      associatedCrews: ['Crew #1'], // Use Id instead of name in API call
     },
     {
       id: 2,
       name: 'Orange',
       quantity: 17,
       value: 9.88,
+      performance: -1.8,
       image: require('assets/img/orange-logo.png'),
-      associatedCrew: 'Crew #2', // Use Id instead of name in API call
+      associatedCrews: ['Crew #2'], // Use Id instead of name in API call
     },
   ];
 
-  const [assets, setAssets] = useState(initialCrews);
+  const [assets, setAssets] = useState(initialAssets);
 
   return (
     <div className='content'>
