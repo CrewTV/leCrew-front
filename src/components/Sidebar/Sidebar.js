@@ -1,20 +1,3 @@
-/*!
-
-=========================================================
-* Black Dashboard React v1.2.1
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/black-dashboard-react
-* Copyright 2022 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/black-dashboard-react/blob/master/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 /*eslint-disable*/
 import React from 'react';
 import { NavLink } from 'react-router-dom';
@@ -31,9 +14,8 @@ import {
   backgroundColors,
 } from 'contexts/BackgroundColorContext';
 
-var ps;
-
 function Sidebar(props) {
+  var ps;
   const sidebarRef = React.useRef(null);
   // verifies if routeName is the one active (in browser input)
   React.useEffect(() => {

@@ -1,3 +1,8 @@
+/* Variables */
+element {
+  --white-color: white;
+}
+
 html, body, #root, .App {
     height: 100%;
   }
@@ -11,11 +16,12 @@ html, body, #root, .App {
 }
 
 .fixed-link {
-  color: #FFF;
+  color: var(--white-color);
 }
 .fixed-link:hover {
-   color: #FFF
+   color: var(--white-color)
 }
+
 .crew-icon-image {
   height: 50px;
   width: 50px;
