@@ -74,7 +74,7 @@ function Dashboard(props) {
                 <CardTitle tag='h4'>Mes crews</CardTitle>
               </CardHeader>
               <CardBody>
-                <CrewTable crews={sampleCrews} fromDashboard={true} />
+                <CrewTable crews={sampleCrews} reducedDisplay={true} />
               </CardBody>
             </Card>
           </Col>
@@ -84,7 +84,7 @@ function Dashboard(props) {
                 <CardTitle tag='h4'>Mes actifs</CardTitle>
               </CardHeader>
               <CardBody>
-                <AssetTable assets={sampleAssets} fromDashboard={true} />
+                <AssetTable assets={sampleAssets} reducedDisplay={true} />
               </CardBody>
             </Card>
           </Col>

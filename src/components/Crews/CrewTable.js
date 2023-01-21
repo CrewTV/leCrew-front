@@ -3,14 +3,14 @@ import { Table } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-export default function CrewTable({ crews, fromDashboard }) {
+export default function CrewTable({ crews, reducedDisplay }) {
   return (
     <Table>
       <thead className='text-primary'>
         <tr>
           <th>Nom</th>
-          <th className={fromDashboard ? 'text-right' : ''}>Valorisation</th>
-          {!fromDashboard && <th className='text-center'>Performance</th>}
+          <th className={reducedDisplay ? 'text-right' : ''}>Valorisation</th>
+          {!reducedDisplay && <th className='text-center'>Performance</th>}
           <th></th>
         </tr>
       </thead>
@@ -26,10 +26,10 @@ export default function CrewTable({ crews, fromDashboard }) {
                   <h4>{crew.name}</h4>
                 </div>
               </td>
-              <td className={fromDashboard ? 'text-right' : ''}>
+              <td className={reducedDisplay ? 'text-right' : ''}>
                 {crew.value} €
               </td>
-              {!fromDashboard && (
+              {!reducedDisplay && (
                 <td className='text-center'>
                   <h4
                     className={
@@ -40,7 +40,7 @@ export default function CrewTable({ crews, fromDashboard }) {
                   </h4>
                 </td>
               )}
-              {!fromDashboard && (
+              {!reducedDisplay && (
                 <td className='text-right'>
                   <button className='btn btn-info'>
                     <Link to={`/crew/${crew.id}`} className='fixed-link'>
@@ -59,5 +59,5 @@ export default function CrewTable({ crews, fromDashboard }) {
 
 CrewTable.propTypes = {
   crews: PropTypes.array.isRequired,
-  fromDashboard: PropTypes.bool, // Designates wheter the component is loaded from the dashboard
+  reducedDisplay: PropTypes.bool, // Designates wheter to display less information in the component
 };

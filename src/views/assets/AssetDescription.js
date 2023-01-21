@@ -16,34 +16,18 @@ import { Line, Bar } from 'react-chartjs-2';
 import { chartExample1 } from 'variables/charts.js';
 import CrewParticipants from 'components/Crews/CrewParticipations';
 import AssetDetails from 'components/Assets/AssetDetails';
+import { sampleAssets } from 'assets/samples/asset';
+import CrewTable from 'components/Crews/CrewTable';
+import { sampleCrews } from 'assets/samples/crew';
 
 export default function AssetDesription({}) {
-  // Mock data, to be replace by API call
-  const initialAssets = [
-    {
-      id: 1,
-      name: 'Apple',
-      quantity: 0.6,
-      value: 131.19,
-      performance: 4.3,
-      image: require('assets/img/apple-logo.png'),
-      associatedCrew: 'Crew #1', // Use Id instead of name in API call
-    },
-    {
-      id: 2,
-      name: 'Orange',
-      quantity: 17,
-      value: 9.88,
-      performance: -1.8,
-      image: require('assets/img/orange-logo.png'),
-      associatedCrew: 'Crew #2', // Use Id instead of name in API call
-    },
-  ];
-
   // Recover the id in the query params
   const id = parseInt(useParams().id, 10);
   // Replace by API call
-  const asset = initialAssets.find((initialAsset) => initialAsset.id === id);
+  const asset = sampleAssets.find((sampleAsset) => sampleAsset.id === id);
+  const associatedCrews = sampleCrews.filter((crew) =>
+    asset.associatedCrews.includes(crew.id)
+  );
   const [bigChartData, setbigChartData] = React.useState('data1');
 
   return (
@@ -71,6 +55,7 @@ export default function AssetDesription({}) {
                     {asset.performance > 0 ? '+' : ''}
                     {asset.performance} %
                   </h4>
+                  Quantité: {asset.quantity}
                 </div>
                 <div className='chart-area w-75'>
                   <Line
@@ -85,7 +70,7 @@ export default function AssetDesription({}) {
             <Col lg='6' md='12'>
               <Card className='card-tasks'>
                 <CardHeader>
-                  <CardTitle tag='h3'>Détails</CardTitle>
+                  <CardTitle tag='h3'>Détails de l'actif</CardTitle>
                 </CardHeader>
                 <CardBody>
                   <AssetDetails assetId={id} />
@@ -95,9 +80,11 @@ export default function AssetDesription({}) {
             <Col lg='6' md='12'>
               <Card className='card-tasks'>
                 <CardHeader>
-                  <CardTitle tag='h3'></CardTitle>
+                  <CardTitle tag='h3'>Crews associés</CardTitle>
                 </CardHeader>
-                <CardBody>/*Répartition dans les crew*/</CardBody>
+                <CardBody>
+                  <CrewTable crews={associatedCrews} reducedDisplay={true} />
+                </CardBody>
               </Card>
             </Col>
           </Row>

@@ -15,47 +15,18 @@ import {
 import { Line, Bar } from 'react-chartjs-2';
 import { chartExample1 } from 'variables/charts.js';
 import CrewParticipants from 'components/Crews/CrewParticipations';
+import { sampleCrews } from 'assets/samples/crew';
+import AssetTable from 'components/Assets/AssetTable';
+import { sampleAssets } from 'assets/samples/asset';
+import { sampleCrewMembers } from 'assets/samples/crew';
 
 export default function CrewDescription({}) {
-  // Mock data, to be replace by API call
-  const initialCrews = [
-    {
-      id: 1,
-      name: 'Crew #1',
-      performance: 3.6,
-      value: 45.8,
-      image: require('assets/img/react-logo.png'),
-    },
-    {
-      id: 2,
-      name: 'Crew #2',
-      performance: -4.8,
-      value: 147.32,
-      image: require('assets/img/angular-logo.png'),
-    },
-  ];
-
-  const participants = [
-    {
-      owner: 'Jean',
-      percentage: 42,
-    },
-    {
-      owner: 'Benjamin',
-      percentage: 21,
-    },
-    {
-      owner: 'Emilie',
-      percentage: 18,
-    },
-    {
-      owner: 'Clémence',
-      percentage: 19,
-    },
-  ];
   const { id } = useParams();
   // Replace by API call
-  const crew = initialCrews.find((initialCrew) => initialCrew.id == id);
+  const crew = sampleCrews.find((sampleCrew) => sampleCrew.id == id);
+  const associatedAssets = sampleAssets.filter((asset) =>
+    asset.associatedCrews.includes(crew.id)
+  );
   const [bigChartData, setbigChartData] = React.useState('data1');
 
   return (
@@ -101,7 +72,7 @@ export default function CrewDescription({}) {
                 </CardHeader>
                 <CardBody>
                   <CrewParticipants
-                    participants={participants}
+                    participants={sampleCrewMembers}
                     crewValue={crew.value}
                   />
                 </CardBody>
@@ -112,7 +83,9 @@ export default function CrewDescription({}) {
                 <CardHeader>
                   <CardTitle tag='h4'>Actifs du crew</CardTitle>
                 </CardHeader>
-                <CardBody>/* Values index view */</CardBody>
+                <CardBody>
+                  <AssetTable assets={associatedAssets} reducedDisplay={true} />
+                </CardBody>
               </Card>
             </Col>
           </Row>

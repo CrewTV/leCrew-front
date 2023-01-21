@@ -3,8 +3,8 @@ const sampleAssets = [
   {
     id: 1,
     name: 'Apple',
-    quantity: 0.6,
-    value: 131.19,
+    quantity: 0.25,
+    value: 33.99,
     performance: 4.3,
     image: require('assets/img/apple-logo.png'),
     associatedCrews: [1],
