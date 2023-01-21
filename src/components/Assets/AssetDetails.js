@@ -1,32 +1,9 @@
 import { chartExample2 } from 'variables/charts.js';
 import { Line } from 'react-chartjs-2';
+import { sampleRawAssets } from 'assets/samples/asset';
 
 export default function AssetDetails({ assetId }) {
-  // Mock data, to be replace by API call
-  const initialRawAssets = [
-    {
-      id: 1,
-      name: 'Apple',
-      exchange: 'NASDAQ',
-      currentPrice: 135.94,
-      openPrice: 134.76,
-      closingPrice: 134.76,
-      performance: 0.36,
-    },
-    {
-      id: 2,
-      name: 'Orange',
-      exchange: 'CAC40',
-      currentPrice: 9.68,
-      openPrice: 9.68,
-      closingPrice: 9.59,
-      performance: 1.2,
-    },
-  ];
-
-  const rawAsset = initialRawAssets.find(
-    (initAssset) => initAssset.id === assetId
-  );
+  const rawAsset = sampleRawAssets.find((rawAsset) => rawAsset.id === assetId);
 
   return (
     <div className='d-flex flex-column align-items-start justify-content-around'>
