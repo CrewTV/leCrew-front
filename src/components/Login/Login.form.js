@@ -14,8 +14,8 @@ export default function LoginForm({}) {
   const navigate = useNavigate();
   const loginFormik = useFormik({
     initialValues: {
-      email: '',
-      password: '',
+      email: null,
+      password: null,
     },
 
     validationSchema: Yup.object({

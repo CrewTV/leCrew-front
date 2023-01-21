@@ -1,20 +1,3 @@
-/*!
-
-=========================================================
-* Black Dashboard React v1.2.1
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/black-dashboard-react
-* Copyright 2022 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/black-dashboard-react/blob/master/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 import React, { useContext } from 'react';
 // nodejs library that concatenates classes
 import classNames from 'classnames';
@@ -27,11 +10,26 @@ import { Card, CardHeader, CardBody, CardTitle, Row, Col } from 'reactstrap';
 
 // core components
 import { chartExample1 } from 'variables/charts.js';
+import CrewTable from 'components/Crews/CrewTable';
 
 function Dashboard(props) {
   const [bigChartData, setbigChartData] = React.useState('data1');
 
   const { user } = useContext(UserContext);
+  const crews = [
+    {
+      name: 'Crew #1',
+      performance: 3.6,
+      value: 45.8,
+      image: require('assets/img/react-logo.png'),
+    },
+    {
+      name: 'Crew #2',
+      performance: -4.8,
+      value: 147.32,
+      image: require('assets/img/angular-logo.png'),
+    },
+  ];
 
   return (
     <>
@@ -69,7 +67,9 @@ function Dashboard(props) {
               <CardHeader>
                 <CardTitle tag='h4'>Mes crews</CardTitle>
               </CardHeader>
-              <CardBody>/* Crew index view */</CardBody>
+              <CardBody>
+                <CrewTable crews={crews} fromDashboard={true} />
+              </CardBody>
             </Card>
           </Col>
           <Col lg='6' md='12'>

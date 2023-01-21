@@ -1,23 +1,6 @@
-/*!
-
-=========================================================
-* Black Dashboard React v1.2.1
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/black-dashboard-react
-* Copyright 2022 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/black-dashboard-react/blob/master/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 /*eslint-disable*/
 import React from 'react';
-import { NavLink, Link, useLocation } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 // nodejs library to set properties for components
 import { PropTypes } from 'prop-types';
 
@@ -31,9 +14,8 @@ import {
   backgroundColors,
 } from 'contexts/BackgroundColorContext';
 
-var ps;
-
 function Sidebar(props) {
+  var ps;
   const sidebarRef = React.useRef(null);
   // verifies if routeName is the one active (in browser input)
   React.useEffect(() => {
@@ -50,9 +32,6 @@ function Sidebar(props) {
       }
     };
   });
-  const linkOnClick = () => {
-    document.documentElement.classList.remove('nav-open');
-  };
   const { pages } = props;
 
   return (
@@ -91,24 +70,11 @@ function Sidebar(props) {
 }
 
 Sidebar.propTypes = {
-  rtlActive: PropTypes.bool,
   pages: PropTypes.arrayOf(PropTypes.object),
   contentComponent: PropTypes.object,
   setContentComponent: PropTypes.func,
   contentComponentName: PropTypes.string,
   setContentComponentName: PropTypes.func,
-  logo: PropTypes.shape({
-    // innerLink is for links that will direct the user within the app
-    // it will be rendered as <Link to="...">...</Link> tag
-    innerLink: PropTypes.string,
-    // outterLink is for links that will direct the user outside the app
-    // it will be rendered as simple <a href="...">...</a> tag
-    outterLink: PropTypes.string,
-    // the text of the logo
-    text: PropTypes.node,
-    // the image src of the logo
-    imgSrc: PropTypes.string,
-  }),
 };
 
 export default Sidebar;

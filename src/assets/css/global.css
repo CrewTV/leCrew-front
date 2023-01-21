@@ -1,7 +1,29 @@
+/* Variables */
+element {
+  --white-color: white;
+}
+
 html, body, #root, .App {
     height: 100%;
   }
 
 .fixed_field {
   width: 300px;
+}
+
+.crew-list {
+  height: 800px;
+}
+
+.fixed-link {
+  color: var(--white-color);
+}
+.fixed-link:hover {
+   color: var(--white-color)
+}
+
+.crew-icon-image {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
 }

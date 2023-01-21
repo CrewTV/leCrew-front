@@ -75,7 +75,7 @@
 .modal{
 
     &.modal-default{
-        @include modal-colors($white, $black);
+        @include modal-colors($black, $white);
     }
 
     &.modal-primary{

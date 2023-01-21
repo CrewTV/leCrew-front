@@ -8,14 +8,14 @@ import AdminNavbar from 'components/Navbars/AdminNavbar.js';
 import Sidebar from 'components/Sidebar/Sidebar.js';
 import pages from '../views/pages';
 import { BackgroundColorContext } from 'contexts/BackgroundColorContext';
-import Dashboard from 'views/Dashboard';
+import DescriptionSidebar from 'components/Sidebar/AdminSideBar';
 
 var ps;
-
-function MainLayout(props) {
-  const [contentComponent, setContentComponent] = useState(<Dashboard />);
-  const [contentComponentName, setContentComponentName] =
-    useState('Tableau de bord');
+/*
+ * Layout used for description pages
+ */
+function DescriptionLayout(props) {
+  const contentComponent = props.component;
   const location = useLocation();
   const mainPanelRef = React.useRef(null);
   const [sidebarOpened, setsidebarOpened] = React.useState(
@@ -68,12 +68,9 @@ function MainLayout(props) {
       {({ color, changeColor }) => (
         <React.Fragment>
           <div className='wrapper'>
-            <Sidebar
+            <DescriptionSidebar
               pages={pages}
               contentComponent={contentComponent}
-              setContentComponent={setContentComponent}
-              contentComponentName={contentComponentName}
-              setContentComponentName={setContentComponentName}
               toggleSidebar={toggleSidebar}
             />
             <div className='main-panel' ref={mainPanelRef} data={color}>
@@ -91,4 +88,4 @@ function MainLayout(props) {
   );
 }
 
-export default MainLayout;
+export default DescriptionLayout;
