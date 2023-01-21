@@ -1,4 +1,5 @@
 import UserContext from 'contexts/UserContext';
+<<<<<<< HEAD
 import DescriptionLayout from 'layouts/DescriptionLayout';
 import MainLayout from 'layouts/MainLayout';
 import React, { useState } from 'react';
@@ -7,6 +8,7 @@ import { getToken } from 'utils/token';
 import Login from 'views/account/Login';
 import Register from 'views/account/Register';
 import CrewDescription from 'views/crews/CrewDescription';
+
 
 import HomePage from 'views/landing/HomePage';
 
