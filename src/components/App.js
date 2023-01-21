@@ -9,6 +9,7 @@ import Register from 'views/account/Register';
 import AssetDesription from 'views/assets/AssetDescription';
 import CrewDescription from 'views/crews/CrewDescription';
 
+
 import HomePage from 'views/landing/HomePage';
 
 function App() {

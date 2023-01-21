@@ -1,3 +1,8 @@
+/* Variables */
+element {
+  --white-color: white;
+}
+
 html, body, #root, .App {
     height: 100%;
   }

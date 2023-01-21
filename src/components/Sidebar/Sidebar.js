@@ -14,9 +14,8 @@ import {
   backgroundColors,
 } from 'contexts/BackgroundColorContext';
 
-var ps;
-
 function Sidebar(props) {
+  var ps;
   const sidebarRef = React.useRef(null);
   // verifies if routeName is the one active (in browser input)
   React.useEffect(() => {
