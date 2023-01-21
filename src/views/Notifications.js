@@ -1,23 +1,6 @@
-/*!
-
-=========================================================
-* Black Dashboard React v1.2.1
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/black-dashboard-react
-* Copyright 2022 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/black-dashboard-react/blob/master/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
-import React from "react";
+import React from 'react';
 // react plugin for creating notifications over the dashboard
-import NotificationAlert from "react-notification-alert";
+import NotificationAlert from 'react-notification-alert';
 
 // reactstrap components
 import {
@@ -29,8 +12,8 @@ import {
   CardBody,
   CardTitle,
   Row,
-  Col
-} from "reactstrap";
+  Col,
+} from 'reactstrap';
 
 function Notifications() {
   const notificationAlertRef = React.useRef(null);
@@ -39,19 +22,19 @@ function Notifications() {
     var type;
     switch (color) {
       case 1:
-        type = "primary";
+        type = 'primary';
         break;
       case 2:
-        type = "success";
+        type = 'success';
         break;
       case 3:
-        type = "danger";
+        type = 'danger';
         break;
       case 4:
-        type = "warning";
+        type = 'warning';
         break;
       case 5:
-        type = "info";
+        type = 'info';
         break;
       default:
         break;
@@ -68,39 +51,39 @@ function Notifications() {
         </div>
       ),
       type: type,
-      icon: "tim-icons icon-bell-55",
-      autoDismiss: 7
+      icon: 'tim-icons icon-bell-55',
+      autoDismiss: 7,
     };
     notificationAlertRef.current.notificationAlert(options);
   };
   return (
     <>
-      <div className="content">
-        <div className="react-notification-alert-container">
+      <div className='content'>
+        <div className='react-notification-alert-container'>
           <NotificationAlert ref={notificationAlertRef} />
         </div>
         <Row>
-          <Col md="6">
+          <Col md='6'>
             <Card>
               <CardHeader>
-                <CardTitle tag="h4">Notifications Style</CardTitle>
+                <CardTitle tag='h4'>Notifications Style</CardTitle>
               </CardHeader>
               <CardBody>
-                <Alert color="info">
+                <Alert color='info'>
                   <span>This is a plain notification</span>
                 </Alert>
-                <UncontrolledAlert color="info">
+                <UncontrolledAlert color='info'>
                   <span>This is a notification with close button.</span>
                 </UncontrolledAlert>
-                <UncontrolledAlert className="alert-with-icon" color="info">
-                  <span className="tim-icons icon-bell-55" data-notify="icon" />
-                  <span data-notify="message">
+                <UncontrolledAlert className='alert-with-icon' color='info'>
+                  <span className='tim-icons icon-bell-55' data-notify='icon' />
+                  <span data-notify='message'>
                     This is a notification with close button and icon.
                   </span>
                 </UncontrolledAlert>
-                <UncontrolledAlert className="alert-with-icon" color="info">
-                  <span className="tim-icons icon-bell-55" data-notify="icon" />
-                  <span data-notify="message">
+                <UncontrolledAlert className='alert-with-icon' color='info'>
+                  <span className='tim-icons icon-bell-55' data-notify='icon' />
+                  <span data-notify='message'>
                     This is a notification with close button and icon and have
                     many lines. You can see that the icon and the close button
                     are always vertically aligned. This is a beautiful
@@ -110,37 +93,37 @@ function Notifications() {
               </CardBody>
             </Card>
           </Col>
-          <Col md="6">
+          <Col md='6'>
             <Card>
               <CardHeader>
-                <CardTitle tag="h4">Notification states</CardTitle>
+                <CardTitle tag='h4'>Notification states</CardTitle>
               </CardHeader>
               <CardBody>
-                <UncontrolledAlert color="primary">
+                <UncontrolledAlert color='primary'>
                   <span>
                     <b>Primary - </b>
                     This is a regular notification made with ".alert-primary"
                   </span>
                 </UncontrolledAlert>
-                <UncontrolledAlert color="info">
+                <UncontrolledAlert color='info'>
                   <span>
                     <b>Info - </b>
                     This is a regular notification made with ".alert-info"
                   </span>
                 </UncontrolledAlert>
-                <UncontrolledAlert color="success">
+                <UncontrolledAlert color='success'>
                   <span>
                     <b>Success - </b>
                     This is a regular notification made with ".alert-success"
                   </span>
                 </UncontrolledAlert>
-                <UncontrolledAlert color="warning">
+                <UncontrolledAlert color='warning'>
                   <span>
                     <b>Warning - </b>
                     This is a regular notification made with ".alert-warning"
                   </span>
                 </UncontrolledAlert>
-                <UncontrolledAlert color="danger">
+                <UncontrolledAlert color='danger'>
                   <span>
                     <b>Danger - </b>
                     This is a regular notification made with ".alert-danger"
@@ -149,45 +132,42 @@ function Notifications() {
               </CardBody>
             </Card>
           </Col>
-          <Col md="12">
+          <Col md='12'>
             <Card>
               <CardBody>
-                <div className="places-buttons">
+                <div className='places-buttons'>
                   <Row>
-                    <Col className="ml-auto mr-auto text-center" md="6">
-                      <CardTitle tag="h4">
+                    <Col className='ml-auto mr-auto text-center' md='6'>
+                      <CardTitle tag='h4'>
                         Notifications Places
-                        <p className="category">Click to view notifications</p>
+                        <p className='category'>Click to view notifications</p>
                       </CardTitle>
                     </Col>
                   </Row>
                   <Row>
-                    <Col className="ml-auto mr-auto" lg="8">
+                    <Col className='ml-auto mr-auto' lg='8'>
                       <Row>
-                        <Col md="4">
+                        <Col md='4'>
                           <Button
                             block
-                            color="primary"
-                            onClick={() => notify("tl")}
-                          >
+                            color='primary'
+                            onClick={() => notify('tl')}>
                             Top Left
                           </Button>
                         </Col>
-                        <Col md="4">
+                        <Col md='4'>
                           <Button
                             block
-                            color="primary"
-                            onClick={() => notify("tc")}
-                          >
+                            color='primary'
+                            onClick={() => notify('tc')}>
                             Top Center
                           </Button>
                         </Col>
-                        <Col md="4">
+                        <Col md='4'>
                           <Button
                             block
-                            color="primary"
-                            onClick={() => notify("tr")}
-                          >
+                            color='primary'
+                            onClick={() => notify('tr')}>
                             Top Right
                           </Button>
                         </Col>
@@ -195,32 +175,29 @@ function Notifications() {
                     </Col>
                   </Row>
                   <Row>
-                    <Col className="ml-auto mr-auto" lg="8">
+                    <Col className='ml-auto mr-auto' lg='8'>
                       <Row>
-                        <Col md="4">
+                        <Col md='4'>
                           <Button
                             block
-                            color="primary"
-                            onClick={() => notify("bl")}
-                          >
+                            color='primary'
+                            onClick={() => notify('bl')}>
                             Bottom Left
                           </Button>
                         </Col>
-                        <Col md="4">
+                        <Col md='4'>
                           <Button
                             block
-                            color="primary"
-                            onClick={() => notify("bc")}
-                          >
+                            color='primary'
+                            onClick={() => notify('bc')}>
                             Bottom Center
                           </Button>
                         </Col>
-                        <Col md="4">
+                        <Col md='4'>
                           <Button
                             block
-                            color="primary"
-                            onClick={() => notify("br")}
-                          >
+                            color='primary'
+                            onClick={() => notify('br')}>
                             Bottom Right
                           </Button>
                         </Col>
