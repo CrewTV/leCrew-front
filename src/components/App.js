@@ -1,5 +1,4 @@
 import UserContext from 'contexts/UserContext';
-<<<<<<< HEAD
 import DescriptionLayout from 'layouts/DescriptionLayout';
 import MainLayout from 'layouts/MainLayout';
 import React, { useState } from 'react';
