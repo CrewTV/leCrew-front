@@ -71,26 +71,34 @@ export default function CrewCreationForm({
                   <div className='d-flex flex-column justify-content-center'>
                     {values.members.length > 0 &&
                       values.members.map((_, index) => (
-                        <div className='d-flex flex-row mb-2' key={index}>
-                          <Input
-                            className='fixed_field'
-                            placeholder='Email'
-                            type='email'
-                            onChange={(e) =>
-                              setFieldValue(`members.${index}`, e.target.value)
-                            }
-                          />
-                          <button
-                            type='button'
-                            className='btn btn-warning btn-sm m-0 ml-1'
-                            onClick={() => remove(index)}>
-                            X
-                          </button>
+                        <div>
+                          <div className='d-flex flex-row mb-2' key={index}>
+                            <Input
+                              className='fixed_field'
+                              placeholder='Email'
+                              type='email'
+                              onChange={(e) =>
+                                setFieldValue(
+                                  `members.${index}`,
+                                  e.target.value
+                                )
+                              }
+                            />
+                            <button
+                              type='button'
+                              className='btn btn-warning btn-sm m-0 ml-1'
+                              onClick={() => remove(index)}>
+                              X
+                            </button>
+                          </div>
+                          {errors.members[index] ? (
+                            <div className='mt-1 text-danger'>
+                              {errors.members[index]}
+                            </div>
+                          ) : null}
                         </div>
                       ))}
-                    {errors.members ? (
-                      <div className='mt-1 text-danger'>{errors.members}</div>
-                    ) : null}
+
                     <button
                       type='button'
                       className='btn btn-success fixed-button'
