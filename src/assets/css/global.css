@@ -21,7 +21,6 @@ html, body, #root, .App {
   width: 50px;
   border-radius: 50%;
 }
-.mini-chart {
-  height: 150px;
-  width: 200px;
+.asset-details-chart {
+  height: 300px;
 }

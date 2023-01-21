@@ -15,8 +15,10 @@ import {
 import { Line, Bar } from 'react-chartjs-2';
 import { chartExample1 } from 'variables/charts.js';
 import CrewParticipants from 'components/Crews/CrewParticipations';
+import AssetDetails from 'components/Assets/AssetDetails';
 
 export default function AssetDesription({}) {
+  // Mock data, to be replace by API call
   const initialAssets = [
     {
       id: 1,
@@ -37,10 +39,11 @@ export default function AssetDesription({}) {
       associatedCrew: 'Crew #2', // Use Id instead of name in API call
     },
   ];
-  // Mock data, to be replace by API call
-  const { id } = useParams();
+
+  // Recover the id in the query params
+  const id = parseInt(useParams().id, 10);
   // Replace by API call
-  const asset = initialAssets.find((initialAsset) => initialAsset.id == id);
+  const asset = initialAssets.find((initialAsset) => initialAsset.id === id);
   const [bigChartData, setbigChartData] = React.useState('data1');
 
   return (
@@ -82,15 +85,17 @@ export default function AssetDesription({}) {
             <Col lg='6' md='12'>
               <Card className='card-tasks'>
                 <CardHeader>
-                  <CardTitle tag='h4'></CardTitle>
+                  <CardTitle tag='h3'>Détails</CardTitle>
                 </CardHeader>
-                <CardBody>/*Détails de l'actif*/</CardBody>
+                <CardBody>
+                  <AssetDetails assetId={id} />
+                </CardBody>
               </Card>
             </Col>
             <Col lg='6' md='12'>
               <Card className='card-tasks'>
                 <CardHeader>
-                  <CardTitle tag='h4'></CardTitle>
+                  <CardTitle tag='h3'></CardTitle>
                 </CardHeader>
                 <CardBody>/*Répartition dans les crew*/</CardBody>
               </Card>

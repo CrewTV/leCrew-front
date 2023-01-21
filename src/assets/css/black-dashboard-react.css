@@ -11088,12 +11088,12 @@ h3, .h3 {
   line-height: 1.4em; }
 
 h4, .h4 {
-  line-height: 1.45em;
-  margin-bottom: 15px; }
+
+}
   h4 + .category,
   h4.title + .category, .h4 + .category,
   .h4.title + .category {
-    margin-top: -10px; }
+    }
 
 h5, .h5 {
   line-height: 1.4em;
