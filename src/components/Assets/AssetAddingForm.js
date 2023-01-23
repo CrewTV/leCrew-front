@@ -5,7 +5,7 @@ import * as Yup from 'yup';
 
 import PropTypes from 'prop-types';
 import UserContext from 'contexts/UserContext';
-import { sampleRawAssets } from 'assets/samples/asset';
+import { sampleAssets } from 'assets/samples/asset';
 
 export default function AssetAddingForm({
   crewId,
@@ -36,9 +36,9 @@ export default function AssetAddingForm({
     setTriggerNotification(true);
   };
 
-  const assetOptions = sampleRawAssets.map((rawAsset) => (
-    <option key={rawAsset.id} value={rawAsset.name}>
-      {rawAsset.name} - {rawAsset.currentPrice} € {`(${rawAsset.exchange})`}
+  const assetOptions = sampleAssets.map((asset) => (
+    <option key={asset.id} value={asset.name}>
+      {asset.name} - {asset.currentPrice} € {`(${asset.exchange})`}
     </option>
   ));
 
