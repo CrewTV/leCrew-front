@@ -1,9 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Table } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import UserContext from 'contexts/UserContext';
+import { sampleAssets } from 'assets/samples/asset';
 
-export default function AssetTable({ assets, reducedDisplay }) {
+export default function AssetTable({ assetsInfo, reducedDisplay }) {
+  const { user } = useContext(UserContext);
+
+  const assets = assetsInfo.map((assetInfo) =>
+    sampleAssets.find((sampleAsset) => sampleAsset.id === assetInfo.id)
+  );
+
   return (
     <Table>
       <thead className='text-primary'>
@@ -18,6 +26,7 @@ export default function AssetTable({ assets, reducedDisplay }) {
       </thead>
       <tbody>
         {assets.map((asset, index) => {
+          const assetInfo = assetsInfo[index];
           return (
             <tr key={index}>
               <td>
@@ -32,15 +41,16 @@ export default function AssetTable({ assets, reducedDisplay }) {
               <td className={reducedDisplay ? 'text-right' : 'text-center'}>
                 <p
                   className={
-                    asset.performance > 0 ? 'text-success' : 'text-danger'
+                    assetInfo.performance > 0 ? 'text-success' : 'text-danger'
                   }>
-                  {asset.value} € / {asset.performance > 0 ? '+' : ''}
-                  {asset.performance} %
+                  {assetInfo.quantity * asset.currentPrice} € /
+                  {assetInfo.performance > 0 ? '+' : ''}
+                  {assetInfo.performance} %
                 </p>
               </td>
               {!reducedDisplay && (
                 <td className='text-center'>
-                  <p>{asset.quantity}</p>
+                  <p>{assetInfo.quantity}</p>
                 </td>
               )}
               {!reducedDisplay && (
@@ -61,6 +71,6 @@ export default function AssetTable({ assets, reducedDisplay }) {
 }
 
 AssetTable.propTypes = {
-  assets: PropTypes.array.isRequired,
+  assetsInfo: PropTypes.array.isRequired, // Information about the asset: id, quantity
   reducedDisplay: PropTypes.bool, // Designates wheter to display less information in the component
 };

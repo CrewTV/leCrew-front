@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 // nodejs library that concatenates classes
-import classNames from 'classnames';
 // react plugin used to create charts
 import { Line, Bar } from 'react-chartjs-2';
 import UserContext from '../contexts/UserContext';
@@ -20,6 +19,16 @@ function Dashboard(props) {
 
   const { user } = useContext(UserContext);
 
+  // Recover the crew associated to the user
+  const userCrews = user.crews.map((userCrew) =>
+    sampleCrews.find((sampleCrew) => sampleCrew.id === userCrew.id)
+  );
+
+  // Recover the assets associated to the user
+  const userAssets = user.assetsInfo.map((userAsset) =>
+    sampleAssets.find((sampleAsset) => sampleAsset.id === userAsset.id)
+  );
+
   return (
     <>
       <div className='content'>
@@ -34,7 +43,7 @@ function Dashboard(props) {
                   </Col>
                   <Col sm='6'>
                     <div className='float-right'>
-                      <CardTitle tag='h3'>128.14 €</CardTitle>
+                      <CardTitle tag='h3'>{user.totalValue} €</CardTitle>
                     </div>
                   </Col>
                 </Row>
@@ -57,7 +66,7 @@ function Dashboard(props) {
                 <CardTitle tag='h4'>Mes crews</CardTitle>
               </CardHeader>
               <CardBody>
-                <CrewTable crews={sampleCrews} reducedDisplay={true} />
+                <CrewTable crews={userCrews} reducedDisplay={true} />
               </CardBody>
             </Card>
           </Col>
@@ -67,7 +76,10 @@ function Dashboard(props) {
                 <CardTitle tag='h4'>Mes actifs</CardTitle>
               </CardHeader>
               <CardBody>
-                <AssetTable assets={sampleAssets} reducedDisplay={true} />
+                <AssetTable
+                  assetsInfo={user.assetsInfo}
+                  reducedDisplay={true}
+                />
               </CardBody>
             </Card>
           </Col>

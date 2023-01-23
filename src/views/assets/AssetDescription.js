@@ -19,15 +19,28 @@ import AssetDetails from 'components/Assets/AssetDetails';
 import { sampleAssets } from 'assets/samples/asset';
 import CrewTable from 'components/Crews/CrewTable';
 import { sampleCrews } from 'assets/samples/crew';
+import { formatNumber } from 'utils/formating';
 
 export default function AssetDesription({}) {
   // Recover the id in the query params
   const id = parseInt(useParams().id, 10);
+
   // Replace by API call
   const asset = sampleAssets.find((sampleAsset) => sampleAsset.id === id);
-  const associatedCrews = sampleCrews.filter((crew) =>
-    asset.associatedCrews.includes(crew.id)
+  const associatedCrews = sampleCrews.filter((sampleCrew) =>
+    sampleCrew.assetsInfo.find((assetInfo) => assetInfo.id === asset.id)
   );
+  let totalValue = 0;
+  let totalQuantity = 0;
+  let totalPerformance = 0;
+  associatedCrews.forEach((crew) => {
+    const info = crew.assetsInfo.find((assetInfo) => assetInfo.id === asset.id);
+    totalValue += info.quantity * asset.currentPrice;
+    totalQuantity += info.quantity;
+    totalPerformance += info.performance;
+  });
+  totalPerformance /= totalQuantity;
+
   const [bigChartData, setbigChartData] = React.useState('data1');
 
   return (
@@ -47,15 +60,15 @@ export default function AssetDesription({}) {
             <CardBody>
               <div className='d-flex flex-row align-items-center justify-content-around'>
                 <div className='d-flex flex-column align-items-center mr-1'>
-                  <h3>{asset.value} €</h3>
+                  <h3>{totalValue} €</h3>
                   <h4
                     className={
-                      asset.performance > 0 ? 'text-success' : 'text-danger'
+                      totalPerformance > 0 ? 'text-success' : 'text-danger'
                     }>
-                    {asset.performance > 0 ? '+' : ''}
-                    {asset.performance} %
+                    {totalPerformance > 0 ? '+' : ''}
+                    {formatNumber(totalPerformance)} %
                   </h4>
-                  Quantité: {asset.quantity}
+                  Quantité: {totalQuantity}
                 </div>
                 <div className='chart-area w-75'>
                   <Line
@@ -73,7 +86,7 @@ export default function AssetDesription({}) {
                   <CardTitle tag='h3'>Détails de l'actif</CardTitle>
                 </CardHeader>
                 <CardBody>
-                  <AssetDetails assetId={id} />
+                  <AssetDetails asset={asset} />
                 </CardBody>
               </Card>
             </Col>

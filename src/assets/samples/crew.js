@@ -6,6 +6,18 @@ const sampleCrews = [
     performance: 3.6,
     value: 45.8,
     image: require('assets/img/react-logo.png'),
+    assetsInfo: [
+      {
+        id: 1,
+        quantity: 2,
+        performance: 4.3,
+      },
+      {
+        id: 2,
+        quantity: 12,
+        performance: -0.6,
+      },
+    ],
   },
   {
     id: 2,
@@ -13,6 +25,18 @@ const sampleCrews = [
     performance: -4.8,
     value: 147.32,
     image: require('assets/img/angular-logo.png'),
+    assetsInfo: [
+      {
+        id: 1,
+        quantity: 1,
+        performance: 4.3,
+      },
+      {
+        id: 2,
+        quantity: 6,
+        performance: -0.6,
+      },
+    ],
   },
 ];
 

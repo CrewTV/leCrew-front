@@ -41,9 +41,7 @@ export default function CrewDescription({}) {
   const { id } = useParams();
   // Replace by API call
   const crew = sampleCrews.find((sampleCrew) => sampleCrew.id == id);
-  const associatedAssets = sampleAssets.filter((asset) =>
-    asset.associatedCrews.includes(crew.id)
-  );
+
   const [bigChartData, setbigChartData] = React.useState('data1');
   const [addAssetModal, setAddAssetModal] = useState(false);
   const [triggerNotification, setTriggerNotification] = useState(false);
@@ -150,7 +148,10 @@ export default function CrewDescription({}) {
                   <CardTitle tag='h4'>Actifs du crew</CardTitle>
                 </CardHeader>
                 <CardBody>
-                  <AssetTable assets={associatedAssets} reducedDisplay={true} />
+                  <AssetTable
+                    assetsInfo={crew.assetsInfo}
+                    reducedDisplay={true}
+                  />
                 </CardBody>
               </Card>
             </Col>

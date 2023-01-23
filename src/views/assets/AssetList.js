@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import {
   Card,
   CardHeader,
@@ -11,10 +11,10 @@ import {
   ModalBody,
 } from 'reactstrap';
 import AssetTable from 'components/Assets/AssetTable';
-import { sampleAssets } from 'assets/samples/asset';
+import UserContext from 'contexts/UserContext';
 
 export default function AssetList({}) {
-  const [assets, setAssets] = useState(sampleAssets);
+  const { user } = useContext(UserContext);
 
   return (
     <div className='content'>
@@ -26,7 +26,7 @@ export default function AssetList({}) {
             </CardHeader>
             <CardBody>
               <div className='px-1 '></div>
-              <AssetTable assets={assets} fromDashboard={false} />
+              <AssetTable assetsInfo={user.assetsInfo} fromDashboard={false} />
             </CardBody>
           </Card>
         </Col>
