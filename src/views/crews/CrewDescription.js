@@ -73,7 +73,7 @@ export default function CrewDescription({}) {
           </button>
         </ModalHeader>
         <ModalBody>
-          <AssetAddingForm crewId={crew.id} />
+          <AssetAddingForm crew={crew} />
         </ModalBody>
       </Modal>
     );

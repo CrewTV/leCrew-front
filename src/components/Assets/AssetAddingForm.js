@@ -6,9 +6,10 @@ import * as Yup from 'yup';
 import PropTypes from 'prop-types';
 import UserContext from 'contexts/UserContext';
 import { sampleAssets } from 'assets/samples/asset';
+import { sampleUsers } from 'assets/samples/user';
 
 export default function AssetAddingForm({
-  crewId,
+  crew,
   setCrewAsset,
   setAssetAddingModal,
   setTriggerNotification,
@@ -36,16 +37,36 @@ export default function AssetAddingForm({
     setTriggerNotification(true);
   };
 
+  // Defining the options for the asset dropdown
   const assetOptions = sampleAssets.map((asset) => (
     <option key={asset.id} value={asset.name}>
       {asset.name} - {asset.currentPrice} € {`(${asset.exchange})`}
     </option>
   ));
 
-  // Add default option
+  // Add default option for assets
   assetOptions.unshift(
     <option disabled value=''>
       Selectionner un actif
+    </option>
+  );
+
+  // Defining the options for the asset dropdown
+  const buyerOptions = crew.membersInfo.map((memberInfo) => {
+    const associatedUser = sampleUsers.find(
+      (sampleUser) => sampleUser.id === memberInfo.id
+    );
+    return (
+      <option key={associatedUser.id} value={associatedUser.id}>
+        {associatedUser.firstName}
+      </option>
+    );
+  });
+
+  // Add default option for buyer
+  buyerOptions.unshift(
+    <option disabled value=''>
+      Selectionner un acheteur
     </option>
   );
 
@@ -92,6 +113,25 @@ export default function AssetAddingForm({
                 <div className='mt-1 text-danger'>{errors.quantity}</div>
               )}
             </FormGroup>
+            <FormGroup className={errors.buyerId ? 'has-error' : null}>
+              <Label
+                for={errors.buyerId ? 'error' : null}
+                className='control-label'>
+                Acheteur
+              </Label>
+              <Input
+                className='fixed-field'
+                type='select'
+                name='select'
+                id='assetSelector'
+                defaultValue={values.buyerId}
+                onChange={(e) => setFieldValue('buyerId', e.target.value)}>
+                {buyerOptions}
+              </Input>
+              {errors.buyerId && (
+                <div className='mt-1 text-danger'>{errors.buyerId}</div>
+              )}
+            </FormGroup>
             <button type='submit' className='btn btn-info fixed-button'>
               Ajouter l'actif
             </button>
@@ -103,7 +143,7 @@ export default function AssetAddingForm({
 }
 
 AssetAddingForm.propTypes = {
-  crewId: PropTypes.number.isRequired,
+  crew: PropTypes.object.isRequired,
   setCrewAsset: PropTypes.func.isRequired,
   setAssetAddingModal: PropTypes.func.isRequired,
   setTriggerNotification: PropTypes.func.isRequired,
