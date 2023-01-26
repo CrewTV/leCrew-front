@@ -42,6 +42,7 @@ export default function AssetAddingForm({
     </option>
   ));
 
+  // Add default option
   assetOptions.unshift(
     <option disabled value=''>
       Selectionner un actif
@@ -56,18 +57,41 @@ export default function AssetAddingForm({
         onSubmit={(values) => assetAddingFormOnSubmit(values)}>
         {({ values, errors, setFieldValue }) => (
           <Form className='d-flex flex-column align-items-center justify-content-center'>
-            <Label
-              for={errors.assetName ? 'error' : null}
-              className='control-label'>
-              Actif
-            </Label>
-            <Input
-              type='select'
-              name='select'
-              id='assetSelector'
-              defaultValue={''}>
-              {assetOptions}
-            </Input>
+            <FormGroup className={errors.assetName ? 'has-error' : null}>
+              <Label
+                for={errors.assetName ? 'error' : null}
+                className='control-label'>
+                Actif
+              </Label>
+              <Input
+                className='fixed-field'
+                type='select'
+                name='select'
+                id='assetSelector'
+                defaultValue={''}
+                onChange={(e) => setFieldValue('assetName', e.target.value)}>
+                {assetOptions}
+              </Input>
+              {errors.assetName && (
+                <div className='mt-1 text-danger'>{errors.assetName}</div>
+              )}
+            </FormGroup>
+            <FormGroup className={errors.quantity ? 'has-error' : null}>
+              <Label
+                for={errors.quantity ? 'error' : null}
+                className='control-label'>
+                Quantité
+              </Label>
+              <Input
+                className='fixed-field'
+                type='number'
+                placeholder='Quantité'
+                onChange={(e) => setFieldValue('quantity', e.target.value)}
+              />
+              {errors.quantity && (
+                <div className='mt-1 text-danger'>{errors.quantity}</div>
+              )}
+            </FormGroup>
             <button type='submit' className='btn btn-info fixed-button'>
               Ajouter l'actif
             </button>

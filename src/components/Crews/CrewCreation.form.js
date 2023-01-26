@@ -53,14 +53,14 @@ export default function CrewCreationForm({
                 Nom du Crew
               </Label>
               <Input
-                className='fixed_field'
+                className='fixed-field'
                 type='text'
                 placeholder='Nom du Crew'
                 onChange={(e) => setFieldValue('name', e.target.value)}
               />
-              {errors.name ? (
+              {errors.name && (
                 <div className='mt-1 text-danger'>{errors.name}</div>
-              ) : null}
+              )}
             </FormGroup>
             <FormGroup>
               {values.members.length > 0 && (
@@ -74,7 +74,7 @@ export default function CrewCreationForm({
                         <div>
                           <div className='d-flex flex-row mb-2' key={index}>
                             <Input
-                              className='fixed_field'
+                              className='fixed-field'
                               placeholder='Email'
                               type='email'
                               onChange={(e) =>
@@ -91,11 +91,11 @@ export default function CrewCreationForm({
                               X
                             </button>
                           </div>
-                          {errors.members[index] ? (
+                          {errors.members[index] && (
                             <div className='mt-1 text-danger'>
                               {errors.members[index]}
                             </div>
-                          ) : null}
+                          )}
                         </div>
                       ))}
 

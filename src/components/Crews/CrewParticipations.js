@@ -1,3 +1,5 @@
+import { sampleUsers } from 'assets/samples/user';
+import UserContext from 'contexts/UserContext';
 import PropTypes from 'prop-types';
 import { Table } from 'reactstrap';
 
@@ -5,6 +7,10 @@ import { Table } from 'reactstrap';
  * Component used to display the participants of a crew and their informations
  */
 export default function CrewParticipants({ participants, crewValue }) {
+  const getUserInfoFromId = (id) => {
+    return sampleUsers.find((sampleUser) => sampleUser.id === id);
+  };
+
   return (
     <Table>
       <thead className='text-primary'>
@@ -16,10 +22,11 @@ export default function CrewParticipants({ participants, crewValue }) {
       </thead>
       <tbody>
         {participants.map((participant, index) => {
+          const userInfo = getUserInfoFromId(participant.id);
           return (
             <tr key={index}>
               <td>
-                <p>{participant.owner}</p>
+                <p>{userInfo.firstName}</p>
               </td>
               <td>
                 <p>{participant.percentage} %</p>

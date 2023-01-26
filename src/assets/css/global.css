@@ -7,7 +7,7 @@ html, body, #root, .App {
     height: 100%;
   }
 
-.fixed_field {
+.fixed-field {
   width: 300px;
 }
 

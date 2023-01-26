@@ -18,8 +18,6 @@ import { chartExample1 } from 'variables/charts.js';
 import CrewParticipants from 'components/Crews/CrewParticipations';
 import { sampleCrews } from 'assets/samples/crew';
 import AssetTable from 'components/Assets/AssetTable';
-import { sampleAssets } from 'assets/samples/asset';
-import { sampleCrewMembers } from 'assets/samples/crew';
 import AssetAddingForm from 'components/Assets/AssetAddingForm';
 
 export default function CrewDescription({}) {
@@ -38,9 +36,10 @@ export default function CrewDescription({}) {
     notificationAlertRef.current.notificationAlert(options);
   };
 
-  const { id } = useParams();
+  // Recover the id in the query params
+  const id = parseInt(useParams().id, 10);
   // Replace by API call
-  const crew = sampleCrews.find((sampleCrew) => sampleCrew.id == id);
+  const crew = sampleCrews.find((sampleCrew) => sampleCrew.id === id);
 
   const [bigChartData, setbigChartData] = React.useState('data1');
   const [addAssetModal, setAddAssetModal] = useState(false);
@@ -136,7 +135,7 @@ export default function CrewDescription({}) {
                 </CardHeader>
                 <CardBody>
                   <CrewParticipants
-                    participants={sampleCrewMembers}
+                    participants={crew.membersInfo}
                     crewValue={crew.value}
                   />
                 </CardBody>

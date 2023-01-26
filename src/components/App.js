@@ -10,7 +10,7 @@ import AssetDesription from 'views/assets/AssetDescription';
 import CrewDescription from 'views/crews/CrewDescription';
 import HomePage from 'views/landing/HomePage';
 
-import { sampleUser } from 'assets/samples/user';
+import { sampleUsers } from 'assets/samples/user';
 
 function App() {
   const token = getToken();
@@ -20,7 +20,7 @@ function App() {
   // Used to display pages with the layout that are not accessible from the sidebar
   const [descriptionComponent, setDescriptionComponent] = useState(null);
 
-  const user = sampleUser;
+  const user = sampleUsers[0];
 
   return token ? (
     <UserContext.Provider value={{ user }}>

@@ -18,6 +18,24 @@ const sampleCrews = [
         performance: -0.6,
       },
     ],
+    membersInfo: [
+      {
+        id: 1,
+        percentage: 42,
+      },
+      {
+        id: 2,
+        percentage: 21,
+      },
+      {
+        id: 3,
+        percentage: 18,
+      },
+      {
+        id: 4,
+        percentage: 19,
+      },
+    ],
   },
   {
     id: 2,
@@ -37,26 +55,25 @@ const sampleCrews = [
         performance: -0.6,
       },
     ],
+    membersInfo: [
+      {
+        id: 1,
+        percentage: 42,
+      },
+      {
+        id: 2,
+        percentage: 21,
+      },
+      {
+        id: 3,
+        percentage: 18,
+      },
+      {
+        id: 4,
+        percentage: 19,
+      },
+    ],
   },
 ];
 
-const sampleCrewMembers = [
-  {
-    owner: 'Jean',
-    percentage: 42,
-  },
-  {
-    owner: 'Benjamin',
-    percentage: 21,
-  },
-  {
-    owner: 'Emilie',
-    percentage: 18,
-  },
-  {
-    owner: 'Clémence',
-    percentage: 19,
-  },
-];
-
-module.exports = { sampleCrews, sampleCrewMembers };
+module.exports = { sampleCrews };
