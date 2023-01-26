@@ -25,7 +25,7 @@ export default function AssetList({}) {
               <CardTitle tag='h2'>Mes Actifs</CardTitle>
             </CardHeader>
             <CardBody>
-              <div className='px-1 '></div>
+              <div className='px-1'></div>
               <AssetTable assets={assets} fromDashboard={false} />
             </CardBody>
           </Card>
