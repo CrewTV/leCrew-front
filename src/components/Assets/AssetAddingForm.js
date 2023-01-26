@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { FormGroup, Input, Label } from 'reactstrap';
 import { Formik, Form, Field, ErrorMessage, FieldArray } from 'formik';
 import * as Yup from 'yup';
@@ -17,7 +17,7 @@ export default function AssetAddingForm({
   const { user } = useContext(UserContext);
   const initialValues = {
     assetName: '',
-    quantity: 0,
+    quantity: -1, // -1 by default to trigger the number validator
     buyerId: user.id, // The current user is placed as buyer per default
     participants: [],
   };
@@ -50,7 +50,6 @@ export default function AssetAddingForm({
       Selectionner un actif
     </option>
   );
-
   // Defining the options for the asset dropdown
   const buyerOptions = crew.membersInfo.map((memberInfo) => {
     const associatedUser = sampleUsers.find(
@@ -69,6 +68,39 @@ export default function AssetAddingForm({
       Selectionner un acheteur
     </option>
   );
+
+  // Boolean array to know who take part in the asset buying
+  const [checkParticipants, setCheckParticipants] = useState(
+    new Array(crew.membersInfo.length).fill(false)
+  );
+
+  // Add or remove a participant from the list
+  const handleParticipant = (index) => {
+    const copy = [...checkParticipants];
+    copy[index] = !checkParticipants[index];
+    setCheckParticipants(copy);
+  };
+
+  const remainingPrice = (assetName, quantity) => {
+    const asset = sampleAssets.find(
+      (sampleAsset) => sampleAsset.name === assetName
+    );
+    const participantNumber = checkParticipants.filter(
+      (participant) => participant
+    ).length;
+    let pricePerParticipant;
+    if (participantNumber === 0)
+      pricePerParticipant = asset.currentPrice * quantity;
+    else
+      pricePerParticipant = (asset.currentPrice * quantity) / participantNumber;
+    return `Prix par participant: ${pricePerParticipant}`;
+  };
+
+  // Effect performed at first loading of the component
+  useEffect(() => {
+    // By default select the current user
+    checkParticipants[0] = true;
+  }, []);
 
   return (
     <div className='d-flex flex-column align-items-center justify-content-center'>
@@ -132,6 +164,44 @@ export default function AssetAddingForm({
                 <div className='mt-1 text-danger'>{errors.buyerId}</div>
               )}
             </FormGroup>
+            <FormGroup className={errors.participants ? 'has-error' : null}>
+              <Label
+                for={errors.participants ? 'error' : null}
+                className='control-label'>
+                Participant(s)
+              </Label>
+              <div className='d-flex flex-row'>
+                {crew.membersInfo.map((member, index) => {
+                  const userInfo = sampleUsers.find(
+                    (sampleUser) => sampleUser.id === member.id
+                  );
+                  return (
+                    <FormGroup check inline>
+                      <Label check>
+                        <Input
+                          type='checkbox'
+                          checked={checkParticipants[index]}
+                          onChange={() => handleParticipant(index)}
+                        />
+                        {userInfo.firstName}
+                        <span className='form-check-sign'>
+                          <span className='check' />
+                        </span>
+                      </Label>
+                    </FormGroup>
+                  );
+                })}
+              </div>
+              {errors.participants && (
+                <div className='mt-1 text-danger'>{errors.participants}</div>
+              )}
+            </FormGroup>
+            {!errors.assetName &&
+              values.assetName.length > 0 &&
+              !errors.quantity &&
+              values.quantity > 0 && (
+                <p>{remainingPrice(values.assetName, values.quantity)}</p>
+              )}
             <button type='submit' className='btn btn-info fixed-button'>
               Ajouter l'actif
             </button>
