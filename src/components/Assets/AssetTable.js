@@ -3,47 +3,50 @@ import { Table } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-export default function CrewTable({ crews, reducedDisplay }) {
+export default function AssetTable({ assets, reducedDisplay }) {
   return (
     <Table>
       <thead className='text-primary'>
         <tr>
           <th>Nom</th>
-          <th className={reducedDisplay ? 'text-right' : ''}>Valorisation</th>
-          {!reducedDisplay && <th className='text-center'>Performance</th>}
+          <th className={reducedDisplay ? 'text-right' : 'text-center'}>
+            Valorisation
+          </th>
+          {!reducedDisplay && <th className='text-center'>Quantité</th>}
           <th></th>
         </tr>
       </thead>
       <tbody>
-        {crews.map((crew, index) => {
+        {assets.map((asset, index) => {
           return (
             <tr key={index}>
               <td>
                 <div className='d-flex flex-row align-items-baseline'>
                   <div className='photo mr-2'>
-                    <img alt='...' src={crew.image} />
+                    <img alt='...' src={asset.image} />
                   </div>
-                  <h4>{crew.name}</h4>
+                  <h4>{asset.name}</h4>
                 </div>
               </td>
-              <td className={reducedDisplay ? 'text-right' : ''}>
-                {crew.value} €
+
+              <td className={reducedDisplay ? 'text-right' : 'text-center'}>
+                <p
+                  className={
+                    asset.performance > 0 ? 'text-success' : 'text-danger'
+                  }>
+                  {asset.value} € / {asset.performance > 0 ? '+' : ''}
+                  {asset.performance} %
+                </p>
               </td>
               {!reducedDisplay && (
                 <td className='text-center'>
-                  <h4
-                    className={
-                      crew.performance > 0 ? 'text-success' : 'text-danger'
-                    }>
-                    {crew.performance > 0 ? '+' : ''}
-                    {crew.performance} %
-                  </h4>
+                  <p>{asset.quantity}</p>
                 </td>
               )}
               {!reducedDisplay && (
                 <td className='text-right'>
                   <button className='btn btn-info'>
-                    <Link to={`/crew/${crew.id}`} className='fixed-link'>
+                    <Link to={`/asset/${asset.id}`} className='fixed-link'>
                       Details
                     </Link>
                   </button>
@@ -57,7 +60,7 @@ export default function CrewTable({ crews, reducedDisplay }) {
   );
 }
 
-CrewTable.propTypes = {
-  crews: PropTypes.array.isRequired,
+AssetTable.propTypes = {
+  assets: PropTypes.array.isRequired,
   reducedDisplay: PropTypes.bool, // Designates wheter to display less information in the component
 };

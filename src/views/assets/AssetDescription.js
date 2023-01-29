@@ -15,16 +15,17 @@ import {
 import { Line, Bar } from 'react-chartjs-2';
 import { chartExample1 } from 'variables/charts.js';
 import CrewParticipants from 'components/Crews/CrewParticipations';
-import { sampleCrews } from 'assets/samples/crew';
-import AssetTable from 'components/Assets/AssetTable';
+import AssetDetails from 'components/Assets/AssetDetails';
 import { sampleAssets } from 'assets/samples/asset';
-import { sampleCrewMembers } from 'assets/samples/crew';
+import CrewTable from 'components/Crews/CrewTable';
+import { sampleCrews } from 'assets/samples/crew';
 
-export default function CrewDescription({}) {
-  const { id } = useParams();
+export default function AssetDesription({}) {
+  // Recover the id in the query params
+  const id = parseInt(useParams().id, 10);
   // Replace by API call
-  const crew = sampleCrews.find((sampleCrew) => sampleCrew.id == id);
-  const associatedAssets = sampleAssets.filter((asset) =>
+  const asset = sampleAssets.find((sampleAsset) => sampleAsset.id === id);
+  const associatedCrews = sampleCrews.filter((crew) =>
     asset.associatedCrews.includes(crew.id)
   );
   const [bigChartData, setbigChartData] = React.useState('data1');
@@ -33,27 +34,28 @@ export default function CrewDescription({}) {
     <div className='content'>
       <Row>
         <Col xs='12'>
-          <div className='d-flex flex-row'>
+          <div className='d-flex flex-row align-items-center'>
             <div className='crew-icon-image mr-2'>
-              <img alt='...' src={crew.image} />
+              <img alt='...' src={asset.image} />
             </div>
-            <h1 className='mt-2'>{crew.name}</h1>
+            <h1 className='mt-2'>{asset.name}</h1>
           </div>
           <Card className='card-chart'>
             <CardHeader>
-              <CardTitle tag={'h2'}>Valorisation totale du crew</CardTitle>
+              <CardTitle tag={'h2'}>Valorisation totale de l'actif</CardTitle>
             </CardHeader>
             <CardBody>
               <div className='d-flex flex-row align-items-center justify-content-around'>
                 <div className='d-flex flex-column align-items-center mr-1'>
-                  <h3>{crew.value} €</h3>
+                  <h3>{asset.value} €</h3>
                   <h4
                     className={
-                      crew.performance > 0 ? 'text-success' : 'text-danger'
+                      asset.performance > 0 ? 'text-success' : 'text-danger'
                     }>
-                    {crew.performance > 0 ? '+' : ''}
-                    {crew.performance} %
+                    {asset.performance > 0 ? '+' : ''}
+                    {asset.performance} %
                   </h4>
+                  Quantité: {asset.quantity}
                 </div>
                 <div className='chart-area w-75'>
                   <Line
@@ -68,23 +70,20 @@ export default function CrewDescription({}) {
             <Col lg='6' md='12'>
               <Card className='card-tasks'>
                 <CardHeader>
-                  <CardTitle tag='h4'>Participation du crew</CardTitle>
+                  <CardTitle tag='h3'>Détails de l'actif</CardTitle>
                 </CardHeader>
                 <CardBody>
-                  <CrewParticipants
-                    participants={sampleCrewMembers}
-                    crewValue={crew.value}
-                  />
+                  <AssetDetails assetId={id} />
                 </CardBody>
               </Card>
             </Col>
             <Col lg='6' md='12'>
               <Card className='card-tasks'>
                 <CardHeader>
-                  <CardTitle tag='h4'>Actifs du crew</CardTitle>
+                  <CardTitle tag='h3'>Crews associés</CardTitle>
                 </CardHeader>
                 <CardBody>
-                  <AssetTable assets={associatedAssets} reducedDisplay={true} />
+                  <CrewTable crews={associatedCrews} reducedDisplay={true} />
                 </CardBody>
               </Card>
             </Col>

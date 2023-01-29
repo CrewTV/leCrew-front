@@ -10,11 +10,12 @@ import PerfectScrollbar from 'perfect-scrollbar';
 import { Nav } from 'reactstrap';
 import { BackgroundColorContext } from 'contexts/BackgroundColorContext';
 
+var ps;
+
 /*
  * Sidebar used for description component
  */
 function DescriptionSidebar(props) {
-  var ps;
   const sidebarRef = React.useRef(null);
   // verifies if routeName is the one active (in browser input)
   React.useEffect(() => {

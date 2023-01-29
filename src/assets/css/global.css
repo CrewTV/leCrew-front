@@ -21,9 +21,11 @@ html, body, #root, .App {
 .fixed-link:hover {
    color: var(--white-color)
 }
-
 .crew-icon-image {
   height: 50px;
   width: 50px;
   border-radius: 50%;
+}
+.asset-details-chart {
+  height: 300px;
 }

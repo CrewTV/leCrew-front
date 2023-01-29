@@ -6,6 +6,7 @@ import { BrowserRouter, Route, Routes, Navigate, Link } from 'react-router-dom';
 import { getToken } from 'utils/token';
 import Login from 'views/account/Login';
 import Register from 'views/account/Register';
+import AssetDesription from 'views/assets/AssetDescription';
 import CrewDescription from 'views/crews/CrewDescription';
 
 
@@ -34,6 +35,10 @@ function App() {
         <Route
           path='/crew/:id'
           element={<DescriptionLayout component={<CrewDescription />} />}
+        />
+        <Route
+          path='/asset/:id'
+          element={<DescriptionLayout component={<AssetDesription />} />}
         />
       </Routes>
     </UserContext.Provider>

@@ -11,25 +11,14 @@ import { Card, CardHeader, CardBody, CardTitle, Row, Col } from 'reactstrap';
 // core components
 import { chartExample1 } from 'variables/charts.js';
 import CrewTable from 'components/Crews/CrewTable';
+import AssetTable from 'components/Assets/AssetTable';
+import { sampleCrews } from 'assets/samples/crew';
+import { sampleAssets } from 'assets/samples/asset';
 
 function Dashboard(props) {
   const [bigChartData, setbigChartData] = React.useState('data1');
 
   const { user } = useContext(UserContext);
-  const crews = [
-    {
-      name: 'Crew #1',
-      performance: 3.6,
-      value: 45.8,
-      image: require('assets/img/react-logo.png'),
-    },
-    {
-      name: 'Crew #2',
-      performance: -4.8,
-      value: 147.32,
-      image: require('assets/img/angular-logo.png'),
-    },
-  ];
 
   return (
     <>
@@ -68,7 +57,7 @@ function Dashboard(props) {
                 <CardTitle tag='h4'>Mes crews</CardTitle>
               </CardHeader>
               <CardBody>
-                <CrewTable crews={crews} fromDashboard={true} />
+                <CrewTable crews={sampleCrews} reducedDisplay={true} />
               </CardBody>
             </Card>
           </Col>
@@ -77,7 +66,9 @@ function Dashboard(props) {
               <CardHeader>
                 <CardTitle tag='h4'>Mes actifs</CardTitle>
               </CardHeader>
-              <CardBody>/* Values index view */</CardBody>
+              <CardBody>
+                <AssetTable assets={sampleAssets} reducedDisplay={true} />
+              </CardBody>
             </Card>
           </Col>
         </Row>

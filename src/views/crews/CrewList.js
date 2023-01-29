@@ -13,26 +13,9 @@ import {
   ModalHeader,
   ModalBody,
 } from 'reactstrap';
+import { sampleCrews } from 'assets/samples/crew';
 
 export default function CrewList({}) {
-  // Mock data, to be replace by API call
-  const initialCrews = [
-    {
-      id: 1,
-      name: 'Crew #1',
-      performance: 3.6,
-      value: 45.8,
-      image: require('assets/img/react-logo.png'),
-    },
-    {
-      id: 2,
-      name: 'Crew #2',
-      performance: -4.8,
-      value: 147.32,
-      image: require('assets/img/angular-logo.png'),
-    },
-  ];
-
   const notificationAlertRef = React.useRef(null);
   const notify = (place = 'tr', type = 'success', content) => {
     var type;
@@ -47,7 +30,7 @@ export default function CrewList({}) {
     notificationAlertRef.current.notificationAlert(options);
   };
 
-  const [crews, setCrews] = useState(initialCrews);
+  const [crews, setCrews] = useState(sampleCrews);
   const [createCrewModal, setCreateCrewModal] = useState(false);
   const [triggerNotification, setTriggerNotification] = useState(false);
 
