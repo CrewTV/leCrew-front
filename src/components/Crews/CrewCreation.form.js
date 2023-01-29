@@ -27,10 +27,13 @@ export default function CrewCreationForm({
   const crewFormOnSubmit = (values) => {
     // Api Call to create crew
     const newCrew = {
+      id: 3,
       ...values,
       value: 0,
       performance: 0,
       image: require('assets/img/angular-logo.png'),
+      assetsInfo: [],
+      membersInfo: [],
     };
     crews.push(newCrew);
     setCrews(crews);
@@ -91,11 +94,12 @@ export default function CrewCreationForm({
                               X
                             </button>
                           </div>
-                          {errors.members[index] && (
-                            <div className='mt-1 text-danger'>
-                              {errors.members[index]}
-                            </div>
-                          )}
+                          {errors.members?.length > 0 &&
+                            errors.members[index] && (
+                              <div className='mt-1 text-danger'>
+                                {errors.members[index]}
+                              </div>
+                            )}
                         </div>
                       ))}
 
