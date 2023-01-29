@@ -16,11 +16,7 @@ export default function AssetList({}) {
             </CardHeader>
             <CardBody>
               <div className='px-1 '></div>
-              <AssetTable
-                assetsInfo={user.assetsInfo}
-                reducedDisplay={false}
-                allowDelete={false}
-              />
+              <AssetTable assetsInfo={user.assetsInfo} reducedDisplay={false} />
             </CardBody>
           </Card>
         </Col>

@@ -1,23 +1,66 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Table } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import UserContext from 'contexts/UserContext';
 import { sampleAssets } from 'assets/samples/asset';
+import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
-export default function AssetTable({
-  assetsInfo,
-  reducedDisplay,
-  allowDelete,
-}) {
+export default function AssetTable({ assetsInfo, reducedDisplay, crew }) {
   const { user } = useContext(UserContext);
 
   const assets = assetsInfo.map((assetInfo) =>
     sampleAssets.find((sampleAsset) => sampleAsset.id === assetInfo.id)
   );
 
+  const [deleteAssetModal, setDeleteAssetModal] = useState(false);
+
+  const toggleAssetDeletionModal = (assetId) => {
+    setDeleteAssetModal(!deleteAssetModal);
+  };
+
+  const assetDeletion = (assetId) => {
+    crew.assetsInfo = crew.assetsInfo.filter(
+      (assetInfo) => assetInfo.id !== assetId
+    );
+    console.log('Crew:', crew);
+    toggleAssetDeletionModal();
+  };
+
+  const assetDeletionModal = () => {
+    return (
+      <Modal
+        modalClassName='modal-default'
+        isOpen={deleteAssetModal}
+        toggle={toggleAssetDeletionModal}>
+        <ModalHeader>
+          <h3>Attention</h3>
+          <h4>Etes vous sûr de vouloir supprimer cet actif ?</h4>
+          <button
+            aria-label='Close'
+            className='close'
+            onClick={toggleAssetDeletionModal}>
+            <i className='tim-icons icon-simple-remove' />
+          </button>
+        </ModalHeader>
+        <ModalBody>
+          <div></div>
+        </ModalBody>
+        <ModalFooter>
+          <btn className='btn btn-info' onClick={toggleAssetDeletionModal}>
+            Retour
+          </btn>
+          <btn className='btn btn-danger' onClick={assetDeletion}>
+            Supprimer
+          </btn>
+        </ModalFooter>
+      </Modal>
+    );
+  };
+
   return (
     <Table>
+      {assetDeletionModal()}
       <thead className='text-primary'>
         <tr>
           <th>Nom</th>
@@ -66,12 +109,15 @@ export default function AssetTable({
                   </button>
                 </td>
               )}
-              {allowDelete && (
+              {crew && (
                 <td className='text-right'>
                   <button
                     type='button'
                     className='btn btn-warning btn-sm m-0 ml-1'>
-                    <i className='tim-icons icon-trash-simple text-white' />
+                    <i
+                      className='tim-icons icon-trash-simple text-white'
+                      onClick={() => toggleAssetDeletionModal(assetInfo.id)}
+                    />
                   </button>
                 </td>
               )}
@@ -86,5 +132,5 @@ export default function AssetTable({
 AssetTable.propTypes = {
   assetsInfo: PropTypes.array.isRequired, // Information about the asset: id, quantity
   reducedDisplay: PropTypes.bool, // Designates wheter to display less information in the component
-  allowDelete: PropTypes.bool, // Designates whether we want to allow the asset deletion in the component
+  crew: PropTypes.object, // Crew is defined only when the component is loaded from the CrewDescription component
 };
