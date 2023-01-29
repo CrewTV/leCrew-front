@@ -10,8 +10,8 @@ import { sampleUsers } from 'assets/samples/user';
 
 export default function AssetAddingForm({
   crew,
-  setCrewAsset,
-  setAssetAddingModal,
+  setCrew,
+  setAddAssetModal,
   setTriggerNotification,
 }) {
   const { user } = useContext(UserContext);
@@ -29,11 +29,22 @@ export default function AssetAddingForm({
       .min(0, 'La quantité doit être un nombre positif')
       .integer('La quantité doit être un nombre entier'),
     buyerId: Yup.number().required('Acheteur requis'),
-    participants: Yup.array().of(Yup.number().required('Participants requis')),
+    // Boolean array to know who take part in the asset buying
+    participants: Yup.array().of(Yup.bool()).required('Participants requis'),
   });
 
   const assetAddingFormOnSubmit = (values) => {
-    setAssetAddingModal(false);
+    const rawAsset = sampleAssets.find(
+      (sampleAsset) => sampleAsset.name === values.assetName
+    );
+    const newCrewAssetInfo = {
+      id: rawAsset.id,
+      quantity: values.quantity,
+      performance: 0,
+    };
+    crew.assetsInfo.push(newCrewAssetInfo);
+    setCrew(crew);
+    setAddAssetModal(false);
     setTriggerNotification(true);
   };
 
@@ -74,11 +85,12 @@ export default function AssetAddingForm({
     new Array(crew.membersInfo.length).fill(false)
   );
 
-  // Add or remove a participant from the list
+  // Add or remove a participant from the list and return the result
   const handleParticipant = (index) => {
     const copy = [...checkParticipants];
     copy[index] = !checkParticipants[index];
     setCheckParticipants(copy);
+    return copy;
   };
 
   const remainingPrice = (assetName, quantity) => {
@@ -181,7 +193,12 @@ export default function AssetAddingForm({
                         <Input
                           type='checkbox'
                           checked={checkParticipants[index]}
-                          onChange={() => handleParticipant(index)}
+                          onChange={() =>
+                            setFieldValue(
+                              'participants',
+                              handleParticipant(index)
+                            )
+                          }
                         />
                         {userInfo.firstName}
                         <span className='form-check-sign'>

@@ -39,7 +39,9 @@ export default function CrewDescription({}) {
   // Recover the id in the query params
   const id = parseInt(useParams().id, 10);
   // Replace by API call
-  const crew = sampleCrews.find((sampleCrew) => sampleCrew.id === id);
+  const [crew, setCrew] = useState(
+    sampleCrews.find((sampleCrew) => sampleCrew.id === id)
+  );
 
   const [bigChartData, setbigChartData] = React.useState('data1');
   const [addAssetModal, setAddAssetModal] = useState(false);
@@ -73,7 +75,12 @@ export default function CrewDescription({}) {
           </button>
         </ModalHeader>
         <ModalBody>
-          <AssetAddingForm crew={crew} />
+          <AssetAddingForm
+            crew={crew}
+            setCrew={setCrew}
+            setTriggerNotification={setTriggerNotification}
+            setAddAssetModal={setAddAssetModal}
+          />
         </ModalBody>
       </Modal>
     );
