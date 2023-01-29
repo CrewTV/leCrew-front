@@ -30,10 +30,16 @@ export default function AssetAddingForm({
       .integer('La quantité doit être un nombre entier'),
     buyerId: Yup.number().required('Acheteur requis'),
     // Boolean array to know who take part in the asset buying
-    participants: Yup.array().of(Yup.bool()).required('Participants requis'),
+    participants: Yup.array()
+      .min(1, "Il faut au moins un participant pour valider l'ajout")
+      .of(Yup.number())
+      .required('Participants requis'),
   });
 
   const assetAddingFormOnSubmit = (values) => {
+    const participantNumber = checkParticipants.filter(
+      (participant) => participant
+    ).length;
     const rawAsset = sampleAssets.find(
       (sampleAsset) => sampleAsset.name === values.assetName
     );
@@ -44,6 +50,14 @@ export default function AssetAddingForm({
     };
     crew.assetsInfo.push(newCrewAssetInfo);
     setCrew(crew);
+
+    const newUserAssetInfo = {
+      id: rawAsset.id,
+      quantity: values.quantity / participantNumber,
+      performance: 0,
+    };
+    user.assetsInfo.push(newUserAssetInfo);
+
     setAddAssetModal(false);
     setTriggerNotification(true);
   };
@@ -85,12 +99,16 @@ export default function AssetAddingForm({
     new Array(crew.membersInfo.length).fill(false)
   );
 
-  // Add or remove a participant from the list and return the result
+  // Add or remove a participant from the list and return the array of corresponding participant Ids
   const handleParticipant = (index) => {
     const copy = [...checkParticipants];
     copy[index] = !checkParticipants[index];
     setCheckParticipants(copy);
-    return copy;
+    const participantsIds = [];
+    copy.forEach((participation, index) => {
+      if (participation) participantsIds.push(index);
+    });
+    return participantsIds;
   };
 
   const remainingPrice = (assetName, quantity) => {
@@ -231,7 +249,7 @@ export default function AssetAddingForm({
 
 AssetAddingForm.propTypes = {
   crew: PropTypes.object.isRequired,
-  setCrewAsset: PropTypes.func.isRequired,
-  setAssetAddingModal: PropTypes.func.isRequired,
+  setCrew: PropTypes.func.isRequired,
+  setAddAssetModal: PropTypes.func.isRequired,
   setTriggerNotification: PropTypes.func.isRequired,
 };
