@@ -14,14 +14,16 @@ export default function AssetTable({ assetsInfo, reducedDisplay, crew }) {
   );
 
   const [deleteAssetModal, setDeleteAssetModal] = useState(false);
+  const [assetToDelete, setAssetToDelete] = useState(null);
 
-  const toggleAssetDeletionModal = (assetId) => {
+  const toggleAssetDeletionModal = () => {
     setDeleteAssetModal(!deleteAssetModal);
   };
 
-  const assetDeletion = (assetId) => {
+  const assetDeletion = () => {
+    console.log('AssetTODelete', assetToDelete);
     crew.assetsInfo = crew.assetsInfo.filter(
-      (assetInfo) => assetInfo.id !== assetId
+      (assetInfo) => assetInfo.id !== assetToDelete
     );
     console.log('Crew:', crew);
     toggleAssetDeletionModal();
@@ -116,7 +118,10 @@ export default function AssetTable({ assetsInfo, reducedDisplay, crew }) {
                     className='btn btn-warning btn-sm m-0 ml-1'>
                     <i
                       className='tim-icons icon-trash-simple text-white'
-                      onClick={() => toggleAssetDeletionModal(assetInfo.id)}
+                      onClick={() => {
+                        setAssetToDelete(assetInfo.id);
+                        toggleAssetDeletionModal();
+                      }}
                     />
                   </button>
                 </td>
