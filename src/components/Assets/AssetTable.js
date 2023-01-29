@@ -5,7 +5,11 @@ import { Link } from 'react-router-dom';
 import UserContext from 'contexts/UserContext';
 import { sampleAssets } from 'assets/samples/asset';
 
-export default function AssetTable({ assetsInfo, reducedDisplay }) {
+export default function AssetTable({
+  assetsInfo,
+  reducedDisplay,
+  allowDelete,
+}) {
   const { user } = useContext(UserContext);
 
   const assets = assetsInfo.map((assetInfo) =>
@@ -62,6 +66,15 @@ export default function AssetTable({ assetsInfo, reducedDisplay }) {
                   </button>
                 </td>
               )}
+              {allowDelete && (
+                <td className='text-right'>
+                  <button
+                    type='button'
+                    className='btn btn-warning btn-sm m-0 ml-1'>
+                    <i className='tim-icons icon-trash-simple text-white' />
+                  </button>
+                </td>
+              )}
             </tr>
           );
         })}
@@ -73,4 +86,5 @@ export default function AssetTable({ assetsInfo, reducedDisplay }) {
 AssetTable.propTypes = {
   assetsInfo: PropTypes.array.isRequired, // Information about the asset: id, quantity
   reducedDisplay: PropTypes.bool, // Designates wheter to display less information in the component
+  allowDelete: PropTypes.bool, // Designates whether we want to allow the asset deletion in the component
 };

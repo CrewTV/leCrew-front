@@ -79,6 +79,7 @@ function Dashboard(props) {
                 <AssetTable
                   assetsInfo={user.assetsInfo}
                   reducedDisplay={true}
+                  allowDelete={false}
                 />
               </CardBody>
             </Card>

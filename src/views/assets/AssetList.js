@@ -1,15 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import {
-  Card,
-  CardHeader,
-  CardBody,
-  CardTitle,
-  Col,
-  Row,
-  Modal,
-  ModalHeader,
-  ModalBody,
-} from 'reactstrap';
+import { Card, CardHeader, CardBody, CardTitle, Col, Row } from 'reactstrap';
 import AssetTable from 'components/Assets/AssetTable';
 import UserContext from 'contexts/UserContext';
 
@@ -26,7 +16,11 @@ export default function AssetList({}) {
             </CardHeader>
             <CardBody>
               <div className='px-1 '></div>
-              <AssetTable assetsInfo={user.assetsInfo} fromDashboard={false} />
+              <AssetTable
+                assetsInfo={user.assetsInfo}
+                reducedDisplay={false}
+                allowDelete={false}
+              />
             </CardBody>
           </Card>
         </Col>

@@ -157,6 +157,7 @@ export default function CrewDescription({}) {
                   <AssetTable
                     assetsInfo={crew.assetsInfo}
                     reducedDisplay={true}
+                    allowDelete={true}
                   />
                 </CardBody>
               </Card>
