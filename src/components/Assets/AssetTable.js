@@ -6,7 +6,11 @@ import UserContext from 'contexts/UserContext';
 import { sampleAssets } from 'assets/samples/asset';
 import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
-export default function AssetTable({ assetsInfo, reducedDisplay, crew }) {
+export default function AssetTable({
+  assetsInfo,
+  setAssetsInfo,
+  reducedDisplay,
+}) {
   const { user } = useContext(UserContext);
 
   const assets = assetsInfo.map((assetInfo) =>
@@ -21,11 +25,11 @@ export default function AssetTable({ assetsInfo, reducedDisplay, crew }) {
   };
 
   const assetDeletion = () => {
-    console.log('AssetTODelete', assetToDelete);
-    crew.assetsInfo = crew.assetsInfo.filter(
+    const newAssetsInfo = assetsInfo.filter(
       (assetInfo) => assetInfo.id !== assetToDelete
     );
-    console.log('Crew:', crew);
+
+    setAssetsInfo(newAssetsInfo);
     toggleAssetDeletionModal();
   };
 
@@ -74,61 +78,67 @@ export default function AssetTable({ assetsInfo, reducedDisplay, crew }) {
         </tr>
       </thead>
       <tbody>
-        {assets.map((asset, index) => {
-          const assetInfo = assetsInfo[index];
-          return (
-            <tr key={index}>
-              <td>
-                <div className='d-flex flex-row align-items-baseline'>
-                  <div className='photo mr-2'>
-                    <img alt='...' src={asset.image} />
+        {assets.length === 0 ? (
+          <div className='d-flex align-items-center justify-content-center'>
+            <h4>Aucun actif</h4>
+          </div>
+        ) : (
+          assets.map((asset, index) => {
+            const assetInfo = assetsInfo[index];
+            return (
+              <tr key={index}>
+                <td>
+                  <div className='d-flex flex-row align-items-baseline'>
+                    <div className='photo mr-2'>
+                      <img alt='...' src={asset.image} />
+                    </div>
+                    <h4>{asset.name}</h4>
                   </div>
-                  <h4>{asset.name}</h4>
-                </div>
-              </td>
+                </td>
 
-              <td className={reducedDisplay ? 'text-right' : 'text-center'}>
-                <p
-                  className={
-                    assetInfo.performance > 0 ? 'text-success' : 'text-danger'
-                  }>
-                  {assetInfo.quantity * asset.currentPrice} € /
-                  {assetInfo.performance > 0 ? '+' : ''}
-                  {assetInfo.performance} %
-                </p>
-              </td>
-              {!reducedDisplay && (
-                <td className='text-center'>
-                  <p>{assetInfo.quantity}</p>
+                <td className={reducedDisplay ? 'text-right' : 'text-center'}>
+                  <p
+                    className={
+                      assetInfo.performance > 0 ? 'text-success' : 'text-danger'
+                    }>
+                    {assetInfo.quantity * asset.currentPrice} € /
+                    {assetInfo.performance > 0 ? '+' : ''}
+                    {assetInfo.performance} %
+                  </p>
                 </td>
-              )}
-              {!reducedDisplay && (
-                <td className='text-right'>
-                  <button className='btn btn-info'>
-                    <Link to={`/asset/${asset.id}`} className='fixed-link'>
-                      Details
-                    </Link>
-                  </button>
-                </td>
-              )}
-              {crew && (
-                <td className='text-right'>
-                  <button
-                    type='button'
-                    className='btn btn-warning btn-sm m-0 ml-1'>
-                    <i
-                      className='tim-icons icon-trash-simple text-white'
-                      onClick={() => {
-                        setAssetToDelete(assetInfo.id);
-                        toggleAssetDeletionModal();
-                      }}
-                    />
-                  </button>
-                </td>
-              )}
-            </tr>
-          );
-        })}
+                {!reducedDisplay && (
+                  <td className='text-center'>
+                    <p>{assetInfo.quantity}</p>
+                  </td>
+                )}
+                {!reducedDisplay && (
+                  <td className='text-right'>
+                    <button className='btn btn-info'>
+                      <Link to={`/asset/${asset.id}`} className='fixed-link'>
+                        Details
+                      </Link>
+                    </button>
+                  </td>
+                )}
+                {setAssetsInfo && (
+                  <td className='text-right'>
+                    <button
+                      type='button'
+                      className='btn btn-warning btn-sm m-0 ml-1'>
+                      <i
+                        className='tim-icons icon-trash-simple text-white'
+                        onClick={() => {
+                          setAssetToDelete(assetInfo.id);
+                          toggleAssetDeletionModal();
+                        }}
+                      />
+                    </button>
+                  </td>
+                )}
+              </tr>
+            );
+          })
+        )}
       </tbody>
     </Table>
   );
@@ -136,6 +146,6 @@ export default function AssetTable({ assetsInfo, reducedDisplay, crew }) {
 
 AssetTable.propTypes = {
   assetsInfo: PropTypes.array.isRequired, // Information about the asset: id, quantity
+  setAssetsInfo: PropTypes.func, // Asset info setter, only defined when we need to udpate the asset information
   reducedDisplay: PropTypes.bool, // Designates wheter to display less information in the component
-  crew: PropTypes.object, // Crew is defined only when the component is loaded from the CrewDescription component
 };

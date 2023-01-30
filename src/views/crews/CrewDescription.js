@@ -42,6 +42,7 @@ export default function CrewDescription({}) {
   const [crew, setCrew] = useState(
     sampleCrews.find((sampleCrew) => sampleCrew.id === id)
   );
+  const [crewAssetsInfo, setCrewAssetsInfo] = useState(crew.assetsInfo);
 
   const [bigChartData, setbigChartData] = React.useState('data1');
   const [addAssetModal, setAddAssetModal] = useState(false);
@@ -155,9 +156,9 @@ export default function CrewDescription({}) {
                 </CardHeader>
                 <CardBody>
                   <AssetTable
-                    assetsInfo={crew.assetsInfo}
+                    assetsInfo={crewAssetsInfo}
+                    setAssetsInfo={setCrewAssetsInfo}
                     reducedDisplay={true}
-                    crew={crew}
                   />
                 </CardBody>
               </Card>
