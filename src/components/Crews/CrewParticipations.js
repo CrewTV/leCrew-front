@@ -1,13 +1,10 @@
 import { sampleUsers } from 'assets/samples/user';
-import { backgroundColors } from 'contexts/BackgroundColorContext';
-import UserContext from 'contexts/UserContext';
 import PropTypes from 'prop-types';
-import { Table } from 'reactstrap';
 
 /*
- * Component used to display the participants of a crew and their informations
+ * Component used to display the participants of a crew and their informations (Name, balance)
  */
-export default function CrewParticipants({ participants, crewValue }) {
+export default function CrewBalance({ participants, crewValue }) {
   const getUserInfoFromId = (id) => {
     return sampleUsers.find((sampleUser) => sampleUser.id === id);
   };
@@ -32,7 +29,7 @@ export default function CrewParticipants({ participants, crewValue }) {
   });
 }
 
-CrewParticipants.propTypes = {
+CrewBalance.propTypes = {
   participants: PropTypes.array.isRequired,
   crewValue: PropTypes.number.isRequired,
 };

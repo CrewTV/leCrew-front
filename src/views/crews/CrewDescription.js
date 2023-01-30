@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import NotificationAlert from 'react-notification-alert';
 import { useParams } from 'react-router-dom';
 import {
@@ -13,12 +13,12 @@ import {
   ModalBody,
 } from 'reactstrap';
 
-import { Line, Bar } from 'react-chartjs-2';
+import { Line } from 'react-chartjs-2';
 import { chartExample1 } from 'variables/charts.js';
-import CrewParticipants from 'components/Crews/CrewParticipations';
 import { sampleCrews } from 'assets/samples/crew';
 import AssetTable from 'components/Assets/AssetTable';
 import AssetAddingForm from 'components/Assets/AssetAddingForm';
+import CrewBalance from 'components/Crews/CrewParticipations';
 
 export default function CrewDescription({}) {
   /* Notifications utilitary */
@@ -142,7 +142,7 @@ export default function CrewDescription({}) {
                   <CardTitle tag='h4'>Participation du crew</CardTitle>
                 </CardHeader>
                 <CardBody>
-                  <CrewParticipants
+                  <CrewBalance
                     participants={crew.membersInfo}
                     crewValue={crew.value}
                   />
