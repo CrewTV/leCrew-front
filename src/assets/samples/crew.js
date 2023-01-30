@@ -21,19 +21,19 @@ const sampleCrews = [
     membersInfo: [
       {
         id: 1,
-        percentage: 42,
+        balance: 25.6,
       },
       {
         id: 2,
-        percentage: 21,
+        balance: 20.2,
       },
       {
         id: 3,
-        percentage: 18,
+        balance: -18.4,
       },
       {
         id: 4,
-        percentage: 19,
+        balance: -38.4,
       },
     ],
   },
@@ -58,19 +58,19 @@ const sampleCrews = [
     membersInfo: [
       {
         id: 1,
-        percentage: 42,
+        balance: 25.6,
       },
       {
         id: 2,
-        percentage: 21,
+        balance: 20.2,
       },
       {
         id: 3,
-        percentage: 18,
+        percentage: -18.4,
       },
       {
         id: 4,
-        percentage: 19,
+        percentage: -38.4,
       },
     ],
   },

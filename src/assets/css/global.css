@@ -10,11 +10,9 @@ html, body, #root, .App {
 .fixed-field {
   width: 300px;
 }
-
 .crew-list {
   height: 800px;
 }
-
 .fixed-link {
   color: #FFF;
 }
@@ -28,4 +26,7 @@ html, body, #root, .App {
 }
 .asset-details-chart {
   height: 300px;
+}
+.fixed-name-container {
+  width: 120px;
 }

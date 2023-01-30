@@ -1,4 +1,5 @@
 import { sampleUsers } from 'assets/samples/user';
+import { backgroundColors } from 'contexts/BackgroundColorContext';
 import UserContext from 'contexts/UserContext';
 import PropTypes from 'prop-types';
 import { Table } from 'reactstrap';
@@ -11,37 +12,24 @@ export default function CrewParticipants({ participants, crewValue }) {
     return sampleUsers.find((sampleUser) => sampleUser.id === id);
   };
 
-  return (
-    <Table>
-      <thead className='text-primary'>
-        <tr>
-          <th>Nom</th>
-          <th>Part du crew</th>
-          <th>Valorisation</th>
-        </tr>
-      </thead>
-      <tbody>
-        {participants.map((participant, index) => {
-          const userInfo = getUserInfoFromId(participant.id);
-          return (
-            <tr key={index}>
-              <td>
-                <p>{userInfo.firstName}</p>
-              </td>
-              <td>
-                <p>{participant.percentage} %</p>
-              </td>
-              <td>
-                <p>
-                  {((participant.percentage / 100) * crewValue).toFixed(2)} €
-                </p>
-              </td>
-            </tr>
-          );
-        })}
-      </tbody>
-    </Table>
-  );
+  return participants.map((participant, index) => {
+    const userInfo = getUserInfoFromId(participant.id);
+    const balanceColor = participant.balance > 0 ? '#00f2c3' : '#fd5d93';
+    const width = crewValue * Math.abs(participant.balance / crewValue);
+    return (
+      <div className='d-flex flex-row' key={index}>
+        <div className='fixed-name-container'>
+          <p>{userInfo.firstName}</p>
+        </div>
+
+        <div
+          className='d-flex justify-content-center'
+          style={{ width: `${width}%`, backgroundColor: balanceColor }}>
+          <p>{participant.balance} €</p>
+        </div>
+      </div>
+    );
+  });
 }
 
 CrewParticipants.propTypes = {
