@@ -17,7 +17,7 @@ export default function CrewParticipants({ participants, crewValue }) {
     const balanceColor = participant.balance > 0 ? '#00f2c3' : '#fd5d93';
     const width = crewValue * Math.abs(participant.balance / crewValue);
     return (
-      <div className='d-flex flex-row' key={index}>
+      <div className='d-flex flex-row mb-3 justify-content-between' key={index}>
         <div className='fixed-name-container'>
           <p>{userInfo.firstName}</p>
         </div>
@@ -25,7 +25,7 @@ export default function CrewParticipants({ participants, crewValue }) {
         <div
           className='d-flex justify-content-center'
           style={{ width: `${width}%`, backgroundColor: balanceColor }}>
-          <p>{participant.balance} €</p>
+          <p className='font-weight-bold'>{participant.balance} €</p>
         </div>
       </div>
     );
