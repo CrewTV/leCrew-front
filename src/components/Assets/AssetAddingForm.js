@@ -16,10 +16,16 @@ export default function AssetAddingForm({
 }) {
   const { user } = useContext(UserContext);
 
-  // Boolean array to know who take part in the asset buying
-  const [checkParticipants, setCheckParticipants] = useState(
-    new Array(crew.membersInfo.length).fill(false)
-  );
+  /* Object in the form:
+  *   {
+        {userId}: {boolean wether they take in the buying}
+      }
+  */
+  const [checkParticipants, setCheckParticipants] = useState({});
+  // Initialize the participation
+  crew.membersInfo.forEach((memberInfo) => {
+    checkParticipants[memberInfo.id] = false;
+  });
 
   const initialValues = {
     assetName: '',
@@ -35,11 +41,8 @@ export default function AssetAddingForm({
       .min(0, 'La quantité doit être un nombre positif')
       .integer('La quantité doit être un nombre entier'),
     buyerId: Yup.number().required('Acheteur requis'),
-    // Boolean array to know who take part in the asset buying
-    participants: Yup.array()
-      .min(1, "Il faut au moins un participant pour valider l'ajout")
-      .of(Yup.number())
-      .required('Participants requis'),
+    //
+    participants: Yup.object().required(),
   });
 
   const assetAddingFormOnSubmit = (values) => {
@@ -55,7 +58,6 @@ export default function AssetAddingForm({
       performance: 0,
     };
     crew.assetsInfo.push(newCrewAssetInfo);
-    setCrew(crew);
 
     const newUserAssetInfo = {
       id: rawAsset.id,
@@ -64,6 +66,17 @@ export default function AssetAddingForm({
     };
     user.assetsInfo.push(newUserAssetInfo);
 
+    const pricePerParticipant =
+      (rawAsset.currentPrice * values.quantity) / participantNumber;
+    // Update the balance for the crew members
+    crew.membersInfo.forEach((memberInfo, index) => {
+      if (memberInfo.id === values.buyerId)
+        crew.membersInfo[index].balance += pricePerParticipant;
+      // TODO: check that the participant takes part in the buying
+      else crew.membersInfo[index].balance -= pricePerParticipant;
+    });
+
+    setCrew(crew);
     setAddAssetModal(false);
     setTriggerNotification(true);
   };
@@ -130,7 +143,7 @@ export default function AssetAddingForm({
   // Effect performed at first loading of the component
   useEffect(() => {
     // By default select the current user
-    checkParticipants[0] = true;
+    checkParticipants[user.id] = true;
   }, []);
 
   return (
