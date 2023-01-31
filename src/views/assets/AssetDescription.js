@@ -14,7 +14,6 @@ import {
 
 import { Line, Bar } from 'react-chartjs-2';
 import { chartExample1 } from 'variables/charts.js';
-import CrewParticipants from 'components/Crews/CrewParticipations';
 import AssetDetails from 'components/Assets/AssetDetails';
 import { sampleAssets } from 'assets/samples/asset';
 import CrewTable from 'components/Crews/CrewTable';

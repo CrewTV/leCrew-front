@@ -18,7 +18,7 @@ import { chartExample1 } from 'variables/charts.js';
 import { sampleCrews } from 'assets/samples/crew';
 import AssetTable from 'components/Assets/AssetTable';
 import AssetAddingForm from 'components/Assets/AssetAddingForm';
-import CrewBalance from 'components/Crews/CrewParticipations';
+import CrewBalance from 'components/Crews/CrewBalance';
 
 export default function CrewDescription({}) {
   /* Notifications utilitary */

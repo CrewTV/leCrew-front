@@ -20,9 +20,13 @@ export default function CrewBalance({ participants, crewValue }) {
         </div>
 
         <div
-          className='d-flex justify-content-center'
-          style={{ width: `${width}%`, backgroundColor: balanceColor }}>
-          <p className='font-weight-bold'>{participant.balance} €</p>
+          className='d-flex justify-content-center align-items-center'
+          style={{
+            width: `${width}%`,
+            height: '20px',
+            backgroundColor: balanceColor,
+          }}>
+          <p className='mt-1 font-weight-bold'>{participant.balance} €</p>
         </div>
       </div>
     );

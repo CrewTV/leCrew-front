@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { FormGroup, Input, Label } from 'reactstrap';
-import { Formik, Form, Field, ErrorMessage, FieldArray } from 'formik';
+import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 
 import PropTypes from 'prop-types';
@@ -15,6 +15,12 @@ export default function AssetAddingForm({
   setTriggerNotification,
 }) {
   const { user } = useContext(UserContext);
+
+  // Boolean array to know who take part in the asset buying
+  const [checkParticipants, setCheckParticipants] = useState(
+    new Array(crew.membersInfo.length).fill(false)
+  );
+
   const initialValues = {
     assetName: '',
     quantity: -1, // -1 by default to trigger the number validator
@@ -92,11 +98,6 @@ export default function AssetAddingForm({
     <option disabled value=''>
       Selectionner un acheteur
     </option>
-  );
-
-  // Boolean array to know who take part in the asset buying
-  const [checkParticipants, setCheckParticipants] = useState(
-    new Array(crew.membersInfo.length).fill(false)
   );
 
   // Add or remove a participant from the list and return the array of corresponding participant Ids
