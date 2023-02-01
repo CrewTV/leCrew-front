@@ -1,5 +1,6 @@
 import { sampleUsers } from 'assets/samples/user';
 import PropTypes from 'prop-types';
+import { formatNumber } from 'utils/formating';
 
 /*
  * Component used to display the participants of a crew and their informations (Name, balance)
@@ -23,10 +24,13 @@ export default function CrewBalance({ participants, crewValue }) {
           className='d-flex justify-content-center align-items-center'
           style={{
             width: `${width}%`,
+            maxWidth: '500px',
             height: '20px',
             backgroundColor: balanceColor,
           }}>
-          <p className='mt-1 font-weight-bold'>{participant.balance} €</p>
+          <p className='mt-1 font-weight-bold'>
+            {formatNumber(participant.balance)} €
+          </p>
         </div>
       </div>
     );

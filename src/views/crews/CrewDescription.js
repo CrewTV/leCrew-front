@@ -19,6 +19,7 @@ import { sampleCrews } from 'assets/samples/crew';
 import AssetTable from 'components/Assets/AssetTable';
 import AssetAddingForm from 'components/Assets/AssetAddingForm';
 import CrewBalance from 'components/Crews/CrewBalance';
+import { sampleAssets } from 'assets/samples/asset';
 
 export default function CrewDescription({}) {
   /* Notifications utilitary */
@@ -85,6 +86,31 @@ export default function CrewDescription({}) {
         </ModalBody>
       </Modal>
     );
+  };
+
+  const deleteCrewAsset = (assetId) => {
+    const crewAssetInfo = crew.assetsInfo.find(
+      (crewAsset) => crewAsset.id === assetId
+    );
+    const rawAsset = sampleAssets.find(
+      (sampleAsset) => sampleAsset.id === assetId
+    );
+
+    const priceByParticipant =
+      (crewAssetInfo.quantity * rawAsset.currentPrice) /
+      crew.membersInfo.length;
+
+    crew.membersInfo.forEach((memberInfo, index) => {
+      if (memberInfo.balance > 0)
+        crew.membersInfo[index].balance -= priceByParticipant;
+      else crew.membersInfo[index].balance += priceByParticipant;
+    });
+
+    crew.assetsInfo = crew.assetsInfo.filter(
+      (assetInfo) => assetInfo.id !== assetId
+    );
+
+    setCrew(crew);
   };
 
   return (
@@ -156,8 +182,8 @@ export default function CrewDescription({}) {
                 </CardHeader>
                 <CardBody>
                   <AssetTable
-                    assetsInfo={crewAssetsInfo}
-                    setAssetsInfo={setCrewAssetsInfo}
+                    assetsInfo={crew.assetsInfo}
+                    deleteCrewAsset={deleteCrewAsset}
                     reducedDisplay={true}
                   />
                 </CardBody>

@@ -7,6 +7,9 @@ import PropTypes from 'prop-types';
 import UserContext from 'contexts/UserContext';
 import { sampleAssets } from 'assets/samples/asset';
 import { sampleUsers } from 'assets/samples/user';
+import { formatNumber } from '../../utils/formating';
+import { getAssetIndex } from 'assets/samples/asset';
+import { addCrewAsset } from 'assets/samples/crew';
 
 export default function AssetAddingForm({
   crew,
@@ -24,14 +27,23 @@ export default function AssetAddingForm({
   const [checkParticipants, setCheckParticipants] = useState({});
   // Initialize the participation
   crew.membersInfo.forEach((memberInfo) => {
-    checkParticipants[memberInfo.id] = false;
+    checkParticipants[memberInfo.id] = true;
   });
+
+  // Return an array of userIds from the checkParticinaptsObject
+  const getParticipantIds = () => {
+    let participantsIds = [];
+    for (const [userId, participation] of Object.entries(checkParticipants)) {
+      if (participation) participantsIds.push(userId);
+    }
+    return participantsIds;
+  };
 
   const initialValues = {
     assetName: '',
     quantity: -1, // -1 by default to trigger the number validator
     buyerId: user.id, // The current user is placed as buyer per default
-    participants: [],
+    participants: getParticipantIds(),
   };
 
   const validationSchema = Yup.object({
@@ -41,14 +53,14 @@ export default function AssetAddingForm({
       .min(0, 'La quantité doit être un nombre positif')
       .integer('La quantité doit être un nombre entier'),
     buyerId: Yup.number().required('Acheteur requis'),
-    //
-    participants: Yup.object().required(),
+    participants: Yup.array()
+      .min(1, "Il faut au moins un participant pour valider l'ajout")
+      .of(Yup.number())
+      .required('Participants requis'),
   });
 
   const assetAddingFormOnSubmit = (values) => {
-    const participantNumber = checkParticipants.filter(
-      (participant) => participant
-    ).length;
+    const participantNumber = getParticipantIds().length;
     const rawAsset = sampleAssets.find(
       (sampleAsset) => sampleAsset.name === values.assetName
     );
@@ -57,7 +69,7 @@ export default function AssetAddingForm({
       quantity: values.quantity,
       performance: 0,
     };
-    crew.assetsInfo.push(newCrewAssetInfo);
+    crew = addCrewAsset(crew, newCrewAssetInfo);
 
     const newUserAssetInfo = {
       id: rawAsset.id,
@@ -69,11 +81,12 @@ export default function AssetAddingForm({
     const pricePerParticipant =
       (rawAsset.currentPrice * values.quantity) / participantNumber;
     // Update the balance for the crew members
+    console.log(values.participants);
     crew.membersInfo.forEach((memberInfo, index) => {
       if (memberInfo.id === values.buyerId)
         crew.membersInfo[index].balance += pricePerParticipant;
-      // TODO: check that the participant takes part in the buying
-      else crew.membersInfo[index].balance -= pricePerParticipant;
+      else if (checkParticipants[memberInfo.id])
+        crew.membersInfo[index].balance -= pricePerParticipant;
     });
 
     setCrew(crew);
@@ -113,31 +126,24 @@ export default function AssetAddingForm({
     </option>
   );
 
-  // Add or remove a participant from the list and return the array of corresponding participant Ids
-  const handleParticipant = (index) => {
-    const copy = [...checkParticipants];
-    copy[index] = !checkParticipants[index];
-    setCheckParticipants(copy);
-    const participantsIds = [];
-    copy.forEach((participation, index) => {
-      if (participation) participantsIds.push(index);
-    });
-    return participantsIds;
+  // Add or remove a participant from the participant object and return the array of corresponding participant Ids
+  const handleParticipant = (participantId) => {
+    checkParticipants[participantId] = !checkParticipants[participantId];
+    setCheckParticipants(checkParticipants);
+    return getParticipantIds();
   };
 
   const remainingPrice = (assetName, quantity) => {
     const asset = sampleAssets.find(
       (sampleAsset) => sampleAsset.name === assetName
     );
-    const participantNumber = checkParticipants.filter(
-      (participant) => participant
-    ).length;
+    const participantNumber = getParticipantIds().length;
     let pricePerParticipant;
     if (participantNumber === 0)
       pricePerParticipant = asset.currentPrice * quantity;
     else
       pricePerParticipant = (asset.currentPrice * quantity) / participantNumber;
-    return `Prix par participant: ${pricePerParticipant}`;
+    return `Prix par participant: ${formatNumber(pricePerParticipant)}`;
   };
 
   // Effect performed at first loading of the component
@@ -215,7 +221,7 @@ export default function AssetAddingForm({
                 Participant(s)
               </Label>
               <div className='d-flex flex-row'>
-                {crew.membersInfo.map((member, index) => {
+                {crew.membersInfo.map((member) => {
                   const userInfo = sampleUsers.find(
                     (sampleUser) => sampleUser.id === member.id
                   );
@@ -224,11 +230,11 @@ export default function AssetAddingForm({
                       <Label check>
                         <Input
                           type='checkbox'
-                          checked={checkParticipants[index]}
+                          checked={checkParticipants[member.id]}
                           onChange={() =>
                             setFieldValue(
                               'participants',
-                              handleParticipant(index)
+                              handleParticipant(member.id)
                             )
                           }
                         />

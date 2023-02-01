@@ -8,8 +8,8 @@ import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 export default function AssetTable({
   assetsInfo,
-  setAssetsInfo,
   reducedDisplay,
+  deleteCrewAsset,
 }) {
   const { user } = useContext(UserContext);
 
@@ -25,11 +25,7 @@ export default function AssetTable({
   };
 
   const assetDeletion = () => {
-    const newAssetsInfo = assetsInfo.filter(
-      (assetInfo) => assetInfo.id !== assetToDelete
-    );
-
-    setAssetsInfo(newAssetsInfo);
+    deleteCrewAsset(assetToDelete);
     toggleAssetDeletionModal();
   };
 
@@ -120,7 +116,7 @@ export default function AssetTable({
                     </button>
                   </td>
                 )}
-                {setAssetsInfo && (
+                {deleteCrewAsset && (
                   <td className='text-right'>
                     <button
                       type='button'

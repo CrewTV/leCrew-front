@@ -66,14 +66,23 @@ const sampleCrews = [
       },
       {
         id: 3,
-        percentage: -18.4,
+        balance: -18.4,
       },
       {
         id: 4,
-        percentage: -38.4,
+        balance: -38.4,
       },
     ],
   },
 ];
 
-module.exports = { sampleCrews };
+const addCrewAsset = (crew, newAssetInfo) => {
+  const index = crew.assetsInfo.findIndex(
+    (assetInfo) => assetInfo.id === newAssetInfo.id
+  );
+  if (index === -1) crew.assetInfo.push(newAssetInfo);
+  else crew.assetsInfo[index].quantity += newAssetInfo.quantity;
+  return crew;
+};
+
+module.exports = { sampleCrews, addCrewAsset };
