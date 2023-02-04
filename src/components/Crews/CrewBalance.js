@@ -25,6 +25,7 @@ export default function CrewBalance({ participants, crewValue }) {
           style={{
             width: `${width}%`,
             maxWidth: '500px',
+            minWidth: '80px',
             height: '20px',
             backgroundColor: balanceColor,
           }}>

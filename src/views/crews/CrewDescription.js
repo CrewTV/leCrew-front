@@ -111,6 +111,7 @@ export default function CrewDescription({}) {
     );
 
     setCrew(crew);
+    setCrewAssetsInfo(crew.assetsInfo);
   };
 
   return (
@@ -182,9 +183,10 @@ export default function CrewDescription({}) {
                 </CardHeader>
                 <CardBody>
                   <AssetTable
-                    assetsInfo={crew.assetsInfo}
+                    assetsInfo={crewAssetsInfo}
                     deleteCrewAsset={deleteCrewAsset}
                     reducedDisplay={true}
+                    votesInfo={crew.votesInfo}
                   />
                 </CardBody>
               </Card>

@@ -54,7 +54,7 @@ export default function AssetDesription({}) {
           </div>
           <Card className='card-chart'>
             <CardHeader>
-              <CardTitle tag={'h2'}>Valorisation totale de l'actif</CardTitle>
+              <CardTitle tag={'h2'}>Ma valorisation</CardTitle>
             </CardHeader>
             <CardBody>
               <div className='d-flex flex-row align-items-center justify-content-around'>
@@ -92,7 +92,7 @@ export default function AssetDesription({}) {
             <Col lg='6' md='12'>
               <Card className='card-tasks'>
                 <CardHeader>
-                  <CardTitle tag='h3'>Crews associés</CardTitle>
+                  <CardTitle tag='h3'>Mes crews associés</CardTitle>
                 </CardHeader>
                 <CardBody>
                   <CrewTable crews={associatedCrews} reducedDisplay={true} />

@@ -18,6 +18,16 @@ const sampleCrews = [
         performance: -0.6,
       },
     ],
+    votesInfo: [
+      {
+        assetId: 1,
+        quantity: 3,
+        buyerId: 1,
+        date: '2023-03-02T22:18:26.625Z',
+        delay: '24',
+        pending: true,
+      },
+    ],
     membersInfo: [
       {
         id: 1,
@@ -55,6 +65,7 @@ const sampleCrews = [
         performance: -0.6,
       },
     ],
+    votesInfo: [],
     membersInfo: [
       {
         id: 1,
