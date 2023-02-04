@@ -8,7 +8,7 @@ import AdminNavbar from 'components/Navbars/AdminNavbar.js';
 import Sidebar from 'components/Sidebar/Sidebar.js';
 import pages from '../views/pages';
 import { BackgroundColorContext } from 'contexts/BackgroundColorContext';
-import DescriptionSidebar from 'components/Sidebar/AdminSideBar';
+import DescriptionSidebar from 'components/Sidebar/DescriptionSidebar';
 
 var ps;
 /*
