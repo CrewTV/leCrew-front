@@ -1,15 +1,7 @@
 import classNames from 'classnames';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import {
-  Collapse,
-  Nav,
-  Navbar,
-  NavbarBrand,
-  NavbarText,
-  NavItem,
-} from 'reactstrap';
-
+import { Input } from 'reactstrap';
 export default function HomePage({ setToken }) {
   const navigate = useNavigate();
 
@@ -52,10 +44,56 @@ export default function HomePage({ setToken }) {
             </button>
           </div>
         </div>
-        <div className='d-flex flex-column align-items-center mt-5'>
+        <div
+          className='d-flex flex-column align-items-center'
+          style={{ marginTop: '100px' }}>
           <h1>Investissez à plusieurs</h1>
-          <h4>Créez ou rejoignez un Crew, co-investissez sur des actifs</h4>
-          <h4>Prenez des décisions avec votre Crew, performez ensemble</h4>
+          <h4>
+            Créez ou rejoignez un Crew puis sélectionnez et achetez vos actifs
+            ensemble
+          </h4>
+          <h4>Inscrivez-vous et co-investissez dès aujourd'hui</h4>
+          <div className='d-flex flex-row align-items-center mt-3'>
+            <Input
+              className='fixed-field'
+              type='text'
+              placeholder='Adresse e-mail'
+            />
+            <button
+              type='button'
+              className='btn btn-info fixed-button animation-on-hover ml-2'>
+              Démarer
+            </button>
+          </div>
+        </div>
+        <div
+          className='d-flex flex-column align-items-center'
+          style={{ marginTop: '100px' }}>
+          <h2>Créez votre Crew avec vos amis</h2>
+          <h4>
+            LeCrew propose de créer des groupes appelés "Crews" dans lequel vous
+            et vos partenaires peuvent co-investir
+          </h4>
+          <div className='d-flex flex-row justify-content-center align-items-center'>
+            <div className='mr-5'>
+              <div className='landing-box'>
+                <h3>Créez un Crew</h3>
+                <p>Choissez un nom et recrutez vos amis investisseur</p>
+              </div>
+              <div className='landing-box'>
+                <h3>Rejoingez un Crew</h3>
+                <p>Rejoingez des Crews déjà actifs</p>
+              </div>
+              <div className='landing-box'>
+                <h3>Achetez des actifs</h3>
+                <p>Réalisez vos premiers achats avec vos partenaires</p>
+              </div>
+            </div>
+            <img
+              src={require('assets/img/landingImage1.png')}
+              className='landing-image'
+            />
+          </div>
         </div>
       </div>
     </div>
