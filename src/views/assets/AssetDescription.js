@@ -19,6 +19,8 @@ import { sampleAssets } from 'assets/samples/asset';
 import CrewTable from 'components/Crews/CrewTable';
 import { sampleCrews } from 'assets/samples/crew';
 import { formatNumber } from 'utils/formating';
+import ValorisationChart from 'components/Common/ValorisationChart';
+import { valorisationCharts } from 'assets/samples/charts';
 
 export default function AssetDesription({}) {
   // Recover the id in the query params
@@ -52,32 +54,25 @@ export default function AssetDesription({}) {
             </div>
             <h1 className='mt-2'>{asset.name}</h1>
           </div>
-          <Card className='card-chart'>
-            <CardHeader>
-              <CardTitle tag={'h2'}>Ma valorisation</CardTitle>
-            </CardHeader>
-            <CardBody>
-              <div className='d-flex flex-row align-items-center justify-content-around'>
-                <div className='d-flex flex-column align-items-center mr-1'>
-                  <h3>{totalValue} €</h3>
-                  <h4
+          <ValorisationChart
+            title={'Ma valorisation'}
+            valorisation={
+              <div>
+                <div className='d-flex flex-row align-items-center'>
+                  <h3>{totalValue} € /</h3>
+                  <p
                     className={
                       totalPerformance > 0 ? 'text-success' : 'text-danger'
                     }>
                     {totalPerformance > 0 ? '+' : ''}
                     {formatNumber(totalPerformance)} %
-                  </h4>
-                  Quantité: {totalQuantity}
+                  </p>
                 </div>
-                <div className='chart-area w-75'>
-                  <Line
-                    data={chartExample1[bigChartData]}
-                    options={chartExample1.options}
-                  />
-                </div>
+                Quantité: {totalQuantity}
               </div>
-            </CardBody>
-          </Card>
+            }
+            chart={valorisationCharts}
+          />
           <Row>
             <Col lg='6' md='12'>
               <Card className='card-tasks'>

@@ -20,6 +20,8 @@ import AssetTable from 'components/Assets/AssetTable';
 import AssetAddingForm from 'components/Assets/AssetAddingForm';
 import CrewBalance from 'components/Crews/CrewBalance';
 import { sampleAssets } from 'assets/samples/asset';
+import ValorisationChart from 'components/Common/ValorisationChart';
+import { valorisationCharts } from 'assets/samples/charts';
 
 export default function CrewDescription({}) {
   /* Notifications utilitary */
@@ -137,31 +139,22 @@ export default function CrewDescription({}) {
               </button>
             </div>
           </div>
-          <Card className='card-chart'>
-            <CardHeader>
-              <CardTitle tag={'h2'}>Valorisation totale du crew</CardTitle>
-            </CardHeader>
-            <CardBody>
-              <div className='d-flex flex-row align-items-center justify-content-around'>
-                <div className='d-flex flex-column align-items-center mr-1'>
-                  <h3>{crew.value} €</h3>
-                  <h4
-                    className={
-                      crew.performance > 0 ? 'text-success' : 'text-danger'
-                    }>
-                    {crew.performance > 0 ? '+' : ''}
-                    {crew.performance} %
-                  </h4>
-                </div>
-                <div className='chart-area w-75'>
-                  <Line
-                    data={chartExample1[bigChartData]}
-                    options={chartExample1.options}
-                  />
-                </div>
+          <ValorisationChart
+            title={'Valorisation du crew'}
+            valorisation={
+              <div className='d-flex flex-row align-items-center mr-1'>
+                <h3>{crew.value} € /</h3>
+                <p
+                  className={
+                    crew.performance > 0 ? 'text-success' : 'text-danger'
+                  }>
+                  {crew.performance > 0 ? '+' : ''}
+                  {crew.performance} %
+                </p>
               </div>
-            </CardBody>
-          </Card>
+            }
+            chart={valorisationCharts}
+          />
           <Row>
             <Col lg='6' md='12'>
               <Card className='card-tasks'>
