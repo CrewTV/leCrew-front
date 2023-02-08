@@ -73,7 +73,7 @@ export default function RegisterForm(props) {
             Prénom
           </Label>
           <Input
-            className='fixed_field'
+            className='fixed-field'
             type='text'
             placeholder='Prénom'
             {...registerFormik.getFieldProps('firstname')}
@@ -102,7 +102,7 @@ export default function RegisterForm(props) {
             Nom
           </Label>
           <Input
-            className='fixed_field'
+            className='fixed-field'
             type='text'
             placeholder='Nom'
             {...registerFormik.getFieldProps('lastname')}
@@ -130,7 +130,7 @@ export default function RegisterForm(props) {
             Email
           </Label>
           <Input
-            className='fixed_field'
+            className='fixed-field'
             type='text'
             placeholder='Email'
             {...registerFormik.getFieldProps('email')}
@@ -158,7 +158,7 @@ export default function RegisterForm(props) {
             Age
           </Label>
           <Input
-            className='fixed_field'
+            className='fixed-field'
             type='number'
             placeholder='Age'
             {...registerFormik.getFieldProps('age')}
@@ -184,7 +184,7 @@ export default function RegisterForm(props) {
             Mot de passe
           </Label>
           <Input
-            className='fixed_field'
+            className='fixed-field'
             type='password'
             placeholder='Mot de passe'
             {...registerFormik.getFieldProps('password')}
@@ -214,7 +214,7 @@ export default function RegisterForm(props) {
             Confirmation de mot de passe
           </Label>
           <Input
-            className='fixed_field'
+            className='fixed-field'
             type='password'
             placeholder='Confirmation de mot de passe'
             {...registerFormik.getFieldProps('passwordConfirm')}

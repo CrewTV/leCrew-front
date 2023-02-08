@@ -27,10 +27,13 @@ export default function CrewCreationForm({
   const crewFormOnSubmit = (values) => {
     // Api Call to create crew
     const newCrew = {
+      id: 3,
       ...values,
       value: 0,
       performance: 0,
       image: require('assets/img/angular-logo.png'),
+      assetsInfo: [],
+      membersInfo: [],
     };
     crews.push(newCrew);
     setCrews(crews);
@@ -53,14 +56,14 @@ export default function CrewCreationForm({
                 Nom du Crew
               </Label>
               <Input
-                className='fixed_field'
+                className='fixed-field'
                 type='text'
                 placeholder='Nom du Crew'
                 onChange={(e) => setFieldValue('name', e.target.value)}
               />
-              {errors.name ? (
+              {errors.name && (
                 <div className='mt-1 text-danger'>{errors.name}</div>
-              ) : null}
+              )}
             </FormGroup>
             <FormGroup>
               {values.members.length > 0 && (
@@ -71,26 +74,35 @@ export default function CrewCreationForm({
                   <div className='d-flex flex-column justify-content-center'>
                     {values.members.length > 0 &&
                       values.members.map((_, index) => (
-                        <div className='d-flex flex-row mb-2' key={index}>
-                          <Input
-                            className='fixed_field'
-                            placeholder='Email'
-                            type='email'
-                            onChange={(e) =>
-                              setFieldValue(`members.${index}`, e.target.value)
-                            }
-                          />
-                          <button
-                            type='button'
-                            className='btn btn-warning btn-sm m-0 ml-1'
-                            onClick={() => remove(index)}>
-                            X
-                          </button>
+                        <div>
+                          <div className='d-flex flex-row mb-2' key={index}>
+                            <Input
+                              className='fixed-field'
+                              placeholder='Email'
+                              type='email'
+                              onChange={(e) =>
+                                setFieldValue(
+                                  `members.${index}`,
+                                  e.target.value
+                                )
+                              }
+                            />
+                            <button
+                              type='button'
+                              className='btn btn-warning btn-sm m-0 ml-1'
+                              onClick={() => remove(index)}>
+                              X
+                            </button>
+                          </div>
+                          {errors.members?.length > 0 &&
+                            errors.members[index] && (
+                              <div className='mt-1 text-danger'>
+                                {errors.members[index]}
+                              </div>
+                            )}
                         </div>
                       ))}
-                    {errors.members ? (
-                      <div className='mt-1 text-danger'>{errors.members}</div>
-                    ) : null}
+
                     <button
                       type='button'
                       className='btn btn-success fixed-button'

@@ -40,7 +40,7 @@ export default function CrewList({}) {
 
   // Trigger a notification when needed
   useEffect(() => {
-    if (triggerNotification) notify('tr', 'success', 'Crew crée avec succès');
+    if (triggerNotification) notify('tr', 'success', 'Crew créer avec succès');
     setTriggerNotification(false);
   }, [triggerNotification]);
 

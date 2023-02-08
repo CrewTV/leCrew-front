@@ -8,24 +8,19 @@ import Login from 'views/account/Login';
 import Register from 'views/account/Register';
 import AssetDesription from 'views/assets/AssetDescription';
 import CrewDescription from 'views/crews/CrewDescription';
-
-
 import HomePage from 'views/landing/HomePage';
+
+import { sampleUsers } from 'assets/samples/user';
 
 function App() {
   const token = getToken();
 
   // Placeholder data used to fill UI
-  const user = {
-    id: 1,
-    firstName: 'Robin',
-    lastName: 'Hood',
-    email: 'robin.hood@epita.fr',
-    age: 19,
-  };
 
   // Used to display pages with the layout that are not accessible from the sidebar
   const [descriptionComponent, setDescriptionComponent] = useState(null);
+
+  const user = sampleUsers[0];
 
   return token ? (
     <UserContext.Provider value={{ user }}>

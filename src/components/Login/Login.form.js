@@ -52,7 +52,7 @@ export default function LoginForm({}) {
             Email
           </Label>
           <Input
-            className='fixed_field'
+            className='fixed-field'
             type='text'
             placeholder='Email'
             {...loginFormik.getFieldProps('email')}
@@ -78,7 +78,7 @@ export default function LoginForm({}) {
             Mot de passe
           </Label>
           <Input
-            className='fixed_field'
+            className='fixed-field'
             type='password'
             placeholder='Mot de passe'
             {...loginFormik.getFieldProps('password')}

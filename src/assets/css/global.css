@@ -7,19 +7,17 @@ html, body, #root, .App {
     height: 100%;
   }
 
-.fixed_field {
+.fixed-field {
   width: 300px;
 }
-
 .crew-list {
   height: 800px;
 }
-
 .fixed-link {
-  color: var(--white-color);
+  color: #FFF;
 }
 .fixed-link:hover {
-   color: var(--white-color)
+   color: #FFF
 }
 .crew-icon-image {
   height: 50px;
@@ -28,4 +26,7 @@ html, body, #root, .App {
 }
 .asset-details-chart {
   height: 300px;
+}
+.fixed-name-container {
+  width: 120px;
 }
