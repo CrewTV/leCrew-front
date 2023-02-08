@@ -11057,14 +11057,14 @@ a {
 
 h1, .h1 {
   line-height: 1.05;
-  margin-bottom: 30px; }
+ }
   h1 small, .h1 small {
     font-weight: 600;
     text-transform: uppercase;
     opacity: .8; }
 
 h2, .h2 {
-  margin-bottom: 30px;
+
   line-height: 1.2; }
 
 h3, .h3 {
@@ -12446,7 +12446,7 @@ code {
 @media screen and (max-width: 768px) {
   .landing-page .section-story-overview .image-container:nth-child(2) {
     margin-left: 0;
-    margin-bottom: 30px; } }
+  } }
 
 @media screen and (max-width: 576px) {
   .page-header .container h6.category-absolute {
