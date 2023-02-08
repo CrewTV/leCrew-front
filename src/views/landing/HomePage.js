@@ -69,7 +69,7 @@ export default function HomePage({ setToken }) {
         <div
           className='d-flex flex-column align-items-center'
           style={{ marginTop: '100px' }}>
-          <h2>Créez votre Crew avec vos amis</h2>
+          <h2>Créez votre Crew dès aujourd'hui</h2>
           <h4>
             LeCrew propose de créer des groupes appelés "Crews" dans lequel vous
             et vos partenaires peuvent co-investir
