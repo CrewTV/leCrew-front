@@ -72,9 +72,9 @@ const FeaturesTiles = ({
                   </div>
                 </div>
                 <div className='features-tiles-item-content'>
-                  <h4 className='mt-0 mb-8'>Créez ou rejoingnez</h4>
+                  <h4 className='mt-0 mb-8'>Créez ou rejoignez</h4>
                   <p className='m-0 text-sm'>
-                    Constituez vous un Crew avec vos amis ou rejoingnez un Crew
+                    Constituez vous un Crew avec vos amis ou rejoignez un Crew
                     existant.
                   </p>
                 </div>
