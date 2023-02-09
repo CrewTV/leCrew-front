@@ -160,7 +160,12 @@ export default function AssetAddingForm({
         onSubmit={(values) => assetAddingFormOnSubmit(values)}>
         {({ values, errors, setFieldValue }) => (
           <Form className='d-flex flex-column align-items-center justify-content-center'>
-            <FormGroup className={errors.assetName ? 'has-error' : null}>
+            <FormGroup
+              className={
+                errors.assetName
+                  ? 'has-error d-flex flex-column'
+                  : 'd-flex flex-column'
+              }>
               <Label
                 for={errors.assetName ? 'error' : null}
                 className='control-label'>
@@ -179,7 +184,12 @@ export default function AssetAddingForm({
                 <div className='mt-1 text-danger'>{errors.assetName}</div>
               )}
             </FormGroup>
-            <FormGroup className={errors.quantity ? 'has-error' : null}>
+            <FormGroup
+              className={
+                errors.quantity
+                  ? 'has-error d-flex flex-column'
+                  : 'd-flex flex-column'
+              }>
               <Label
                 for={errors.quantity ? 'error' : null}
                 className='control-label'>
@@ -195,7 +205,12 @@ export default function AssetAddingForm({
                 <div className='mt-1 text-danger'>{errors.quantity}</div>
               )}
             </FormGroup>
-            <FormGroup className={errors.buyerId ? 'has-error' : null}>
+            <FormGroup
+              className={
+                errors.buyerId
+                  ? 'has-error d-flex flex-column'
+                  : 'd-flex flex-column'
+              }>
               <Label
                 for={errors.buyerId ? 'error' : null}
                 className='control-label'>
@@ -214,7 +229,12 @@ export default function AssetAddingForm({
                 <div className='mt-1 text-danger'>{errors.buyerId}</div>
               )}
             </FormGroup>
-            <FormGroup className={errors.participants ? 'has-error' : null}>
+            <FormGroup
+              className={
+                errors.participants
+                  ? 'has-error d-flex flex-column'
+                  : 'd-flex flex-column'
+              }>
               <Label
                 for={errors.participants ? 'error' : null}
                 className='control-label'>

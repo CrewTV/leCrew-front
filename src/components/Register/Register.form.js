@@ -59,8 +59,8 @@ export default function RegisterForm(props) {
         <FormGroup
           className={
             registerFormik.touched.firstname && registerFormik.errors.firstname
-              ? 'has-error'
-              : null
+              ? 'has-error d-flex flex-column'
+              : 'd-flex flex-column'
           }>
           <Label
             for={
@@ -89,8 +89,8 @@ export default function RegisterForm(props) {
         <FormGroup
           className={
             registerFormik.touched.lastname && registerFormik.errors.lastname
-              ? 'has-error'
-              : null
+              ? 'has-error d-flex flex-column'
+              : 'd-flex flex-column'
           }>
           <Label
             for={
@@ -117,8 +117,8 @@ export default function RegisterForm(props) {
         <FormGroup
           className={
             registerFormik.touched.email && registerFormik.errors.email
-              ? 'has-error'
-              : null
+              ? 'has-error d-flex flex-column'
+              : 'd-flex flex-column'
           }>
           <Label
             for={
@@ -145,8 +145,8 @@ export default function RegisterForm(props) {
         <FormGroup
           className={
             registerFormik.touched.age && registerFormik.errors.age
-              ? 'has-error'
-              : null
+              ? 'has-error d-flex flex-column'
+              : 'd-flex flex-column'
           }>
           <Label
             for={
@@ -171,8 +171,8 @@ export default function RegisterForm(props) {
         <FormGroup
           className={
             registerFormik.touched.password && registerFormik.errors.password
-              ? 'has-error'
-              : null
+              ? 'has-error d-flex flex-column'
+              : 'd-flex flex-column'
           }>
           <Label
             for={
@@ -200,8 +200,8 @@ export default function RegisterForm(props) {
           className={
             registerFormik.touched.passwordConfirm &&
             registerFormik.errors.passwordConfirm
-              ? 'has-error'
-              : null
+              ? 'has-error d-flex flex-column'
+              : 'd-flex flex-column'
           }>
           <Label
             for={

@@ -2,13 +2,12 @@ import UserContext from 'contexts/UserContext';
 import DescriptionLayout from 'layouts/DescriptionLayout';
 import MainLayout from 'layouts/MainLayout';
 import React, { useState } from 'react';
-import { BrowserRouter, Route, Routes, Navigate, Link } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { getToken } from 'utils/token';
 import Login from 'views/account/Login';
 import Register from 'views/account/Register';
 import AssetDesription from 'views/assets/AssetDescription';
 import CrewDescription from 'views/crews/CrewDescription';
-import HomePage from 'views/landing/HomePage';
 
 import { sampleUsers } from 'assets/samples/user';
 import LandingPage from 'views/landing/LandingPage';

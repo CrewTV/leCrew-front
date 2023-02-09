@@ -125,11 +125,11 @@ export default function CrewDescription({}) {
         <Col xs='12'>
           {assetAddingModal()}
           <div className='d-flex flex-row justify-content-between'>
-            <div className='d-flex flex-row'>
+            <div className='d-flex flex-row align-items-center'>
               <div className='crew-icon-image mr-2'>
                 <img alt='...' src={crew.image} />
               </div>
-              <h1 className='mt-2'>{crew.name}</h1>
+              <h2 className='mt-2'>{crew.name}</h2>
             </div>
             <div className='float-right'>
               <button
@@ -142,8 +142,8 @@ export default function CrewDescription({}) {
           <ValorisationChart
             title={'Valorisation du crew'}
             valorisation={
-              <div className='d-flex flex-row align-items-center mr-1'>
-                <h3>{crew.value} € /</h3>
+              <div className='d-flex flex-row align-items-baseline mr-1'>
+                <h4>{crew.value} €</h4>
                 <p
                   className={
                     crew.performance > 0 ? 'text-success' : 'text-danger'

@@ -49,7 +49,12 @@ export default function CrewCreationForm({
         onSubmit={(values) => crewFormOnSubmit(values)}>
         {({ values, errors, setFieldValue }) => (
           <Form className='d-flex flex-column align-items-center justify-content-center'>
-            <FormGroup className={errors.name ? 'has-error' : null}>
+            <FormGroup
+              className={
+                errors.name
+                  ? 'has-error d-flex flex-column'
+                  : 'd-flex flex-column'
+              }>
               <Label
                 for={errors.email ? 'error' : null}
                 className='control-label'>
@@ -65,7 +70,12 @@ export default function CrewCreationForm({
                 <div className='mt-1 text-danger'>{errors.name}</div>
               )}
             </FormGroup>
-            <FormGroup>
+            <FormGroup
+              className={
+                errors.members
+                  ? 'has-error d-flex flex-column'
+                  : 'd-flex flex-column'
+              }>
               {values.members.length > 0 && (
                 <Label className='control-label'>Membres</Label>
               )}
