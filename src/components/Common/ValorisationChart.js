@@ -18,11 +18,11 @@ export default function ValorisationChart({ title, valorisation, chart }) {
       <CardHeader>
         <div className='d-flex flex-row justify-content-between'>
           <Col className='text-left' sm='6'>
-            <CardTitle tag='h2'>{title}</CardTitle>
+            <CardTitle tag='h3'>{title}</CardTitle>
           </Col>
 
-          <div className='d-flex flex-row justify-content-between'>
-            <CardTitle>{valorisation}</CardTitle>
+          <div className='d-flex flex-row justify-content-between align-items-start'>
+            {valorisation}
             <Col sm='6'>
               <ButtonGroup
                 className='btn-group-toggle float-right'

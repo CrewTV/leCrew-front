@@ -87,11 +87,11 @@ export default function AssetTable({
               return (
                 <tr key={index}>
                   <td>
-                    <div className='d-flex flex-row align-items-baseline'>
+                    <div className='d-flex flex-row'>
                       <div className='photo mr-2'>
                         <img alt='...' src={asset.image} />
                       </div>
-                      <h4>{asset.name}</h4>
+                      <h5>{asset.name}</h5>
                     </div>
                   </td>
 

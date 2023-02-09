@@ -46,7 +46,7 @@ const Cta = ({
       <div className='container'>
         <div className={innerClasses}>
           <div className='cta-slogan'>
-            <h3 className='m-0'>For previewing layouts and visual?</h3>
+            <h3 className='m-0'>Prêt à co-investir avec LeCrew ?</h3>
           </div>
           <div className='cta-action'>
             <Input
