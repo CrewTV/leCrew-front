@@ -11,6 +11,7 @@ import CrewDescription from 'views/crews/CrewDescription';
 import HomePage from 'views/landing/HomePage';
 
 import { sampleUsers } from 'assets/samples/user';
+import LandingPage from 'views/landing/LandingPage';
 
 function App() {
   const token = getToken();
@@ -39,7 +40,7 @@ function App() {
     </UserContext.Provider>
   ) : (
     <Routes>
-      <Route path='*' element={<HomePage />} />
+      <Route path='*' element={<LandingPage />} />
       <Route path='/login' element={<Login />} />
       <Route path='/register' element={<Register />} />
     </Routes>

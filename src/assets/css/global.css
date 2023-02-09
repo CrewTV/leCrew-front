@@ -39,3 +39,7 @@ html, body, #root, .App {
   width: 250px;
   margin-bottom: 20px;
 }
+.fixed-button{
+  height:30px;
+  width: 120px;
+}
