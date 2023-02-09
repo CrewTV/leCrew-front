@@ -35,6 +35,7 @@ function App() {
           path='/asset/:id'
           element={<DescriptionLayout component={<AssetDesription />} />}
         />
+        <Route path='/home' element={<LandingPage />} />
       </Routes>
     </UserContext.Provider>
   ) : (
