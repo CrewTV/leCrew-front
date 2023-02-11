@@ -8,7 +8,6 @@ import UserContext from 'contexts/UserContext';
 import { sampleAssets } from 'assets/samples/asset';
 import { sampleUsers } from 'assets/samples/user';
 import { formatNumber } from '../../utils/formating';
-import { getAssetIndex } from 'assets/samples/asset';
 import { addCrewAsset } from 'assets/samples/crew';
 
 export default function AssetAddingForm({

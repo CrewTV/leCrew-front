@@ -70,7 +70,7 @@ export default function CrewDescription({}) {
         isOpen={addAssetModal}
         toggle={toggleAssetAddingModal}>
         <ModalHeader>
-          <h3>Ajout d'actif</h3>
+          <h3>Proposer un vote</h3>
           <button
             aria-label='Close'
             className='close'
@@ -135,7 +135,7 @@ export default function CrewDescription({}) {
               <button
                 className='btn btn-success'
                 onClick={() => toggleAssetAddingModal()}>
-                Ajouter un actif
+                Proposer un vote
               </button>
             </div>
           </div>

@@ -23,6 +23,7 @@ const sampleCrews = [
         assetId: 1,
         quantity: 3,
         buyerId: 1,
+        type: 'buy',
         date: '2023-03-02T22:18:26.625Z',
         delay: '24',
         pending: true,
