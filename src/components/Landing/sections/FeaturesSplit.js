@@ -49,7 +49,7 @@ const FeaturesSplit = ({
   );
 
   const sectionHeader = {
-    title: 'Votez ensemble pour acheter ou vendre',
+    title: 'Votez, achetez et vendez ensemble',
     paragraph:
       'Pour les décisions importantes, un vote doit être proposé à tous les membres du Crew. Le vote est ouvert pendant 24h et les résultats sont affichés en temps réel.',
   };

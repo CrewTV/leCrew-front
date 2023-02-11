@@ -5,18 +5,19 @@ import * as Yup from 'yup';
 import YupPassword from 'yup-password';
 import { register } from '../../api/users';
 import { setToken } from 'utils/token';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 YupPassword(Yup);
 
 export default function RegisterForm(props) {
+  const defaultEmail = useParams().email;
   const navigate = useNavigate();
   const registerFormik = useFormik({
     initialValues: {
       firstname: '',
       lastname: '',
       age: '',
-      email: '',
+      email: defaultEmail,
       password: '',
       passwordConfirm: '',
     },

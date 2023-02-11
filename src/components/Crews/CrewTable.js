@@ -42,11 +42,9 @@ export default function CrewTable({ crews, reducedDisplay }) {
               )}
               {!reducedDisplay && (
                 <td className='text-right'>
-                  <button className='btn btn-info'>
-                    <Link to={`/crew/${crew.id}`} className='fixed-link'>
-                      Details
-                    </Link>
-                  </button>
+                  <Link to={`/crew/${crew.id}`} className='fixed-link'>
+                    <button className='btn btn-info'>Details</button>
+                  </Link>
                 </td>
               )}
             </tr>

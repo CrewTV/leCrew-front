@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
 import classNames from 'classnames';
 import { SectionProps } from '../../../utils/SectionProps';
-import ButtonGroup from '../elements/ButtonGroup';
-import Button from '../elements/Button';
-import Image from '../elements/Image';
-import Modal from '../elements/Modal';
-import { Input } from 'reactstrap';
+import { Button, Input } from 'reactstrap';
+import { Link } from 'react-router-dom';
 
 const propTypes = {
   ...SectionProps.types,
@@ -25,6 +22,8 @@ const Hero = ({
   invertColor,
   ...props
 }) => {
+  const [email, setEmail] = useState('email@email.com'); // Necessary to pass the email to the register form
+
   const outerClasses = classNames(
     'hero section center-content',
     topOuterDivider && 'has-top-divider',
@@ -54,17 +53,20 @@ const Hero = ({
                 Créez ou rejoignez un Crew puis sélectionnez et achetez vos
                 actifs ensemble.
               </p>
-              <div className='d-flex flex-row align-items-center justify-content-center mt-3'>
+              <div className='d-flex flex-sm-row flex-column align-items-center justify-content-center mt-3'>
                 <Input
                   className='fixed-field'
-                  type='text'
+                  type='email'
                   placeholder='Adresse e-mail'
+                  onChange={(e) => setEmail(e.target.value)}
                 />
-                <button
-                  type='button'
-                  className='btn btn-info animation-on-hover ml-2'>
-                  Démarer
-                </button>
+                <Link to={`/register/${email}`} className='fixed-link'>
+                  <button
+                    type='button'
+                    className='btn btn-info animation-on-hover ml-2'>
+                    Démarrer
+                  </button>
+                </Link>
               </div>
             </div>
           </div>

@@ -114,11 +114,9 @@ export default function AssetTable({
                   )}
                   {!reducedDisplay && (
                     <td className='text-right'>
-                      <button className='btn btn-info'>
-                        <Link to={`/asset/${asset.id}`} className='fixed-link'>
-                          Details
-                        </Link>
-                      </button>
+                      <Link to={`/asset/${asset.id}`} className='fixed-link'>
+                        <button className='btn btn-info'>Détails</button>
+                      </Link>
                     </td>
                   )}
                   {deleteCrewAsset && (

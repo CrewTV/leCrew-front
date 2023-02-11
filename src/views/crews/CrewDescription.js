@@ -65,7 +65,7 @@ export default function CrewDescription({}) {
   const assetAddingModal = () => {
     return (
       <Modal
-        modalClassName='modal-default'
+        modalClassName='modal-default fade'
         size='xl'
         isOpen={addAssetModal}
         toggle={toggleAssetAddingModal}>

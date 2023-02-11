@@ -277,7 +277,7 @@ export default function AssetAddingForm({
                 <p>{remainingPrice(values.assetName, values.quantity)}</p>
               )}
             <button type='submit' className='btn btn-info fixed-button'>
-              Ajouter l'actif
+              Lancer le vote
             </button>
           </Form>
         )}
