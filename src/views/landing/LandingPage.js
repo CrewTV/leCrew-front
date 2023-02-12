@@ -7,6 +7,8 @@ import Pricing from '../../components/Landing/sections/Princing';
 import Cta from '../../components/Landing/sections/Cta';
 import Header from 'components/Landing/layout/Header';
 import '../../assets/scss/style.scss';
+import Team from 'components/Landing/sections/Team';
+import Footer from 'components/Landing/layout/Footer';
 
 const LandingPage = () => {
   return (
@@ -21,6 +23,8 @@ const LandingPage = () => {
         className='illustration-section-02'
       />
       <Pricing topDivider />
+      <Team topDivider />
+      <Footer />
     </>
   );
 };
