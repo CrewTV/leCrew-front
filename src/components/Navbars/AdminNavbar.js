@@ -28,7 +28,7 @@ function AdminNavbar(props) {
   const [collapseOpen, setcollapseOpen] = React.useState(false);
   const [modalSearch, setmodalSearch] = React.useState(false);
   const [color, setcolor] = React.useState('navbar-transparent');
-  const { user } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
   const navigate = useNavigate();
 
   React.useEffect(() => {
@@ -113,7 +113,10 @@ function AdminNavbar(props) {
                     tag='li'
                     onClick={() => {
                       removeToken();
-                      navigate('/home');
+                      user.token = '';
+                      setUser(user);
+                      navigate('/');
+                      window.location.reload(false); // Trigger manual refresh
                     }}>
                     <DropdownItem className='nav-item'>
                       Déconnexion

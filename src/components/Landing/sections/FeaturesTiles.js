@@ -93,8 +93,8 @@ const FeaturesTiles = ({
                 <div className='features-tiles-item-content'>
                   <h4 className='mt-0 mb-8'>Apprenez</h4>
                   <p className='m-0 text-sm'>
-                    Améliorez vos connaissances sur les marchés grâce à vos Crew
-                    members.
+                    Améliorez vos connaissances sur les marchés grâce aux
+                    membres de vos Crews
                   </p>
                 </div>
               </div>

@@ -7,6 +7,7 @@ const sampleUsers = [
     email: 'robin.hood@epita.fr',
     age: 21,
     totalValue: 128.14,
+    token: '',
     crews: [
       {
         id: 1,
