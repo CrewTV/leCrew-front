@@ -4,7 +4,6 @@ import Hero from '../../components/Landing/sections/Hero';
 import FeaturesTiles from '../../components/Landing/sections/FeaturesTiles';
 import FeaturesSplit from '../../components/Landing/sections/FeaturesSplit';
 import Pricing from '../../components/Landing/sections/Princing';
-import Cta from '../../components/Landing/sections/Cta';
 import Header from 'components/Landing/layout/Header';
 import '../../assets/scss/style.scss';
 import Team from 'components/Landing/sections/Team';

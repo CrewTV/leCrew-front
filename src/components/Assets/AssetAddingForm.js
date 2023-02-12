@@ -39,54 +39,41 @@ export default function AssetAddingForm({
   };
 
   const initialValues = {
+    voteType: '',
     assetName: '',
     quantity: -1, // -1 by default to trigger the number validator
     buyerId: user.id, // The current user is placed as buyer per default
-    participants: getParticipantIds(),
+    //participants: getParticipantIds(),
   };
 
   const validationSchema = Yup.object({
+    voteType: Yup.string().required('Type du vote requis'),
     assetName: Yup.string().required('Actif requis'),
     quantity: Yup.number()
       .required('Quantité requise')
       .min(0, 'La quantité doit être un nombre positif')
       .integer('La quantité doit être un nombre entier'),
     buyerId: Yup.number().required('Acheteur requis'),
-    participants: Yup.array()
+    /*participants: Yup.array()
       .min(1, "Il faut au moins un participant pour valider l'ajout")
       .of(Yup.number())
-      .required('Participants requis'),
+      .required('Participants requis'),*/
   });
 
   const assetAddingFormOnSubmit = (values) => {
-    const participantNumber = getParticipantIds().length;
     const rawAsset = sampleAssets.find(
       (sampleAsset) => sampleAsset.name === values.assetName
     );
-    const newCrewAssetInfo = {
-      id: rawAsset.id,
+    const newVoteInfo = {
+      assetId: rawAsset.id,
       quantity: values.quantity,
-      performance: 0,
+      buyerId: values.buyerId,
+      type: values.voteType,
+      delay: 24,
+      pending: true,
+      votes: 0,
     };
-    crew = addCrewAsset(crew, newCrewAssetInfo);
-
-    const newUserAssetInfo = {
-      id: rawAsset.id,
-      quantity: values.quantity / participantNumber,
-      performance: 0,
-    };
-    user.assetsInfo.push(newUserAssetInfo);
-
-    const pricePerParticipant =
-      (rawAsset.currentPrice * values.quantity) / participantNumber;
-    // Update the balance for the crew members
-    console.log(values.participants);
-    crew.membersInfo.forEach((memberInfo, index) => {
-      if (memberInfo.id === values.buyerId)
-        crew.membersInfo[index].balance += pricePerParticipant;
-      else if (checkParticipants[memberInfo.id])
-        crew.membersInfo[index].balance -= pricePerParticipant;
-    });
+    crew.votesInfo.unshift(newVoteInfo);
 
     setCrew(crew);
     setAddAssetModal(false);
@@ -161,6 +148,38 @@ export default function AssetAddingForm({
           <Form className='d-flex flex-column align-items-center justify-content-center'>
             <FormGroup
               className={
+                errors.voteType
+                  ? 'has-error d-flex flex-column'
+                  : 'd-flex flex-column'
+              }>
+              <Label
+                for={errors.voteType ? 'error' : null}
+                className='control-label'>
+                Type de vote
+              </Label>
+              <Input
+                className='fixed-field'
+                type='select'
+                name='select'
+                id='assetSelector'
+                defaultValue={''}
+                onChange={(e) => setFieldValue('voteType', e.target.value)}>
+                <option key={''} value={''} disabled={true}>
+                  Selectionner un type de vote
+                </option>
+                <option key={'buy'} value={'buy'}>
+                  Achat
+                </option>
+                <option key={'sell'} value={'sell'}>
+                  Vente
+                </option>
+              </Input>
+              {errors.voteType && (
+                <div className='mt-1 text-danger'>{errors.voteType}</div>
+              )}
+            </FormGroup>
+            <FormGroup
+              className={
                 errors.assetName
                   ? 'has-error d-flex flex-column'
                   : 'd-flex flex-column'
@@ -213,7 +232,7 @@ export default function AssetAddingForm({
               <Label
                 for={errors.buyerId ? 'error' : null}
                 className='control-label'>
-                Acheteur
+                Acheteur/Vendeur
               </Label>
               <Input
                 className='fixed-field'
@@ -228,13 +247,14 @@ export default function AssetAddingForm({
                 <div className='mt-1 text-danger'>{errors.buyerId}</div>
               )}
             </FormGroup>
+            {/* Participant part (deactivated for the moment) 
             <FormGroup
-              className={
-                errors.participants
-                  ? 'has-error d-flex flex-column'
-                  : 'd-flex flex-column'
-              }>
-              <Label
+                    className={
+                      errors.participants
+                        ? 'has-error d-flex flex-column'
+                        : 'd-flex flex-column'
+                    }>
+                  <Label
                 for={errors.participants ? 'error' : null}
                 className='control-label'>
                 Participant(s)
@@ -275,9 +295,14 @@ export default function AssetAddingForm({
               !errors.quantity &&
               values.quantity > 0 && (
                 <p>{remainingPrice(values.assetName, values.quantity)}</p>
-              )}
+              )}*/}
+
+            <p>
+              Il faut que tous les membres du Crew aient validé le vote pour
+              effectuer l'action
+            </p>
             <button type='submit' className='btn btn-info fixed-button'>
-              Lancer le vote
+              Publier le vote
             </button>
           </Form>
         )}

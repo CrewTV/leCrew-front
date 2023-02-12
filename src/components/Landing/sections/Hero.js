@@ -22,7 +22,7 @@ const Hero = ({
   invertColor,
   ...props
 }) => {
-  const [email, setEmail] = useState('email@email.com'); // Necessary to pass the email to the register form
+  const [email, setEmail] = useState(''); // Necessary to pass the email to the register form
 
   const outerClasses = classNames(
     'hero section center-content',
