@@ -70,7 +70,7 @@ const Team = ({
                 </div>
                 <div className='features-tiles-item-content'>
                   <h4 className='mt-0 mb-8'>Thibault Boutet</h4>
-                  <p className='m-0 text-sm'>Co-founder (CEO)</p>
+                  <p className='m-0 text-sm'>Co-founder - CEO</p>
                 </div>
               </div>
             </div>
@@ -90,7 +90,7 @@ const Team = ({
                 </div>
                 <div className='features-tiles-item-content'>
                   <h4 className='mt-0 mb-8'>Vasco Sampaio</h4>
-                  <p className='m-0 text-sm'>Co-founder (CTO)</p>
+                  <p className='m-0 text-sm'>Co-founder - CTO</p>
                 </div>
               </div>
             </div>
