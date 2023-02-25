@@ -28,6 +28,7 @@ export default function CrewBalance({ participants, crewValue }) {
             minWidth: '80px',
             height: '20px',
             backgroundColor: balanceColor,
+            borderRadius: '15px',
           }}>
           <p className='mt-1'>{formatNumber(participant.balance)} €</p>
         </div>

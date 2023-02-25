@@ -11,6 +11,7 @@ import CrewDescription from 'views/crews/CrewDescription';
 
 import { sampleUsers } from 'assets/samples/user';
 import LandingPage from 'views/landing/LandingPage';
+import Survey from 'views/survey/Survey';
 
 function App() {
   // Default user used from sample data

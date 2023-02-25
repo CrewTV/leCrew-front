@@ -165,9 +165,11 @@ export default function AssetTable({
                   const associatedAsset = sampleAssets.find(
                     (sampleAsset) => sampleAsset.id === voteInfo.assetId
                   );
+                  console.log('Here:', voteInfo.buyerId);
                   const associatedBuyer = sampleUsers.find(
-                    (sampleUser) => sampleUser.id === voteInfo.buyerId
+                    (sampleUser) => sampleUser.id == voteInfo.buyerId
                   );
+
                   return (
                     <tr key={index}>
                       <td>{voteInfo.type === 'buy' ? 'Achat' : 'Vente'}</td>
@@ -176,24 +178,26 @@ export default function AssetTable({
                       <td>{associatedBuyer.firstName}</td>
                       <td>{voteInfo.delay} h</td>
                       <td>{voteInfo.votes}</td>
-                      <td className='text-right'>
-                        <button
-                          type='button'
-                          className='btn btn-success btn-sm m-0 ml-1'>
-                          <i
-                            className='tim-icons icon-check-2 text-white'
-                            onClick={() => {}}
-                          />
-                        </button>
-                        <button
-                          type='button'
-                          className='btn btn-warning btn-sm m-0 ml-1'>
-                          <i
-                            className='tim-icons icon-simple-remove text-white'
-                            onClick={() => {}}
-                          />
-                        </button>
-                      </td>
+                      {user.id !== voteInfo.buyerId && (
+                        <td className='text-right'>
+                          <button
+                            type='button'
+                            className='btn btn-success btn-sm m-0 ml-1'>
+                            <i
+                              className='tim-icons icon-check-2 text-white'
+                              onClick={() => {}}
+                            />
+                          </button>
+                          <button
+                            type='button'
+                            className='btn btn-warning btn-sm m-0 ml-1'>
+                            <i
+                              className='tim-icons icon-simple-remove text-white'
+                              onClick={() => {}}
+                            />
+                          </button>
+                        </td>
+                      )}
                     </tr>
                   );
                 })
