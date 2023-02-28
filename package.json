@@ -20,7 +20,9 @@
     "reactstrap": "8.7.1",
     "sass": "1.53.0",
     "yup": "^0.32.11",
-    "yup-password": "^0.2.2"
+    "yup-password": "^0.2.2",
+    "lodash": "^4.17.15",
+    "react-ga": "^2.7.0"
   },
   "scripts": {
     "start": "react-scripts start",

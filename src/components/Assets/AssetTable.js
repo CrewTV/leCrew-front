@@ -87,11 +87,11 @@ export default function AssetTable({
               return (
                 <tr key={index}>
                   <td>
-                    <div className='d-flex flex-row align-items-baseline'>
+                    <div className='d-flex flex-row'>
                       <div className='photo mr-2'>
                         <img alt='...' src={asset.image} />
                       </div>
-                      <h4>{asset.name}</h4>
+                      <h5>{asset.name}</h5>
                     </div>
                   </td>
 
@@ -114,11 +114,9 @@ export default function AssetTable({
                   )}
                   {!reducedDisplay && (
                     <td className='text-right'>
-                      <button className='btn btn-info'>
-                        <Link to={`/asset/${asset.id}`} className='fixed-link'>
-                          Details
-                        </Link>
-                      </button>
+                      <Link to={`/asset/${asset.id}`} className='fixed-link'>
+                        <button className='btn btn-info'>Détails</button>
+                      </Link>
                     </td>
                   )}
                   {deleteCrewAsset && (
@@ -148,10 +146,13 @@ export default function AssetTable({
           <Table>
             <thead className='text-primary'>
               <tr>
+                <th>Type</th>
                 <th>Actif</th>
                 <th>Quantité</th>
                 <th>Acheteur</th>
                 <th>Délai restant</th>
+                <th>Votes</th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
@@ -169,10 +170,30 @@ export default function AssetTable({
                   );
                   return (
                     <tr key={index}>
+                      <td>{voteInfo.type === 'buy' ? 'Achat' : 'Vente'}</td>
                       <td>{associatedAsset.name}</td>
                       <td>{voteInfo.quantity}</td>
                       <td>{associatedBuyer.firstName}</td>
                       <td>{voteInfo.delay} h</td>
+                      <td>{voteInfo.votes}</td>
+                      <td className='text-right'>
+                        <button
+                          type='button'
+                          className='btn btn-success btn-sm m-0 ml-1'>
+                          <i
+                            className='tim-icons icon-check-2 text-white'
+                            onClick={() => {}}
+                          />
+                        </button>
+                        <button
+                          type='button'
+                          className='btn btn-warning btn-sm m-0 ml-1'>
+                          <i
+                            className='tim-icons icon-simple-remove text-white'
+                            onClick={() => {}}
+                          />
+                        </button>
+                      </td>
                     </tr>
                   );
                 })

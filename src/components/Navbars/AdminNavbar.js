@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 // nodejs library that concatenates classes
 import classNames from 'classnames';
 import UserContext from 'contexts/UserContext';
+import { useNavigate } from 'react-router-dom';
 
 // reactstrap components
 import {
@@ -21,12 +22,14 @@ import {
   ModalHeader,
   ModalBody,
 } from 'reactstrap';
+import { removeToken } from 'utils/token';
 
 function AdminNavbar(props) {
   const [collapseOpen, setcollapseOpen] = React.useState(false);
   const [modalSearch, setmodalSearch] = React.useState(false);
   const [color, setcolor] = React.useState('navbar-transparent');
-  const { user } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
+  const navigate = useNavigate();
 
   React.useEffect(() => {
     window.addEventListener('resize', updateColor);
@@ -106,7 +109,15 @@ function AdminNavbar(props) {
                     <DropdownItem className='nav-item'>Paramètres</DropdownItem>
                   </NavLink>
                   <DropdownItem divider tag='li' />
-                  <NavLink tag='li'>
+                  <NavLink
+                    tag='li'
+                    onClick={() => {
+                      removeToken();
+                      user.token = '';
+                      setUser(user);
+                      navigate('/');
+                      window.location.reload(false); // Trigger manual refresh
+                    }}>
                     <DropdownItem className='nav-item'>
                       Déconnexion
                     </DropdownItem>

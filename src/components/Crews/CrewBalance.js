@@ -12,7 +12,7 @@ export default function CrewBalance({ participants, crewValue }) {
 
   return participants.map((participant, index) => {
     const userInfo = getUserInfoFromId(participant.id);
-    const balanceColor = participant.balance > 0 ? '#00f2c3' : '#fd5d93';
+    const balanceColor = participant.balance > 0 ? '#57cc99' : '#fd5d93';
     const width = crewValue * Math.abs(participant.balance / crewValue);
     return (
       <div className='d-flex flex-row mb-3 justify-content-between' key={index}>
@@ -29,9 +29,7 @@ export default function CrewBalance({ participants, crewValue }) {
             height: '20px',
             backgroundColor: balanceColor,
           }}>
-          <p className='mt-1 font-weight-bold'>
-            {formatNumber(participant.balance)} €
-          </p>
+          <p className='mt-1'>{formatNumber(participant.balance)} €</p>
         </div>
       </div>
     );

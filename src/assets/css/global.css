@@ -9,6 +9,7 @@ html, body, #root, .App {
 
 .fixed-field {
   width: 300px;
+  height: 45px;
 }
 .crew-list {
   height: 800px;
@@ -29,4 +30,12 @@ html, body, #root, .App {
 }
 .fixed-name-container {
   width: 120px;
+}
+.landing-image {
+  width: 50%;
+  height: 70%;
+}
+.landing-box {
+  width: 250px;
+  margin-bottom: 20px;
 }

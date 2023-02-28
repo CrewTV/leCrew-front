@@ -14,8 +14,8 @@ export default function LoginForm({}) {
   const navigate = useNavigate();
   const loginFormik = useFormik({
     initialValues: {
-      email: null,
-      password: null,
+      email: '',
+      password: '',
     },
 
     validationSchema: Yup.object({
@@ -39,8 +39,8 @@ export default function LoginForm({}) {
         <FormGroup
           className={
             loginFormik.touched.email && loginFormik.errors.email
-              ? 'has-error'
-              : null
+              ? 'has-error d-flex flex-column'
+              : 'd-flex flex-column'
           }>
           <Label
             for={
@@ -65,8 +65,8 @@ export default function LoginForm({}) {
         <FormGroup
           className={
             loginFormik.touched.password && loginFormik.errors.password
-              ? 'has-error'
-              : null
+              ? 'has-error d-flex flex-column'
+              : 'd-flex flex-column'
           }>
           <Label
             for={

@@ -8,4 +8,8 @@ const setToken = (token) => {
   sessionStorage.setItem('token', JSON.stringify(token));
 };
 
-module.exports = { setToken, getToken };
+const removeToken = () => {
+  sessionStorage.removeItem('token');
+};
+
+module.exports = { setToken, getToken, removeToken };

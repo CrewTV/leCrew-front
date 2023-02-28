@@ -19,11 +19,11 @@ export default function CrewTable({ crews, reducedDisplay }) {
           return (
             <tr key={index}>
               <td>
-                <div className='d-flex flex-row align-items-baseline'>
+                <div className='d-flex flex-row'>
                   <div className='photo mr-2'>
                     <img alt='...' src={crew.image} />
                   </div>
-                  <h4>{crew.name}</h4>
+                  <h5>{crew.name}</h5>
                 </div>
               </td>
               <td className={reducedDisplay ? 'text-right' : ''}>
@@ -31,22 +31,20 @@ export default function CrewTable({ crews, reducedDisplay }) {
               </td>
               {!reducedDisplay && (
                 <td className='text-center'>
-                  <h4
+                  <p
                     className={
                       crew.performance > 0 ? 'text-success' : 'text-danger'
                     }>
                     {crew.performance > 0 ? '+' : ''}
                     {crew.performance} %
-                  </h4>
+                  </p>
                 </td>
               )}
               {!reducedDisplay && (
                 <td className='text-right'>
-                  <button className='btn btn-info'>
-                    <Link to={`/crew/${crew.id}`} className='fixed-link'>
-                      Details
-                    </Link>
-                  </button>
+                  <Link to={`/crew/${crew.id}`} className='fixed-link'>
+                    <button className='btn btn-info'>Details</button>
+                  </Link>
                 </td>
               )}
             </tr>

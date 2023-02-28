@@ -5,18 +5,19 @@ import * as Yup from 'yup';
 import YupPassword from 'yup-password';
 import { register } from '../../api/users';
 import { setToken } from 'utils/token';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 YupPassword(Yup);
 
 export default function RegisterForm(props) {
+  const defaultEmail = useParams().email;
   const navigate = useNavigate();
   const registerFormik = useFormik({
     initialValues: {
       firstname: '',
       lastname: '',
       age: '',
-      email: '',
+      email: defaultEmail,
       password: '',
       passwordConfirm: '',
     },
@@ -59,8 +60,8 @@ export default function RegisterForm(props) {
         <FormGroup
           className={
             registerFormik.touched.firstname && registerFormik.errors.firstname
-              ? 'has-error'
-              : null
+              ? 'has-error d-flex flex-column'
+              : 'd-flex flex-column'
           }>
           <Label
             for={
@@ -89,8 +90,8 @@ export default function RegisterForm(props) {
         <FormGroup
           className={
             registerFormik.touched.lastname && registerFormik.errors.lastname
-              ? 'has-error'
-              : null
+              ? 'has-error d-flex flex-column'
+              : 'd-flex flex-column'
           }>
           <Label
             for={
@@ -117,8 +118,8 @@ export default function RegisterForm(props) {
         <FormGroup
           className={
             registerFormik.touched.email && registerFormik.errors.email
-              ? 'has-error'
-              : null
+              ? 'has-error d-flex flex-column'
+              : 'd-flex flex-column'
           }>
           <Label
             for={
@@ -145,8 +146,8 @@ export default function RegisterForm(props) {
         <FormGroup
           className={
             registerFormik.touched.age && registerFormik.errors.age
-              ? 'has-error'
-              : null
+              ? 'has-error d-flex flex-column'
+              : 'd-flex flex-column'
           }>
           <Label
             for={
@@ -171,8 +172,8 @@ export default function RegisterForm(props) {
         <FormGroup
           className={
             registerFormik.touched.password && registerFormik.errors.password
-              ? 'has-error'
-              : null
+              ? 'has-error d-flex flex-column'
+              : 'd-flex flex-column'
           }>
           <Label
             for={
@@ -200,8 +201,8 @@ export default function RegisterForm(props) {
           className={
             registerFormik.touched.passwordConfirm &&
             registerFormik.errors.passwordConfirm
-              ? 'has-error'
-              : null
+              ? 'has-error d-flex flex-column'
+              : 'd-flex flex-column'
           }>
           <Label
             for={

@@ -68,9 +68,6 @@ hr {
   height: 0;
   overflow: visible; }
 
-h1, h2, h3, h4, h5, h6 {
-  margin-top: 0;
-   }
 
 p {
   margin-top: 0;
@@ -11057,14 +11054,14 @@ a {
 
 h1, .h1 {
   line-height: 1.05;
-  margin-bottom: 30px; }
+ }
   h1 small, .h1 small {
     font-weight: 600;
     text-transform: uppercase;
     opacity: .8; }
 
 h2, .h2 {
-  margin-bottom: 30px;
+
   line-height: 1.2; }
 
 h3, .h3 {
@@ -12446,7 +12443,7 @@ code {
 @media screen and (max-width: 768px) {
   .landing-page .section-story-overview .image-container:nth-child(2) {
     margin-left: 0;
-    margin-bottom: 30px; } }
+  } }
 
 @media screen and (max-width: 576px) {
   .page-header .container h6.category-absolute {
@@ -13622,7 +13619,3 @@ textarea.form-control {
 select.form-control option {
   color: #888; }
 
-.fixed-button{
-    height:50px;
-    width:200px;
-  }
