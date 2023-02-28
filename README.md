@@ -2,7 +2,9 @@
 
 This project is the front end part of the project LeCrew.\
 The goal of LeCrew is to allow the grouped investment between people.\
-Backend: https://github.com/Nolab0/leCrew-back
+Note that the application is available in an AppEngine at lecrew.ew.r.appspot.com
+
+# Technologie used: Javascript, ReactJS, CSS, SCSS
 
 ## Project setup
 
