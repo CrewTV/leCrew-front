@@ -64,7 +64,7 @@ export default function AssetAddingForm({
     const rawAsset = sampleAssets.find(
       (sampleAsset) => sampleAsset.name === values.assetName
     );
-    console.log('BuyerId:', values.buyerId);
+ 
     const newVoteInfo = {
       assetId: rawAsset.id,
       quantity: values.quantity,
