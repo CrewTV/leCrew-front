@@ -101,7 +101,7 @@ const FeaturesSplit = ({
                 <ul className='m-0'>
                   <li>Proposer un vote pour un ordre d'achat ou de vente.</li>
                   <li>
-                    Une fois le vote validé, un membre du Crew réalise l'ordre
+                    Une fois le vote validé, un membre du Crew passe l'ordre
                     avec son CTO ou PEA.
                   </li>
                   <li>

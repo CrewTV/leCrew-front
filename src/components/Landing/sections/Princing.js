@@ -56,8 +56,8 @@ const Pricing = ({
                 <div className='d-flex flex-column align-items-center'>
                   <h3>Plan gratuit</h3>
                   <div className='d-flex flex-row align-items-center'>
-                    <h2>0€</h2>
-                    <h3>/mois</h3>
+                    <h2>0</h2>
+                    <h3>€/mois</h3>
                   </div>
                   <ul>
                     <li>Limité à 1 Crew</li>
@@ -74,8 +74,8 @@ const Pricing = ({
                 <div className='d-flex flex-column align-items-center'>
                   <h3>Plan premium</h3>
                   <div className='d-flex flex-row align-items-center'>
-                    <h2>4.99€</h2>
-                    <h3>/mois</h3>
+                    <h2>4.99</h2>
+                    <h3>€/mois</h3>
                   </div>
                   <ul>
                     <li>Crews illité</li>
@@ -92,12 +92,12 @@ const Pricing = ({
                 <div className='d-flex flex-column align-items-center'>
                   <h3>Matching profils</h3>
                   <div className='d-flex flex-row align-items-center'>
-                    <h2>2.99€</h2>
-                    <h3>/mois</h3>
+                    <h2>2.99</h2>
+                    <h3>€/mois</h3>
                   </div>
                   <p>
                     Recherchez des profils complémentaires au vôtre pour vous
-                    constituez un Crews d'experts
+                    constituez un Crews d'experts.
                   </p>
                 </div>
               </div>

@@ -21,12 +21,13 @@ const sampleCrews = [
     votesInfo: [
       {
         assetId: 1,
-        quantity: 3,
-        buyerId: 1,
-        delay: '14',
+        quantity: 1,
+        buyerId: 2,
+        delay: '1',
         type: 'buy',
         pending: true,
         votes: 3,
+        declined: false,
       },
     ],
     membersInfo: [
