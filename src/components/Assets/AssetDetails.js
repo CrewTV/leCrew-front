@@ -16,16 +16,16 @@ export default function AssetDetails({ asset }) {
       <div className='d-flex flex-row justify-content-between chart-area w-100 asset-details-chart'>
         <div className='d-flex flex-column justify-content-around'>
           <div className='d-flex flex-row'>
-            <h4 className='mr-1'>Bourse:</h4>
+            <h5 className='mr-1'>Bourse:</h5>
             {asset.exchange}
           </div>
           <div className='d-flex flex-row'>
-            <h4 className='mr-1'>Ouverture:</h4>
+            <h5 className='mr-1'>Ouverture:</h5>
             {asset.openPrice} €
           </div>
           <div className='d-flex flex-row'>
-            <h4 className='mr-1'>Cloture veille:</h4>
-            {asset.closingPrice} €
+            <h5 className='mr-1'>Cloture veille:</h5>
+            {asset.closingPrice}€
           </div>
         </div>
         <div className='w-75'>
