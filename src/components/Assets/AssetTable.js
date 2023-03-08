@@ -6,12 +6,16 @@ import UserContext from 'contexts/UserContext';
 import { sampleAssets } from 'assets/samples/asset';
 import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { sampleUsers } from 'assets/samples/user';
+import { addCrewAsset } from 'assets/samples/crew';
+import { sampleCrews } from 'assets/samples/crew';
+import { formatNumber } from 'utils/formating';
 
 export default function AssetTable({
   assetsInfo,
   reducedDisplay,
   deleteCrewAsset,
   votesInfo,
+  validateSampleVote,
 }) {
   const { user } = useContext(UserContext);
 
@@ -102,8 +106,8 @@ export default function AssetTable({
                           ? 'text-success'
                           : 'text-danger'
                       }>
-                      {assetInfo.quantity * asset.currentPrice} € /
-                      {assetInfo.performance > 0 ? '+' : ''}
+                      {formatNumber(assetInfo.quantity * asset.currentPrice)} €
+                      /{assetInfo.performance > 0 ? '+' : ''}
                       {assetInfo.performance} %
                     </p>
                   </td>
@@ -158,7 +162,9 @@ export default function AssetTable({
             <tbody>
               {votesInfo.length === 0 ? (
                 <div className='d-flex align-items-center justify-content-center'>
-                  <h4>Aucun vote en cours</h4>
+                  <tr>
+                    <td>Aucun vote en cours</td>
+                  </tr>
                 </div>
               ) : (
                 votesInfo.map((voteInfo, index) => {
@@ -166,8 +172,9 @@ export default function AssetTable({
                     (sampleAsset) => sampleAsset.id === voteInfo.assetId
                   );
                   const associatedBuyer = sampleUsers.find(
-                    (sampleUser) => sampleUser.id === voteInfo.buyerId
+                    (sampleUser) => sampleUser.id == voteInfo.buyerId
                   );
+
                   return (
                     <tr key={index}>
                       <td>{voteInfo.type === 'buy' ? 'Achat' : 'Vente'}</td>
@@ -176,24 +183,30 @@ export default function AssetTable({
                       <td>{associatedBuyer.firstName}</td>
                       <td>{voteInfo.delay} h</td>
                       <td>{voteInfo.votes}</td>
-                      <td className='text-right'>
-                        <button
-                          type='button'
-                          className='btn btn-success btn-sm m-0 ml-1'>
-                          <i
-                            className='tim-icons icon-check-2 text-white'
-                            onClick={() => {}}
-                          />
-                        </button>
-                        <button
-                          type='button'
-                          className='btn btn-warning btn-sm m-0 ml-1'>
-                          <i
-                            className='tim-icons icon-simple-remove text-white'
-                            onClick={() => {}}
-                          />
-                        </button>
-                      </td>
+                      {user.id !== voteInfo.buyerId && (
+                        <td className='text-right'>
+                          <button
+                            type='button'
+                            className='btn btn-success btn-sm m-0 ml-1'>
+                            <i
+                              className='tim-icons icon-check-2 text-white'
+                              onClick={() => {
+                                validateSampleVote(true);
+                              }}
+                            />
+                          </button>
+                          <button
+                            type='button'
+                            className='btn btn-warning btn-sm m-0 ml-1'>
+                            <i
+                              className='tim-icons icon-simple-remove text-white'
+                              onClick={() => {
+                                validateSampleVote(false);
+                              }}
+                            />
+                          </button>
+                        </td>
+                      )}
                     </tr>
                   );
                 })

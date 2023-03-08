@@ -51,8 +51,8 @@ export default function AssetAddingForm({
     assetName: Yup.string().required('Actif requis'),
     quantity: Yup.number()
       .required('Quantité requise')
-      .min(0, 'La quantité doit être un nombre positif')
-      .integer('La quantité doit être un nombre entier'),
+      .min(0, 'La quantité doit être un positive')
+      .integer('La quantité doit être entière'),
     buyerId: Yup.number().required('Acheteur requis'),
     /*participants: Yup.array()
       .min(1, "Il faut au moins un participant pour valider l'ajout")
@@ -64,6 +64,7 @@ export default function AssetAddingForm({
     const rawAsset = sampleAssets.find(
       (sampleAsset) => sampleAsset.name === values.assetName
     );
+ 
     const newVoteInfo = {
       assetId: rawAsset.id,
       quantity: values.quantity,

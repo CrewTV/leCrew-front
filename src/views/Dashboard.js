@@ -22,7 +22,7 @@ function Dashboard(props) {
         <Row>
           <Col xs='12'>
             <ValorisationChart
-              title={'Valorisation'}
+              title={'Valorisation Personelle'}
               valorisation={<h4>${user.totalValue} €</h4>}
               chart={valorisationCharts}
             />

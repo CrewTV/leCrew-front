@@ -1,0 +1,12 @@
+{
+    "questions": [
+        {
+            "question": "Parmi les produits suivants, lequel détenez vous ou avez détenus:",
+            "answers": ["Comptes courant ou livret d’épargne (Livret A, LDD, PEL…)", "Compte titres ordinaire (CTO), PEA", "Portefeuille de cryptomonnaies"]
+        },
+        {
+            "question": "Comment gérez-vous vos placements financiers ?",
+            "answers": ["Seul", "Conseillé par un non-professionnel financier", "Conseillé par un professionnel financier"]
+        }
+    ]
+}

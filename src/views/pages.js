@@ -6,6 +6,7 @@ import Typography from 'views/Typography.js';
 import UserProfile from 'views/UserProfile.js';
 import AssetList from './assets/AssetList';
 import CrewList from './crews/CrewList';
+import Incorming from './Incoming';
 
 var pages = [
   {
@@ -26,7 +27,7 @@ var pages = [
   {
     name: 'Statistiques',
     icon: 'tim-icons icon-chart-bar-32',
-    component: TableList,
+    component: Incorming,
   },
 ];
 export default pages;

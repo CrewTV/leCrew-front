@@ -102,12 +102,6 @@ function AdminNavbar(props) {
                   <b className='caret d-none d-lg-block d-xl-block ml-3' />
                 </DropdownToggle>
                 <DropdownMenu className='dropdown-navbar' right tag='ul'>
-                  <NavLink tag='li'>
-                    <DropdownItem className='nav-item'>Profil</DropdownItem>
-                  </NavLink>
-                  <NavLink tag='li'>
-                    <DropdownItem className='nav-item'>Paramètres</DropdownItem>
-                  </NavLink>
                   <DropdownItem divider tag='li' />
                   <NavLink
                     tag='li'

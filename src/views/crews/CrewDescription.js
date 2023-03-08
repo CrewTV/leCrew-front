@@ -12,9 +12,6 @@ import {
   ModalHeader,
   ModalBody,
 } from 'reactstrap';
-
-import { Line } from 'react-chartjs-2';
-import { chartExample1 } from 'variables/charts.js';
 import { sampleCrews } from 'assets/samples/crew';
 import AssetTable from 'components/Assets/AssetTable';
 import AssetAddingForm from 'components/Assets/AssetAddingForm';
@@ -22,6 +19,7 @@ import CrewBalance from 'components/Crews/CrewBalance';
 import { sampleAssets } from 'assets/samples/asset';
 import ValorisationChart from 'components/Common/ValorisationChart';
 import { valorisationCharts } from 'assets/samples/charts';
+import { addCrewAsset } from 'assets/samples/crew';
 
 export default function CrewDescription({}) {
   /* Notifications utilitary */
@@ -55,10 +53,33 @@ export default function CrewDescription({}) {
     setAddAssetModal(!addAssetModal);
   };
 
+  const [, updateState] = React.useState();
+  const forceUpdate = React.useCallback(() => updateState({}), []);
+
+  const validateSampleVote = (proceed = false) => {
+    if (!proceed) {
+      crew.votesInfo = [];
+      setCrew(crew);
+      forceUpdate();
+      return;
+    }
+    const assetInfo = {
+      id: 1,
+      quantity: 1,
+      performance: 0,
+    };
+
+    const newCrew = addCrewAsset(crew, assetInfo, 2);
+    newCrew.votesInfo = [];
+    setCrew(newCrew);
+    setCrewAssetsInfo(crew.assetsInfo);
+    forceUpdate();
+  };
+
   // Trigger a notification when needed
   useEffect(() => {
     if (triggerNotification)
-      notify('tr', 'success', 'Actif ajouté avec succes');
+      notify('tr', 'success', 'Vote proposé avec succes');
     setTriggerNotification(false);
   }, [triggerNotification]);
 
@@ -115,6 +136,10 @@ export default function CrewDescription({}) {
     setCrew(crew);
     setCrewAssetsInfo(crew.assetsInfo);
   };
+
+  useEffect(() => {
+    setCrew(crew);
+  }, [crew]);
 
   return (
     <div className='content'>
@@ -180,6 +205,7 @@ export default function CrewDescription({}) {
                     deleteCrewAsset={deleteCrewAsset}
                     reducedDisplay={true}
                     votesInfo={crew.votesInfo}
+                    validateSampleVote={validateSampleVote}
                   />
                 </CardBody>
               </Card>
