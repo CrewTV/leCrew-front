@@ -88,7 +88,7 @@ const valorisationCharts = {
           pointHoverRadius: 4,
           pointHoverBorderWidth: 15,
           pointRadius: 4,
-          data: [98, 103, 105, 101, 97, 94, 92, 95, 97, 100, 98, 102],
+          data: [98, 103, 105, 101, 97, 94, 92, 95, 97, 100, 98, 101],
         },
       ],
     };
@@ -120,7 +120,7 @@ const valorisationCharts = {
           pointHoverRadius: 4,
           pointHoverBorderWidth: 15,
           pointRadius: 4,
-          data: [115, 98, 86, 94, 82, 100, 105],
+          data: [115, 98, 86, 94, 82, 100, 101],
         },
       ],
     };
@@ -152,7 +152,7 @@ const valorisationCharts = {
           pointHoverRadius: 4,
           pointHoverBorderWidth: 15,
           pointRadius: 4,
-          data: [115, 98, 69, 74, 99, 121, 134, 126, 124, 128, 115, 138, 147],
+          data: [115, 98, 69, 74, 99, 121, 134, 126, 124, 128, 115, 138, 101],
         },
       ],
     };
