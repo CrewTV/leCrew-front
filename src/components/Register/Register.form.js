@@ -230,7 +230,7 @@ export default function RegisterForm(props) {
 
         <div className='mt-50'>
           <button type='submit' className='btn btn-info fixed-button'>
-            M'inscire
+            M'inscrire
           </button>
         </div>
       </div>
